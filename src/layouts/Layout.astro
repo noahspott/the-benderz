@@ -1,22 +1,75 @@
+---
+// MAIN LAYOUT
+
+// External libraries
+
+// Global components
+import { Navbar9 } from "../components/global/Navbar9";
+import { Footer16 } from "../components/global/Footer16";
+
+// Styles
+import "../styles/global.css";
+
+// Data
+import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{NAME}</title>
+  </head>
+  <body>
+    <Navbar9 client:load />
+    <slot />
+    <Footer16
+      logoSrc=""
+      companyNameSrc=""
+      companyName="The Benderz"
+      newsletterText="Subscribe to our newsletter"
+      links={{
+        whatWeDo: [
+          { text: "Weddings", href: "/weddings" },
+          { text: "Private Events", href: "/private-events" },
+          { text: "Upcoming Shows", href: "/schedule" },
+          { text: "Playlist", href: "/playlist" },
+        ],
+        moreInfo: [
+          { text: "About Us", href: "/about" },
+          { text: "Testimonials", href: "/testimonials" },
+          { text: "Photos", href: "/photos" },
+          { text: "Contact Us", href: "/contact" },
+        ],
+        followUs: [
+          { text: "Facebook", href: FACEBOOK_URL },
+          { text: "Instagram", href: INSTAGRAM_URL },
+          { text: "Youtube", href: YOUTUBE_URL },
+        ],
+      }}
+      footerText=""
+      policies={[]}
+      client:load
+    />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html {
+    min-width: 320px;
+    max-width: 1920px;
+  }
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

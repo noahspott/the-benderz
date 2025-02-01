@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Navbar9 } from "../../components/global/Navbar9";
+import { PortfolioHeader1 } from "../../components/event-page/PortfolioHeader1.tsx";
+import { Footer16 } from "../../components/global/Footer16.tsx";
+
+import Layout from "../../layouts/Layout.astro";
+
+export const getStaticPaths = (() => {
+  const events = ["weddings", "private-events", "playlist"];
+  return events.map((event) => ({
+    params: { event },
+    props: { event },
+  }));
+}) satisfies GetStaticPaths;
+---
+
+<Layout>
+  <PortfolioHeader1 />
+</Layout>
