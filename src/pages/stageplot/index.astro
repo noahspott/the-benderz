@@ -1,0 +1,23 @@
+---
+// Global Components
+import Layout from "../../layouts/Layout.astro";
+import { Header46 } from "../../components/global/Header46";
+
+// Local Components
+import { Gallery1 } from "../../components/stageplot/Gallery1";
+import { Gallery1_1 } from "../../components/stageplot/Gallery1_1";
+import { Gallery1_2 } from "../../components/stageplot/Gallery1_2";
+
+// Page Data
+const headline = "Stage Plot";
+const description = "Technical specs for The Benderz";
+---
+
+<Layout>
+  <Header46 headline={headline} description={description} />
+  <!-- Add Input List -->
+  <!-- Add Quick Members Reference  -->
+  <Gallery1 />
+  <Gallery1_1 />
+  <Gallery1_2 />
+</Layout>

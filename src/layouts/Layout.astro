@@ -12,6 +12,8 @@ import "../styles/global.css";
 
 // Data
 import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
+
+const { title = "", description = "" } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +28,8 @@ import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{NAME}</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
   <body>
     <Navbar9 client:load />
@@ -34,7 +37,7 @@ import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
     <Footer16
       logoSrc=""
       companyNameSrc=""
-      companyName="The Benderz"
+      companyName={NAME}
       newsletterText="Subscribe to our newsletter"
       links={{
         whatWeDo: [

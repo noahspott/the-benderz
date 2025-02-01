@@ -39,6 +39,41 @@ const useRelume = () => {
 
 export function Navbar9() {
   const useActive = useRelume();
+
+  const primaryLinks = [
+    { href: "/weddings", text: "Weddings" },
+    { href: "/private-events", text: "Private Events" },
+    { href: "/playlist", text: "Playlist" },
+    { href: "/testimonials", text: "Testimonials" },
+  ];
+
+  const secondaryLinks = [
+    {
+      href: "/about",
+      title: "About Us",
+      description: "Discover The Benderz.",
+      icon: <img src="/icons/about.svg" alt="About Us" />,
+    },
+    {
+      href: "/photos",
+      title: "Photos",
+      description: "Visit our photo gallery.",
+      icon: <img src="/icons/photos.svg" alt="Photos" />,
+    },
+    {
+      href: "/venues",
+      title: "Venues",
+      description: "Explore the locations where we perform.",
+      icon: <img src="/icons/venues.svg" alt="Venues" />,
+    },
+    {
+      href: "/blog",
+      title: "Blog",
+      description: "Check out our blog!",
+      icon: <img src="/icons/blog.svg" alt="Blog" />,
+    },
+  ];
+
   return (
     <section
       id="navbar"
@@ -53,30 +88,17 @@ export function Navbar9() {
         </a>
         <div className="absolute hidden h-screen overflow-auto border-b border-border-primary bg-background-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">
-            <a
-              href="/weddings"
-              className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
-            >
-              Weddings
-            </a>
-            <a
-              href="/private-events"
-              className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
-            >
-              Private Events
-            </a>
-            <a
-              href="/playlist"
-              className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
-            >
-              Playlist
-            </a>
-            <a
-              href="/testimonials"
-              className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
-            >
-              Testimonials
-            </a>
+            {/* Primary Links */}
+            {primaryLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
+              >
+                {link.text}
+              </a>
+            ))}
+            {/* More Info Dropdown */}
             <div
               onMouseEnter={useActive.openOnDesktopDropdownMenu}
               onMouseLeave={useActive.closeOnDesktopDropdownMenu}
@@ -120,78 +142,29 @@ export function Navbar9() {
                   <div className="mx-auto flex size-full max-w-full items-center justify-between">
                     <div className="flex w-full flex-col lg:flex-row">
                       <div className="grid flex-1 grid-cols-1 content-start items-start gap-x-8 gap-y-2 py-4 md:grid-cols-2 md:gap-y-6 md:py-8 lg:auto-cols-fr lg:grid-cols-4 lg:content-stretch lg:items-stretch lg:gap-y-0">
-                        <a
-                          href="#"
-                          className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                        >
-                          <div className="flex size-6 flex-col items-center justify-center">
-                            <img
-                              src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                              alt="Icon 1"
-                              className="shrink-0"
-                            />
-                          </div>
-                          <div className="flex flex-col items-start justify-center">
-                            <h5 className="font-semibold">About Us</h5>
-                            <p className="hidden text-sm md:block">
-                              Discover The Benderz.
-                            </p>
-                          </div>
-                        </a>
-                        <a
-                          href="#"
-                          className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                        >
-                          <div className="flex size-6 flex-col items-center justify-center">
-                            <img
-                              src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                              alt="Icon 1"
-                              className="shrink-0"
-                            />
-                          </div>
-                          <div className="flex flex-col items-start justify-center">
-                            <h5 className="font-semibold">Photos</h5>
-                            <p className="hidden text-sm md:block">
-                              Visit our photo gallery.
-                            </p>
-                          </div>
-                        </a>
-                        <a
-                          href="#"
-                          className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                        >
-                          <div className="flex size-6 flex-col items-center justify-center">
-                            <img
-                              src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                              alt="Icon 1"
-                              className="shrink-0"
-                            />
-                          </div>
-                          <div className="flex flex-col items-start justify-center">
-                            <h5 className="font-semibold">Venues</h5>
-                            <p className="hidden text-sm md:block">
-                              Explore the locations where we perform.
-                            </p>
-                          </div>
-                        </a>
-                        <a
-                          href="#"
-                          className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                        >
-                          <div className="flex size-6 flex-col items-center justify-center">
-                            <img
-                              src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                              alt="Icon 1"
-                              className="shrink-0"
-                            />
-                          </div>
-                          <div className="flex flex-col items-start justify-center">
-                            <h5 className="font-semibold">Blog</h5>
-                            <p className="hidden text-sm md:block">
-                              Check out our blog!
-                            </p>
-                          </div>
-                        </a>
+                        {/* Secondary Links */}
+                        {secondaryLinks.map((link, index) => {
+                          return (
+                            <a
+                              href={link.href}
+                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
+                            >
+                              <div className="flex size-6 flex-col items-center justify-center">
+                                <img
+                                  src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
+                                  alt="Icon 1"
+                                  className="shrink-0"
+                                />
+                              </div>
+                              <div className="flex flex-col items-start justify-center">
+                                <h5 className="font-semibold">{link.title}</h5>
+                                <p className="hidden text-sm md:block">
+                                  {link.description}
+                                </p>
+                              </div>
+                            </a>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

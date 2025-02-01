@@ -1,0 +1,41 @@
+---
+// Dynamic page for each venue
+
+// Global components
+import Layout from "../../../layouts/Layout.astro";
+import { Contact5 } from "../../../components/global/Contact5";
+
+// Local components
+import { PortfolioHeader1 } from "../../../components/venue/PortfolioHeader1";
+import { Event31 } from "../../../components/venue/Event31";
+import { Gallery10 } from "../../../components/venue/Gallery10";
+
+// Data
+import { NAME } from "../../../data/consts";
+
+export async function getStaticPaths() {
+  return [
+    {
+      params: { venue: "ocean-drive" },
+      props: { headline: "The Ocean Drive" },
+    },
+    {
+      params: { venue: "rusty-rudder" },
+      props: { headline: "The Rusty Rudder" },
+    },
+    {
+      params: { venue: "bottle-and-cork" },
+      props: { headline: "The Bottle and Cork" },
+    },
+  ];
+}
+
+const { headline } = Astro.props;
+---
+
+<Layout>
+  <PortfolioHeader1 headline={headline} />
+  <Event31 client:load />
+  <Gallery10 />
+  <Contact5 />
+</Layout>

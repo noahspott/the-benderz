@@ -1,0 +1,20 @@
+---
+// Global Components
+import Layout from "../../layouts/Layout.astro";
+import { Header46 } from "../../components/global/Header46";
+import { Contact5 } from "../../components/global/Contact5";
+
+// Local Components
+import { Event31 } from "../../components/schedule/Event31";
+
+// Page Data
+const headline = "Schedule";
+const description =
+  "The Benderz deliver unforgettable performances, uniting music lovers through energy and passion for every occasion.";
+---
+
+<Layout>
+  <Header46 headline={headline} description={description} />
+  <Event31 />
+  <Contact5 />
+</Layout>
