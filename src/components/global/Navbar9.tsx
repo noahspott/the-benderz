@@ -4,6 +4,7 @@ import { Button, useMediaQuery } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { RxChevronDown } from "react-icons/rx";
+import type { Link } from "../../types/types";
 
 const useRelume = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,42 +38,18 @@ const useRelume = () => {
   };
 };
 
-export function Navbar9() {
+interface Navbar9Props {
+  buttons: Link[];
+  primaryLinks: Link[];
+  secondaryLinks: Link[];
+}
+
+export function Navbar9({
+  buttons,
+  primaryLinks,
+  secondaryLinks,
+}: Navbar9Props) {
   const useActive = useRelume();
-
-  const primaryLinks = [
-    { href: "/weddings", text: "Weddings" },
-    { href: "/private-events", text: "Private Events" },
-    { href: "/playlist", text: "Playlist" },
-    { href: "/testimonials", text: "Testimonials" },
-  ];
-
-  const secondaryLinks = [
-    {
-      href: "/about",
-      title: "About Us",
-      description: "Discover The Benderz.",
-      icon: <img src="/icons/about.svg" alt="About Us" />,
-    },
-    {
-      href: "/photos",
-      title: "Photos",
-      description: "Visit our photo gallery.",
-      icon: <img src="/icons/photos.svg" alt="Photos" />,
-    },
-    {
-      href: "/venues",
-      title: "Venues",
-      description: "Explore the locations where we perform.",
-      icon: <img src="/icons/venues.svg" alt="Venues" />,
-    },
-    {
-      href: "/blog",
-      title: "Blog",
-      description: "Check out our blog!",
-      icon: <img src="/icons/blog.svg" alt="Blog" />,
-    },
-  ];
 
   return (
     <section
@@ -146,13 +123,17 @@ export function Navbar9() {
                         {secondaryLinks.map((link, index) => {
                           return (
                             <a
+                              key={link.href}
                               href={link.href}
                               className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
                             >
                               <div className="flex size-6 flex-col items-center justify-center">
                                 <img
-                                  src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                  alt="Icon 1"
+                                  src={
+                                    link.iconSrc ||
+                                    "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
+                                  }
+                                  alt={link.title}
                                   className="shrink-0"
                                 />
                               </div>
@@ -168,26 +149,22 @@ export function Navbar9() {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="relative mb-6 flex w-full flex-col items-start justify-between p-6 sm:items-center lg:mb-0 lg:flex-row lg:px-0 lg:py-3">
-                    <div className="absolute -left-[50vw] -right-[50vw] bottom-0 top-0 w-[200vw] bg-background-secondary" />
-                    <div className="relative z-10 mr-auto flex flex-col gap-y-4 sm:mx-auto sm:grid sm:auto-cols-fr sm:grid-cols-[max-content_max-content] sm:gap-x-1">
-                      <p>Looking for a new career?</p>
-                      <a href="#" className="underline">
-                        Get in touch
-                      </a>
-                    </div>
-                  </div> */}
                 </motion.nav>
               </AnimatePresence>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <Button title="Schedule" variant="secondary" size="sm">
-              Schedule
-            </Button>
-            <Button title="Contact" size="sm">
-              Contact
-            </Button>
+            {buttons.map((button, index) => (
+              <a key={index} href={button.href}>
+                <Button
+                  title={button.text}
+                  variant={index === 0 ? "secondary" : "primary"}
+                  size="sm"
+                >
+                  {button.text}
+                </Button>
+              </a>
+            ))}
           </div>
         </div>
         <button

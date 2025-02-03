@@ -11,10 +11,27 @@ import { Layout353 } from "../../components/weddings/Layout353";
 import { Layout300 } from "../../components/weddings/Layout300";
 import { Faq3 } from "../../components/weddings/Faq3";
 import { Contact2 } from "../../components/weddings/Contact2";
+
+// Types
+import type { Link } from "../../types/types";
+
+const kicker = "Philadelphia Wedding Band";
+const headline = '"Our friends still tell us - we had the Best Wedding Band!"';
+const description =
+  "We're not just another wedding band. Our show is a high-energy performance that will keep your guests dancing all night long.";
+const buttons: Link[] = [
+  { title: "Book Now", href: "/contact" },
+  { title: "View Schedule", href: "/schedule" },
+];
 ---
 
 <Layout>
-  <Header50 />
+  <Header50
+    headline={headline}
+    description={description}
+    kicker={kicker}
+    buttons={buttons}
+  />
   <Layout193 />
   <Layout353 />
   <Layout300 />

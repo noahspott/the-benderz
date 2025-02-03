@@ -3,27 +3,42 @@
 import { Button } from "@relume_io/relume-ui";
 import React from "react";
 
-export function Header50() {
+import type { Link } from "../../types/types";
+
+interface Header50Props {
+  kicker: string;
+  headline: string;
+  description: string;
+  buttons: Link[];
+}
+
+export function Header50({
+  kicker,
+  headline,
+  description,
+  buttons,
+}: Header50Props) {
   return (
     <section id="relume" className="relative px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="w-full max-w-lg">
           <p className="mb-3 font-semibold text-text-alternative md:mb-4">
-            Corporate Events & Private Parties
+            {kicker}
           </p>
           <h1 className="mb-5 text-6xl font-bold text-text-alternative md:mb-6 md:text-9xl lg:text-10xl">
-            High Energy Live Music for Your Private Event
+            {headline}
           </h1>
-          <p className="text-text-alternative md:text-md">
-            Make your private party or corporate event unforgettable with The
-            Benderz, the party band that keeps your guests singing and dancing
-            all night long.
-          </p>
+          <p className="text-text-alternative md:text-md">{description}</p>
           <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-            <Button title="Book Now">Book Now</Button>
-            <Button title="View Schedule" variant="secondary-alt">
-              View Schedule
-            </Button>
+            {buttons.map((button, index) => (
+              <Button
+                key={button.title}
+                title={button.title}
+                variant={index === 0 ? "primary" : "secondary-alt"}
+              >
+                {button.title}
+              </Button>
+            ))}
           </div>
         </div>
       </div>
