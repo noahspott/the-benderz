@@ -92,6 +92,7 @@ const { title = "", description = "" } = Astro.props;
       secondaryButton={secondaryButton}
       primaryLinks={primaryLinks}
       secondaryLinks={secondaryLinks}
+      logoSrc={LOGO_URL}
       client:load
     />
     <slot />
@@ -130,6 +131,7 @@ const { title = "", description = "" } = Astro.props;
   html {
     min-width: 320px;
     max-width: 1920px;
+    margin: 0 auto;
   }
   body {
     margin: 0;

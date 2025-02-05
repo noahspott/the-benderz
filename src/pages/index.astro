@@ -2,14 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import Header30 from "../components/home/Header30.astro";
 import { Layout208 } from "../components/home/Layout208";
-import { Testimonial4 } from "../components/home/Testimonial4";
+import Testimonial4 from "../components/home/Testimonial4.astro";
 import { Event31 } from "../components/home/Event31";
 import { Logo2 } from "../components/home/Logo2";
 import { Contact5 } from "../components/global/Contact5";
 
+// Images
+import testimonialBackgroundImage from "../assets/images/hero-1.jpg";
+import testimonialAvatarImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
+
 // data
 import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
+// Hero Copy
 const heading = "The Benderz";
 const subheading = ["Not just a cover band.", "A party you'll never forget."];
 const button = {
@@ -17,8 +22,17 @@ const button = {
   href: "/contact",
 };
 
+// Youtube Data
 const youtubeEmbedUrl = "https://www.youtube.com/embed/tasi6UpOaO8";
 const youtubeThumbnailUrl = "https://i.ytimg.com/vi/tasi6UpOaO8/hqdefault.jpg";
+
+// Testimonial Data
+const quote =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.";
+const author = "John Doe";
+const title = "CEO, Company Name";
+const avatarImage = testimonialAvatarImage;
+const backgroundImage = testimonialBackgroundImage;
 ---
 
 <Layout>
@@ -33,7 +47,13 @@ const youtubeThumbnailUrl = "https://i.ytimg.com/vi/tasi6UpOaO8/hqdefault.jpg";
     youtubeEmbedUrl={youtubeEmbedUrl}
     youtubeThumbnailUrl={youtubeThumbnailUrl}
   />
-  <Testimonial4 />
+  <Testimonial4
+    quote={quote}
+    author={author}
+    title={title}
+    avatarImage={avatarImage}
+    backgroundImage={backgroundImage}
+  />
   <Event31 client:load />
   <Logo2 />
   <Contact5 />

@@ -8,8 +8,10 @@ import {
 import { FaCirclePlay } from "react-icons/fa6";
 import { RxChevronRight } from "react-icons/rx";
 
+// Data
 import { slugs } from "../../data/consts";
 
+// Copy
 const features = [
   {
     icon: "./images/icons/playlist-add-check.svg",
@@ -26,6 +28,7 @@ const features = [
   },
 ];
 
+// Buttons
 const links = [
   {
     text: "Book Us!",
@@ -85,11 +88,11 @@ export function Layout208({
             </div>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <a href={links[0].href}>
-                <Button className="button" variant="secondary">
+                <Button className="button-secondary" variant="secondary">
                   {links[0].text}
                 </Button>
               </a>
-              <a href={links[1].href} className="my-auto">
+              <a href={links[1].href} className="button-link my-auto">
                 <Button
                   variant="link"
                   size="link"

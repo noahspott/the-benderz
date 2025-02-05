@@ -8,9 +8,17 @@
     @apply bg-white/50 backdrop-blur-md;
   }
 
-  /* Button */
+  /* Buttons */
   .button {
-    @apply rounded-full;
+    @apply rounded-full font-heading text-xl;
+  }
+
+  .button-secondary {
+    @apply button border-2 bg-transparent;
+  }
+
+  .button-link {
+    @apply font-heading text-xl;
   }
 
   .kicker {
@@ -23,7 +31,7 @@
 }
 
 .animated-gradient {
-  background: radial-gradient(circle at 50% 50%, #00f260 0%, #0575e6 100%);
+  background: radial-gradient(circle at 50% 50%, #00f26185 0%, #0575e6 100%);
   background-size: 400% 400%;
   animation: gradientAnimation 7s ease infinite;
 }

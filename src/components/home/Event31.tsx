@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +5,6 @@ import {
   AccordionTrigger,
   Button,
 } from "@relume_io/relume-ui";
-import React from "react";
 
 export function Event31() {
   return (
@@ -15,11 +12,11 @@ export function Event31() {
       <div className="container">
         <div className="mb-12 md:mb-18 lg:mb-20">
           <div className="mx-auto max-w-lg text-center">
-            <h4 className="font-semibold">Where To Find Us</h4>
-            <h1 className="mt-3 text-5xl font-bold md:mt-4 md:text-7xl lg:text-8xl">
-              This Week
+            <h4 className="kicker">Schedule</h4>
+            <h1 className="mt-3 font-heading text-5xl md:mt-4 md:text-7xl lg:text-8xl">
+              Shows This Week
             </h1>
-            <p className="mt-5 text-base md:mt-6 md:text-md">
+            <p className="mt-5 font-body md:mt-6 md:text-md">
               Come party with us!
             </p>
           </div>

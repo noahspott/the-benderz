@@ -50,6 +50,7 @@ interface Navbar9Props {
   secondaryButton: Link;
   primaryLinks: Link[];
   secondaryLinks: Link[];
+  logoSrc: string;
 }
 
 export function Navbar9({
@@ -57,20 +58,18 @@ export function Navbar9({
   secondaryButton,
   primaryLinks,
   secondaryLinks,
+  logoSrc,
 }: Navbar9Props) {
   const useActive = useRelume();
 
   return (
     <motion.section
       id="navbar"
-      className="shadow-lg fixed z-[999] flex min-h-16 w-full items-center bg-white px-[5%] font-subheading text-neutral-darkest md:min-h-18"
+      className="fixed z-[999] mx-auto flex min-h-16 w-full max-w-[1920px] items-center bg-white px-[5%] font-subheading text-neutral-darkest shadow-small md:min-h-18"
     >
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <a href="/">
-          <img
-            src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
-            alt=""
-          />
+          <img src={logoSrc} alt="" className="h-10" />
         </a>
         <div className="absolute hidden h-screen overflow-auto border-b border-border-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">
@@ -145,7 +144,7 @@ export function Navbar9({
                               />
                             </div>
                             <div className="flex flex-col items-start justify-center">
-                              <h5 className="">{link.title}</h5>
+                              <h5 className="heading-nav">{link.title}</h5>
                               <p className="hidden font-body text-sm md:block">
                                 {link.description}
                               </p>
@@ -161,12 +160,15 @@ export function Navbar9({
           </div>
           {/* Desktop -- Buttons */}
           <div className="flex items-center gap-4">
-            <a href={secondaryButton.href}>
+            <a
+              href={secondaryButton.href}
+              className="hidden [@media(min-width:1100px)]:flex"
+            >
               <Button
                 title={secondaryButton.text}
                 variant="secondary"
                 size="sm"
-                className="button bg-transparent font-button text-xl"
+                className="button-secondary"
               >
                 {secondaryButton.text}
               </Button>
@@ -176,7 +178,7 @@ export function Navbar9({
                 title={primaryButton.text}
                 variant="primary"
                 size="sm"
-                className="button border-accent-500 bg-accent-500 font-button text-xl text-neutral-darker"
+                className="button border-accent-600 bg-accent-600 font-button text-neutral-lightest"
               >
                 {primaryButton.text}
               </Button>
@@ -250,14 +252,14 @@ export function Navbar9({
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block py-3 text-md"
+                  className="heading-nav block py-3"
                 >
                   {link.text}
                 </a>
               ))}
               <div>
                 <button
-                  className="relative flex w-full items-center justify-between whitespace-nowrap py-3 text-md lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6 lg:text-base"
+                  className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
                   onClick={useActive.openOnMobileDropdownMenu}
                 >
                   <span>More Info</span>
@@ -313,8 +315,8 @@ export function Navbar9({
                                 />
                               </div>
                               <div className="flex flex-col items-start justify-center">
-                                <h5 className="">{link.title}</h5>
-                                <p className="hidden font-body text-sm md:block">
+                                <h5 className="heading-nav">{link.title}</h5>
+                                <p className="hidden font-body md:block">
                                   {link.description}
                                 </p>
                               </div>

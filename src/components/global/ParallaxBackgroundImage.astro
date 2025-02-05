@@ -11,9 +11,10 @@ import { Image } from "astro:assets";
 type Props = {
   imageMetaData: ImageMetadata;
   overlayClassName: string;
+  parallaxSpeed?: number;
 };
 
-const { imageMetaData, overlayClassName } = Astro.props;
+const { imageMetaData, overlayClassName, parallaxSpeed = 0.3 } = Astro.props;
 ---
 
 <div class="absolute inset-0 -z-10 overflow-hidden">
@@ -56,7 +57,7 @@ const { imageMetaData, overlayClassName } = Astro.props;
 </style>
 
 <!-- Parallax Effect -->
-<script>
+<script define:vars={{ parallaxSpeed }}>
   function handleParallax() {
     const parallaxElements = document.querySelectorAll(".parallax-bg");
 
@@ -80,10 +81,10 @@ const { imageMetaData, overlayClassName } = Astro.props;
           scrolled + viewportHeight > elementTop &&
           scrolled < elementTop + elementRect.height
         ) {
-          const speed = 0.7; // Reduced for smoother effect
+          const speed = parallaxSpeed;
           const offset = (scrolled - elementTop) * speed;
 
-          (element as HTMLElement).style.transform = `translateY(${offset}px)`;
+          element.style.transform = `translateY(${offset}px)`;
         }
       });
 
