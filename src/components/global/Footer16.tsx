@@ -54,7 +54,7 @@ export function Footer16({
         <div className="grid grid-cols-1 gap-x-[8vw] gap-y-12 pb-8 md:gap-y-16 md:pb-10 lg:grid-cols-[0.75fr_1fr] lg:gap-y-4 lg:pb-12">
           <div className="flex flex-col">
             <a href="/" className="mb-5 md:mb-6">
-              <img src={logoSrc} alt="Logo image" className="inline-block" />
+              <img src={logoSrc} alt="Logo image" className="size-full" />
             </a>
             <p className="mb-5 md:mb-6">{newsletterText}</p>
             <div className="w-full max-w-md">
@@ -81,11 +81,14 @@ export function Footer16({
           </div>
           <div className="grid grid-cols-1 items-start gap-y-10 sm:grid-cols-3 sm:gap-x-6 md:gap-x-8 md:gap-y-4">
             <div className="flex flex-col items-start justify-start">
-              <h2 className="mb-3 font-semibold md:mb-4">What We Do</h2>
+              <h2 className="mb-3 font-heading md:mb-4">What We Do</h2>
               <ul className="flex flex-col items-start">
                 {links.whatWeDo.map((link, index) => (
                   <li key={index} className="py-2 text-sm">
-                    <a href={link.href} className="flex items-center gap-3">
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-3 font-body"
+                    >
                       <span>{link.text}</span>
                     </a>
                   </li>
@@ -93,11 +96,14 @@ export function Footer16({
               </ul>
             </div>
             <div className="flex flex-col items-start justify-start">
-              <h2 className="mb-3 font-semibold md:mb-4">More Info</h2>
+              <h2 className="mb-3 font-heading md:mb-4">More Info</h2>
               <ul className="flex flex-col items-start">
                 {links.moreInfo.map((link, index) => (
                   <li key={index} className="py-2 text-sm">
-                    <a href={link.href} className="flex items-center gap-3">
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-3 font-body"
+                    >
                       <span>{link.text}</span>
                     </a>
                   </li>
@@ -105,17 +111,20 @@ export function Footer16({
               </ul>
             </div>
             <div className="flex flex-col items-start justify-start">
-              <h2 className="mb-3 font-semibold md:mb-4">Follow us</h2>
+              <h2 className="mb-3 font-heading md:mb-4">Follow us</h2>
               <ul className="flex flex-col items-start">
                 {links.followUs.map((link, index) => (
                   <li key={index} className="py-2 text-sm">
-                    <a href={link.href} className="flex items-center gap-3">
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-3 font-body"
+                    >
                       {link.text === "Facebook" ? (
-                        <BiLogoFacebookCircle />
+                        <BiLogoFacebookCircle className="size-6" />
                       ) : link.text === "Instagram" ? (
-                        <BiLogoInstagram />
+                        <BiLogoInstagram className="size-6" />
                       ) : link.text === "Youtube" ? (
-                        <BiLogoYoutube />
+                        <BiLogoYoutube className="size-6" />
                       ) : null}
                       <span>{link.text}</span>
                     </a>
@@ -126,16 +135,16 @@ export function Footer16({
           </div>
         </div>
         <div className="pb-8 md:pb-10 lg:pb-12">
-          <a href="/">
+          <a href="/" className="w-full">
             {companyNameSrc ? (
               <img
                 src={companyNameSrc}
                 alt="Company image"
-                className="inline-block"
+                className="w-full"
               />
             ) : (
               <span className="text-center text-[10rem] font-black">
-                {companyName}
+                {companyName} - testing
               </span>
             )}
           </a>

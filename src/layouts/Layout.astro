@@ -9,12 +9,19 @@ import { Footer16 } from "../components/global/Footer16";
 
 // Styles
 import "../styles/global.css";
+import "../styles/fonts.css";
 
 // Types
 import type { Link } from "../types/types";
 
 // Data
-import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
+import {
+  NAME,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  YOUTUBE_URL,
+  LOGO_URL,
+} from "../data/consts";
 import { slugs } from "../data/consts";
 
 const primaryLinks: Link[] = [
@@ -24,10 +31,15 @@ const primaryLinks: Link[] = [
   { href: slugs.testimonials, text: "Testimonials" },
 ];
 
-const buttons: Link[] = [
-  { href: slugs.schedule, text: "Schedule" },
-  { href: slugs.contact, text: "Contact Us" },
-];
+const primaryButton: Link = {
+  href: slugs.contact,
+  text: "Contact Us",
+};
+
+const secondaryButton: Link = {
+  href: slugs.schedule,
+  text: "Schedule",
+};
 
 const secondaryLinks: Link[] = [
   {
@@ -76,29 +88,30 @@ const { title = "", description = "" } = Astro.props;
   </head>
   <body>
     <Navbar9
-      buttons={buttons}
+      primaryButton={primaryButton}
+      secondaryButton={secondaryButton}
       primaryLinks={primaryLinks}
       secondaryLinks={secondaryLinks}
       client:load
     />
     <slot />
     <Footer16
-      logoSrc=""
-      companyNameSrc=""
+      logoSrc={LOGO_URL}
+      companyNameSrc={LOGO_URL}
       companyName={NAME}
       newsletterText="Subscribe to our newsletter"
       links={{
         whatWeDo: [
-          { text: "Weddings", href: "/weddings" },
-          { text: "Private Events", href: "/private-events" },
-          { text: "Upcoming Shows", href: "/schedule" },
-          { text: "Playlist", href: "/playlist" },
+          { text: "Weddings", href: slugs.weddings },
+          { text: "Private Events", href: slugs.privateEvents },
+          { text: "Upcoming Shows", href: slugs.schedule },
+          { text: "Playlist", href: slugs.playlist },
         ],
         moreInfo: [
-          { text: "About Us", href: "/about" },
-          { text: "Testimonials", href: "/testimonials" },
-          { text: "Photos", href: "/photos" },
-          { text: "Contact Us", href: "/contact" },
+          { text: "About Us", href: slugs.about },
+          { text: "Testimonials", href: slugs.testimonials },
+          { text: "Photos", href: slugs.photos },
+          { text: "Contact Us", href: slugs.contact },
         ],
         followUs: [
           { text: "Facebook", href: FACEBOOK_URL },

@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+
+/**
+ *
+ * @note Parent element must be position:relative
+ *
+ * @param {ImageMetadata} imageMetaData - The image metadata to use for the background image.
+ * @param {string} overlayClassName - The class name to use for the overlay.
+ */
+type Props = {
+  imageMetaData: ImageMetadata;
+  overlayClassName: string;
+};
+
+const { imageMetaData, overlayClassName } = Astro.props;
+---
+
+<div class="absolute inset-0 -z-10 overflow-hidden">
+  <!-- Dark Gradient Overlay: to make text readable -->
+  <div class={`absolute inset-0 z-10 ${overlayClassName}`}></div>
+  <!-- Parallax Background Image -->
+  <div
+    class="parallax-bg absolute bottom-0 left-0 right-0 top-0 h-[120%] overflow-hidden"
+  >
+    <Image
+      src={imageMetaData}
+      class="blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none"
+      alt={""}
+      loading="eager"
+    />
+  </div>
+</div>
+
+<style>
+  .parallax-bg {
+    transform: translateY(0);
+    will-change: transform;
+  }
+
+  .parallax-bg img {
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-bg {
+      transform: none;
+      height: 100%;
+    }
+
+    .parallax-bg img {
+      position: absolute;
+      height: 100%;
+    }
+  }
+</style>
+
+<!-- Parallax Effect -->
+<script>
+  function handleParallax() {
+    const parallaxElements = document.querySelectorAll(".parallax-bg");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    let ticking = false;
+    let lastScrollY = window.scrollY;
+
+    function updateParallax() {
+      const scrolled = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      parallaxElements.forEach((element) => {
+        const elementRect = element.getBoundingClientRect();
+        const elementTop = elementRect.top + scrolled;
+
+        // Only animate when element is in viewport
+        if (
+          scrolled + viewportHeight > elementTop &&
+          scrolled < elementTop + elementRect.height
+        ) {
+          const speed = 0.7; // Reduced for smoother effect
+          const offset = (scrolled - elementTop) * speed;
+
+          (element as HTMLElement).style.transform = `translateY(${offset}px)`;
+        }
+      });
+
+      lastScrollY = scrolled;
+      ticking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    // Initial position
+    updateParallax();
+  }
+
+  // Run after DOM is loaded
+  document.addEventListener("DOMContentLoaded", handleParallax);
+</script>

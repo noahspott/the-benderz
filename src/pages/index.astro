@@ -1,16 +1,38 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Header30 } from "../components/home/Header30";
+import Header30 from "../components/home/Header30.astro";
 import { Layout208 } from "../components/home/Layout208";
 import { Testimonial4 } from "../components/home/Testimonial4";
 import { Event31 } from "../components/home/Event31";
 import { Logo2 } from "../components/home/Logo2";
 import { Contact5 } from "../components/global/Contact5";
+
+// data
+import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
+
+const heading = "The Benderz";
+const subheading = ["Not just a cover band.", "A party you'll never forget."];
+const button = {
+  title: "Let's Party",
+  href: "/contact",
+};
+
+const youtubeEmbedUrl = "https://www.youtube.com/embed/tasi6UpOaO8";
+const youtubeThumbnailUrl = "https://i.ytimg.com/vi/tasi6UpOaO8/hqdefault.jpg";
 ---
 
 <Layout>
-  <Header30 />
-  <Layout208 />
+  <Header30
+    imageMetaData={heroImage}
+    heading={heading}
+    subheading={subheading}
+    button={button}
+  />
+  <Layout208
+    client:load
+    youtubeEmbedUrl={youtubeEmbedUrl}
+    youtubeThumbnailUrl={youtubeThumbnailUrl}
+  />
   <Testimonial4 />
   <Event31 client:load />
   <Logo2 />

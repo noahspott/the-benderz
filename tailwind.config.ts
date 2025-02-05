@@ -12,6 +12,7 @@ export default {
   ],
   theme: {
     screens: {
+      xs: "400px",
       sm: "480px",
       md: "768px",
       lg: "992px",
@@ -106,6 +107,33 @@ export default {
       },
 
       colors: {
+        // BENDERZ GREEN
+        accent: {
+          50: "#e0f9e0",
+          100: "#b3f2b3",
+          200: "#80eb80",
+          300: "#4de44d",
+          400: "#26dc26",
+          500: "#00f260",
+          600: "#00c24d",
+          700: "#009a3a",
+          800: "#007528",
+          900: "#005b1a",
+        },
+        // BENDERZ ORANGE
+        // accent: {
+        //   50: "#fef6e9",
+        //   100: "#fdecd3",
+        //   200: "#fbd9a7",
+        //   300: "#f9c67b",
+        //   400: "#f7b34f",
+        //   500: "#f6b66f",
+        //   600: "#d99f5f",
+        //   700: "#b3864f",
+        //   800: "#8c6d3f",
+        //   900: "#66542f",
+        // },
+
         brand: {
           black: "#000000",
           white: "#ffffff",
@@ -473,6 +501,14 @@ export default {
         "marquee-bottom": "marquee-bottom 50s linear infinite",
         "marquee-left": "marquee-left 25s linear infinite",
         tabs: "tabs 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+      },
+
+      fontFamily: {
+        heading: ['"Bebas Neue"', "sans-serif"],
+        subheading: ['"Bebas Neue"', "sans-serif"],
+        body: ['"Inter"', "sans-serif"],
+        button: ['"Bebas Neue"', "sans-serif"],
+        creative: ['"Covered By Your Grace"', "cursive"],
       },
     },
   },

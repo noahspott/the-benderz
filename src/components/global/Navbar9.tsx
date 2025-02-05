@@ -1,9 +1,16 @@
 "use client";
 
+// Components
 import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import { AnimatePresence, motion } from "framer-motion";
+
+// Tools
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import React, { useState } from "react";
+
+// Icons
 import { RxChevronDown } from "react-icons/rx";
+
+// Types
 import type { Link } from "../../types/types";
 
 const useRelume = () => {
@@ -39,49 +46,51 @@ const useRelume = () => {
 };
 
 interface Navbar9Props {
-  buttons: Link[];
+  primaryButton: Link;
+  secondaryButton: Link;
   primaryLinks: Link[];
   secondaryLinks: Link[];
 }
 
 export function Navbar9({
-  buttons,
+  primaryButton,
+  secondaryButton,
   primaryLinks,
   secondaryLinks,
 }: Navbar9Props) {
   const useActive = useRelume();
 
   return (
-    <section
+    <motion.section
       id="navbar"
-      className="relative z-[999] flex min-h-16 w-full items-center border-b border-border-primary bg-background-primary px-[5%] md:min-h-18"
+      className="shadow-lg fixed z-[999] flex min-h-16 w-full items-center bg-white px-[5%] font-subheading text-neutral-darkest md:min-h-18"
     >
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <a href="/">
           <img
             src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
-            alt="Logo image"
+            alt=""
           />
         </a>
-        <div className="absolute hidden h-screen overflow-auto border-b border-border-primary bg-background-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
+        <div className="absolute hidden h-screen overflow-auto border-b border-border-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">
-            {/* Primary Links */}
+            {/* Desktop -- Primary Links */}
             {primaryLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
+                className="heading-nav relative block w-auto py-3 lg:inline-block lg:px-4 lg:py-6"
               >
                 {link.text}
               </a>
             ))}
-            {/* More Info Dropdown */}
+            {/* Desktop -- More Info Dropdown */}
             <div
               onMouseEnter={useActive.openOnDesktopDropdownMenu}
               onMouseLeave={useActive.closeOnDesktopDropdownMenu}
             >
               <button
-                className="relative flex w-full items-center justify-between whitespace-nowrap py-3 text-md lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6 lg:text-base"
+                className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
                 onClick={useActive.openOnMobileDropdownMenu}
               >
                 <span>More Info</span>
@@ -114,38 +123,35 @@ export function Navbar9({
                   initial="close"
                   exit="close"
                   transition={{ duration: 0.2 }}
-                  className="bottom-auto left-0 top-full w-full min-w-full max-w-full overflow-hidden bg-background-primary lg:absolute lg:w-screen lg:border-b lg:border-border-primary lg:px-[5%] lg:[--height-close:auto]"
+                  className="bottom-auto left-0 top-full w-full min-w-full max-w-full overflow-hidden bg-white lg:absolute lg:w-screen lg:border-b lg:border-border-primary lg:px-[5%] lg:[--height-close:auto]"
                 >
                   <div className="mx-auto flex size-full max-w-full items-center justify-between">
                     <div className="flex w-full flex-col lg:flex-row">
                       <div className="grid flex-1 grid-cols-1 content-start items-start gap-x-8 gap-y-2 py-4 md:grid-cols-2 md:gap-y-6 md:py-8 lg:auto-cols-fr lg:grid-cols-4 lg:content-stretch lg:items-stretch lg:gap-y-0">
-                        {/* Secondary Links */}
-                        {secondaryLinks.map((link, index) => {
-                          return (
-                            <a
-                              key={link.href}
-                              href={link.href}
-                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                            >
-                              <div className="flex size-6 flex-col items-center justify-center">
-                                <img
-                                  src={
-                                    link.iconSrc ||
-                                    "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                  }
-                                  alt={link.title}
-                                  className="shrink-0"
-                                />
-                              </div>
-                              <div className="flex flex-col items-start justify-center">
-                                <h5 className="font-semibold">{link.title}</h5>
-                                <p className="hidden text-sm md:block">
-                                  {link.description}
-                                </p>
-                              </div>
-                            </a>
-                          );
-                        })}
+                        {secondaryLinks.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
+                          >
+                            <div className="flex size-6 flex-col items-center justify-center">
+                              <img
+                                src={
+                                  link.iconSrc ||
+                                  "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
+                                }
+                                alt={link.title}
+                                className="shrink-0"
+                              />
+                            </div>
+                            <div className="flex flex-col items-start justify-center">
+                              <h5 className="">{link.title}</h5>
+                              <p className="hidden font-body text-sm md:block">
+                                {link.description}
+                              </p>
+                            </div>
+                          </a>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -153,20 +159,31 @@ export function Navbar9({
               </AnimatePresence>
             </div>
           </div>
+          {/* Desktop -- Buttons */}
           <div className="flex items-center gap-4">
-            {buttons.map((button, index) => (
-              <a key={index} href={button.href}>
-                <Button
-                  title={button.text}
-                  variant={index === 0 ? "secondary" : "primary"}
-                  size="sm"
-                >
-                  {button.text}
-                </Button>
-              </a>
-            ))}
+            <a href={secondaryButton.href}>
+              <Button
+                title={secondaryButton.text}
+                variant="secondary"
+                size="sm"
+                className="button bg-transparent font-button text-xl"
+              >
+                {secondaryButton.text}
+              </Button>
+            </a>
+            <a href={primaryButton.href}>
+              <Button
+                title={primaryButton.text}
+                variant="primary"
+                size="sm"
+                className="button border-accent-500 bg-accent-500 font-button text-xl text-neutral-darker"
+              >
+                {primaryButton.text}
+              </Button>
+            </a>
           </div>
         </div>
+        {/* Mobile Menu Button */}
         <button
           className="-mr-2 flex size-12 cursor-pointer flex-col items-center justify-center lg:hidden"
           onClick={useActive.toggleMobileMenu}
@@ -228,21 +245,22 @@ export function Navbar9({
             className="absolute left-0 right-0 top-0 block h-dvh overflow-auto border-b border-border-primary bg-background-primary px-[5%] pb-8 pt-4"
           >
             <div className="flex flex-col">
-              <a href="#" className="block py-3 text-md">
-                Link One
-              </a>
-              <a href="#" className="block py-3 text-md">
-                Link Two
-              </a>
-              <a href="#" className="block py-3 text-md">
-                Link Three
-              </a>
+              {/* Burger Menu -- Primary Links */}
+              {primaryLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="block py-3 text-md"
+                >
+                  {link.text}
+                </a>
+              ))}
               <div>
                 <button
                   className="relative flex w-full items-center justify-between whitespace-nowrap py-3 text-md lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6 lg:text-base"
                   onClick={useActive.openOnMobileDropdownMenu}
                 >
-                  <span>Link Four</span>
+                  <span>More Info</span>
                   <motion.span
                     animate={useActive.animateDropdownMenuIcon}
                     variants={{
@@ -276,83 +294,36 @@ export function Navbar9({
                   >
                     <div className="mx-auto flex size-full max-w-full items-center justify-between">
                       <div className="flex w-full flex-col lg:flex-row">
+                        {/* Burger Menu -- Secondary Links */}
                         <div className="grid flex-1 grid-cols-1 content-start items-start gap-x-8 gap-y-2 py-4 md:grid-cols-2 md:gap-y-6 md:py-8 lg:auto-cols-fr lg:grid-cols-4 lg:content-stretch lg:items-stretch lg:gap-y-0">
-                          <a
-                            href="#"
-                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                          >
-                            <div className="flex size-6 flex-col items-center justify-center">
-                              <img
-                                src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                alt="Icon 1"
-                                className="shrink-0"
-                              />
-                            </div>
-                            <div className="flex flex-col items-start justify-center">
-                              <h5 className="font-semibold">Page one</h5>
-                              <p className="hidden text-sm md:block">
-                                Lorem ipsum dolor sit amet consectetur elit
-                              </p>
-                            </div>
-                          </a>
-                          <a
-                            href="#"
-                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                          >
-                            <div className="flex size-6 flex-col items-center justify-center">
-                              <img
-                                src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                alt="Icon 2"
-                                className="shrink-0"
-                              />
-                            </div>
-                            <div className="flex flex-col items-start justify-center">
-                              <h5 className="font-semibold">Page two</h5>
-                              <p className="hidden text-sm md:block">
-                                Lorem ipsum dolor sit amet consectetur elit
-                              </p>
-                            </div>
-                          </a>
-                          <a
-                            href="#"
-                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                          >
-                            <div className="flex size-6 flex-col items-center justify-center">
-                              <img
-                                src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                alt="Icon 3"
-                                className="shrink-0"
-                              />
-                            </div>
-                            <div className="flex flex-col items-start justify-center">
-                              <h5 className="font-semibold">Page three</h5>
-                              <p className="hidden text-sm md:block">
-                                Lorem ipsum dolor sit amet consectetur elit
-                              </p>
-                            </div>
-                          </a>
-                          <a
-                            href="#"
-                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
-                          >
-                            <div className="flex size-6 flex-col items-center justify-center">
-                              <img
-                                src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                alt="Icon 4"
-                                className="shrink-0"
-                              />
-                            </div>
-                            <div className="flex flex-col items-start justify-center">
-                              <h5 className="font-semibold">Page four</h5>
-                              <p className="hidden text-sm md:block">
-                                Lorem ipsum dolor sit amet consectetur elit
-                              </p>
-                            </div>
-                          </a>
+                          {secondaryLinks.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
+                            >
+                              <div className="flex size-6 flex-col items-center justify-center">
+                                <img
+                                  src={
+                                    link.iconSrc ||
+                                    "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
+                                  }
+                                  alt={link.title}
+                                  className="shrink-0"
+                                />
+                              </div>
+                              <div className="flex flex-col items-start justify-center">
+                                <h5 className="">{link.title}</h5>
+                                <p className="hidden font-body text-sm md:block">
+                                  {link.description}
+                                </p>
+                              </div>
+                            </a>
+                          ))}
                         </div>
                       </div>
                     </div>
-                    <div className="relative mb-6 flex w-full flex-col items-start justify-between p-6 sm:items-center lg:mb-0 lg:flex-row lg:px-0 lg:py-3">
+                    {/* <div className="relative mb-6 flex w-full flex-col items-start justify-between p-6 sm:items-center lg:mb-0 lg:flex-row lg:px-0 lg:py-3">
                       <div className="absolute -left-[50vw] -right-[50vw] bottom-0 top-0 w-[200vw] bg-background-secondary" />
                       <div className="relative z-10 mr-auto flex flex-col gap-y-4 sm:mx-auto sm:grid sm:auto-cols-fr sm:grid-cols-[max-content_max-content] sm:gap-x-1">
                         <p>Looking for a new career?</p>
@@ -360,22 +331,32 @@ export function Navbar9({
                           Get in touch
                         </a>
                       </div>
-                    </div>
+                    </div> */}
                   </motion.nav>
                 </AnimatePresence>
               </div>
-              <div className="mt-6 flex flex-col gap-4">
-                <Button title="Button" variant="secondary" size="sm">
-                  Button
+              {/* Burger Menu -- Buttons */}
+              <div className="mt-6 flex flex-col gap-4 font-button">
+                <Button
+                  title="Button"
+                  variant="secondary"
+                  size="sm"
+                  className="button"
+                >
+                  <a href={secondaryButton.href}>{secondaryButton.text}</a>
                 </Button>
-                <Button title="Button" size="sm">
-                  Button
+                <Button
+                  title="Button"
+                  size="sm"
+                  className="button border-accent-500 bg-accent-500 font-button"
+                >
+                  <a href={primaryButton.href}>{primaryButton.text}</a>
                 </Button>
               </div>
             </div>
           </motion.div>
         </motion.div>
       </AnimatePresence>
-    </section>
+    </motion.section>
   );
 }

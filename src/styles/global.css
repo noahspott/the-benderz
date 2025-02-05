@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  /* Glass */
+  .glass {
+    @apply bg-white/50 backdrop-blur-md;
+  }
+
+  /* Button */
+  .button {
+    @apply rounded-full;
+  }
+
+  .kicker {
+    @apply font-subheading text-2xl tracking-wider;
+  }
+
+  .heading-nav {
+    @apply text-xl;
+  }
+}
+
+.animated-gradient {
+  background: radial-gradient(circle at 50% 50%, #00f260 0%, #0575e6 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 7s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
