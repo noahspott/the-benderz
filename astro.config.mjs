@@ -9,8 +9,11 @@ import sitemap from "@astrojs/sitemap";
 
 import sanity from "@sanity/astro";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
   site: "https://www.thebenderz.com",
 
   vite: {
@@ -31,4 +34,6 @@ export default defineConfig({
       useCdn: false, // for static builds
     }),
   ],
+
+  adapter: netlify(),
 });
