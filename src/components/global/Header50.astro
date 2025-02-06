@@ -1,0 +1,64 @@
+---
+// Global Components
+import { Button } from "@relume_io/relume-ui";
+import ParallaxBackgroundImage from "./ParallaxBackgroundImage.astro";
+import ShapeDivider from "./ShapeDivider.astro";
+
+// Types
+import type { Link } from "../../types/types";
+
+// Props
+interface Header50Props {
+  kicker: string;
+  headline: string;
+  body: string;
+  buttons: Link[];
+  imageMetaData: ImageMetadata;
+}
+
+const { kicker, headline, body, buttons, imageMetaData } =
+  Astro.props as Header50Props;
+---
+
+<section id="hero" class="relative px-[5%] py-16 md:py-24 lg:py-28">
+  <div class="container my-24">
+    <div class="w-full max-w-lg">
+      <p class="kicker mb-3 text-accent-100 md:mb-4">
+        {kicker}
+      </p>
+      <h1
+        class="mb-5 font-heading text-6xl text-white md:mb-6 md:text-9xl lg:text-10xl"
+        style="text-shadow: 0 0 10px rgba(0, 0, 0, 0.5)"
+      >
+        {headline}
+      </h1>
+      <p class="font-body text-text-alternative md:text-md">{body}</p>
+      <div class="mt-6 flex flex-wrap gap-4 md:mt-8">
+        {
+          buttons.map((button: Link, index: number) => (
+            <a href={button.href}>
+              <Button
+                key={button.title}
+                title={button.title}
+                variant={index === 0 ? "primary" : "secondary-alt"}
+                className={`${index === 0 ? "button animated-gradient border-2 border-white" : "button-secondary"}`}
+              >
+                {button.title}
+              </Button>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <ShapeDivider
+    height={600}
+    color="#ffffff"
+    variant="triangle-assymetric"
+    top={false}
+  />
+  <ParallaxBackgroundImage
+    imageMetaData={imageMetaData}
+    overlayClassName="bg-gradient-to-r from-gray-900 to-gray-100/20"
+  />
+</section>

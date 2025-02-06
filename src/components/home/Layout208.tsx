@@ -31,7 +31,7 @@ const features = [
 // Buttons
 const links = [
   {
-    text: "Book Us!",
+    text: "Book Now",
     href: slugs.contact,
   },
   {
@@ -88,7 +88,10 @@ export function Layout208({
             </div>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <a href={links[0].href}>
-                <Button className="button-secondary" variant="secondary">
+                <Button
+                  className="button-secondary border-accent-700 text-accent-700"
+                  variant="secondary"
+                >
                   {links[0].text}
                 </Button>
               </a>

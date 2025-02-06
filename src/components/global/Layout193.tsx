@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Button,
   Dialog,
@@ -7,13 +5,12 @@ import {
   DialogTrigger,
   VideoIframe,
 } from "@relume_io/relume-ui";
-import React from "react";
 import { FaCirclePlay } from "react-icons/fa6";
 import { RxChevronRight } from "react-icons/rx";
 
 export function Layout193() {
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="video-section" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
           <div className="order-2 md:order-1">

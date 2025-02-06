@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+
+import oceanDriveLogo from "../../assets/images/logos/ocean-drive-logo.svg";
+import hardRockLogo from "../../assets/images/logos/hard-rock-logo.svg";
+import seacretsLogo from "../../assets/images/logos/seacrets-logo-purple.svg";
+import xfinityLiveLogo from "../../assets/images/logos/xfinity-live-logo.png";
+import caesarsLogo from "../../assets/images/logos/caesars-logo.webp";
+
+const logos = [
+  // {
+  //   src: liveCasinoLogo,
+  //   alt: "Live Casino Philadelphia logo",
+  // },
+  {
+    src: hardRockLogo,
+    alt: "Hard Rock logo",
+  },
+  {
+    src: xfinityLiveLogo,
+    alt: "Xfinity Live logo",
+  },
+  {
+    src: oceanDriveLogo,
+    alt: "Ocean Drive logo",
+  },
+  {
+    src: seacretsLogo,
+    alt: "Seacrets logo",
+  },
+  {
+    src: caesarsLogo,
+    alt: "Caesars logo",
+  },
+];
+---
+
+<section
+  id="logos"
+  class="bg-gradient-to-r from-gray-50 to-gray-100 px-[5%] py-12 md:py-16 lg:py-20"
+>
+  <div
+    class="container grid grid-cols-1 items-start justify-start gap-x-12 gap-y-8 md:grid-cols-[max-content_1fr] md:items-center md:justify-between md:gap-y-4 lg:gap-x-16"
+  >
+    <h1
+      class="font-body font-bold leading-[1.2] md:max-w-[16rem] md:text-md md:leading-[1.2] lg:max-w-xxs"
+    >
+      Trusted by top venues across the Northeast
+    </h1>
+    <div
+      class="grid grid-cols-2 items-center justify-end gap-x-4 gap-y-4 pt-4 sm:grid-cols-3 md:gap-x-8 md:pt-0 lg:grid-cols-5"
+    >
+      {
+        logos.map((logo) => {
+          return (
+            <div class="flex items-start justify-center justify-self-center px-4 py-3 md:p-0">
+              <Image src={logo.src} alt={logo.alt} class={`max-h-32`} />
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

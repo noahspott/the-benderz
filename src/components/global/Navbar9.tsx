@@ -350,7 +350,7 @@ export function Navbar9({
                 <Button
                   title="Button"
                   size="sm"
-                  className="button border-accent-500 bg-accent-500 font-button"
+                  className="button border-accent-600 bg-accent-600 font-button"
                 >
                   <a href={primaryButton.href}>{primaryButton.text}</a>
                 </Button>

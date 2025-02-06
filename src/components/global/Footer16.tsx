@@ -26,7 +26,7 @@ const useForm = () => {
 
 interface Footer16Props {
   logoSrc?: string;
-  companyNameSrc?: string;
+  bigLogoSrc?: string;
   companyName: string;
   newsletterText: string;
   links: {
@@ -40,7 +40,7 @@ interface Footer16Props {
 
 export function Footer16({
   logoSrc = "",
-  companyNameSrc = "",
+  bigLogoSrc = "",
   companyName,
   newsletterText,
   links,
@@ -49,7 +49,10 @@ export function Footer16({
 }: Footer16Props) {
   const formState = useForm();
   return (
-    <footer id="relume" className="px-[5%] py-12 md:py-18 lg:py-20">
+    <footer
+      id="relume"
+      className="border-t border-black bg-gradient-to-b from-white via-white to-accent-400/20 px-[5%] py-12 md:py-18 lg:py-20"
+    >
       <div className="container">
         <div className="grid grid-cols-1 gap-x-[8vw] gap-y-12 pb-8 md:gap-y-16 md:pb-10 lg:grid-cols-[0.75fr_1fr] lg:gap-y-4 lg:pb-12">
           <div className="flex flex-col">
@@ -69,7 +72,12 @@ export function Footer16({
                   value={formState.email}
                   onChange={formState.handleSetEmail}
                 />
-                <Button title="Subscribe" variant="secondary" size="sm">
+                <Button
+                  title="Subscribe"
+                  variant="secondary"
+                  size="sm"
+                  className="button-secondary"
+                >
                   Subscribe
                 </Button>
               </form>
@@ -142,12 +150,8 @@ export function Footer16({
         </div>
         <div className="pb-8 md:pb-10 lg:pb-12">
           <a href="/" className="w-full">
-            {companyNameSrc ? (
-              <img
-                src={companyNameSrc}
-                alt="Company image"
-                className="w-full"
-              />
+            {bigLogoSrc ? (
+              <img src={bigLogoSrc} alt="Company image" className="w-full" />
             ) : (
               <span className="text-center text-[10rem] font-black">
                 {companyName}
@@ -161,7 +165,7 @@ export function Footer16({
           <a
             href="https://summitavenueweb.com"
             target="_blank"
-            className="text-sm"
+            className="font-body text-sm"
           >
             Developed by{" "}
             <span className="font-semibold">Summit Avenue Web Solutions</span>

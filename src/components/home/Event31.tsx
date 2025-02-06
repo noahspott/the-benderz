@@ -12,7 +12,7 @@ export function Event31() {
       <div className="container">
         <div className="mb-12 md:mb-18 lg:mb-20">
           <div className="mx-auto max-w-lg text-center">
-            <h4 className="kicker">Schedule</h4>
+            <h4 className="kicker text-neutral-dark">Schedule</h4>
             <h1 className="mt-3 font-heading text-5xl md:mt-4 md:text-7xl lg:text-8xl">
               Shows This Week
             </h1>
