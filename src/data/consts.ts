@@ -29,3 +29,6 @@ export const slugs = {
   blog: "/blog",
   faq: "/faq",
 };
+
+export const GRAPHQL_URL =
+  "https://4r9ag2ef.api.sanity.io/v2023-08-01/graphql/production/default";

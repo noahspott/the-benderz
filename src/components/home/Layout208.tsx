@@ -77,8 +77,8 @@ export function Layout208({
               pop hits, singalongs, and club classics with live band energy.
             </p>
             <div className="grid grid-cols-1 gap-4 py-2 font-body">
-              {features.map((feature) => (
-                <div className="flex self-start">
+              {features.map((feature, key) => (
+                <div key={key} className="flex self-start">
                   <div className="mr-4 flex-none self-start">
                     <img src={feature.icon} alt="" className="size-6" />
                   </div>

@@ -1,8 +1,6 @@
 ---
 // MAIN LAYOUT
 
-// External libraries
-
 // Global components
 import { Navbar9 } from "../components/global/Navbar9";
 import { Footer16 } from "../components/global/Footer16";
@@ -95,7 +93,9 @@ const { title = "", description = "" } = Astro.props;
       logoSrc={LOGO_URL}
       client:load
     />
+
     <slot />
+
     <Footer16
       logoSrc={LOGO_URL}
       bigLogoSrc={`/images/the-benderz-2.svg`}
