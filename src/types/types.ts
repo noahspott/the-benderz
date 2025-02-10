@@ -24,17 +24,17 @@ export type Venue = {
       url: string;
     };
   };
+  logo: {
+    asset: {
+      url: string;
+    };
+  };
 };
 
 export type Event = {
   date: string;
   showType: string;
   venue: Venue;
-  logo: {
-    asset: {
-      url: string;
-    };
-  };
   slug: {
     current: string;
   };

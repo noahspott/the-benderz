@@ -161,6 +161,11 @@ export async function getAllEvents() {
             city
             state
           }
+          coverImage {
+            asset {
+              url
+            }
+          }
         }
         slug {
           current

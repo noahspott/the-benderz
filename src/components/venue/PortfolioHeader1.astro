@@ -1,7 +1,13 @@
 ---
 import ParallaxBackgroundImage from "../global/ParallaxBackgroundImage.astro";
 
-const { headline = "headline", venueName = "", coverImage = "" } = Astro.props;
+type Props = {
+  headline: string;
+  venueName: string;
+  coverImage: string;
+};
+
+const { headline = "", venueName = "", coverImage = "" } = Astro.props;
 ---
 
 <section id="header" class="relative px-[5%] pt-12">

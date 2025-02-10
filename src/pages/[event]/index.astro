@@ -7,33 +7,31 @@ import Layout from "../../layouts/Layout.astro";
 import PortfolioHeader1 from "../../components/venue/PortfolioHeader1.astro";
 
 import { getDate, getTime } from "../../lib/dateHelpers";
-import { getOldEvents } from "../../lib/sanity";
+import { getAllEvents } from "../../lib/sanity";
 import type { Event } from "../../types/types";
 
 export const getStaticPaths = (async () => {
-  const events = await getOldEvents();
-
-  console.log("[event-page] events", events);
+  const events = await getAllEvents();
 
   return events.map((event: Event) => ({
     params: {
       event: `/${event.slug.current}`,
     },
-    props: { eventData: event },
+    props: { event: event },
   }));
 }) satisfies GetStaticPaths;
 
 type EventProps = {
-  eventData: Event;
+  event: Event;
 };
 
-const { eventData } = Astro.props as EventProps;
+const { event } = Astro.props as EventProps;
 ---
 
 <Layout>
   <PortfolioHeader1
-    headline={getDate(eventData.date)}
-    venueName={eventData.venue.name}
-    coverImage={eventData.venue.coverImage.asset.url}
+    headline={getDate(event.date)}
+    venueName={event.venue.name}
+    coverImage={event.venue.coverImage.asset.url}
   />
 </Layout>
