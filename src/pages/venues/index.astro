@@ -1,8 +1,15 @@
 ---
+// Global Components
 import Layout from "../../layouts/Layout.astro";
-
 import { Header46 } from "../../components/global/Header46";
 import { Contact5 } from "../../components/global/Contact5";
+
+// Types
+import type { Venue } from "../../types/types";
+
+// Get all venues
+import { getVenues } from "../../lib/sanity";
+const venues = await getVenues();
 
 const headline = "Venues";
 const description = "Explore the locations where we perform.";
@@ -10,7 +17,34 @@ const description = "Explore the locations where we perform.";
 
 <Layout>
   <Header46 headline={headline} description={description} />
-  <!-- Add Venues Section -->
-  <!-- Displays clickable venue cards -->
-  <Contact5 />
+  <section
+    class="max-w-7xl mx-auto grid grid-cols-1 gap-6 px-[5%] py-16 md:grid-cols-2 md:py-24 lg:grid-cols-3 lg:py-28"
+  >
+    {
+      venues.map((venue: Venue) => (
+        <a
+          href={`/venues/${venue.slug.current}`}
+          class="overflow-hidden rounded-lg bg-white shadow-large transition-shadow duration-300 hover:shadow-xlarge"
+        >
+          {venue.coverImage.asset.url && (
+            <img
+              src={venue.coverImage.asset.url}
+              alt={`${venue.name} venue`}
+              class="h-48 w-full object-cover"
+            />
+          )}
+          <div class="p-6">
+            <h2 class="mb-2 font-heading text-2xl">{venue.name}</h2>
+            <div class="font-body text-gray-600">
+              <p>{venue.address.streetAddress}</p>
+              <p>
+                {venue.address.city}, {venue.address.state} {venue.address.zip}
+              </p>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </section>
+  <Contact5 heading="Contact Us" />
 </Layout>

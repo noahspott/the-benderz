@@ -13,13 +13,7 @@ import "../styles/fonts.css";
 import type { Link } from "../types/types";
 
 // Data
-import {
-  NAME,
-  FACEBOOK_URL,
-  INSTAGRAM_URL,
-  YOUTUBE_URL,
-  LOGO_URL,
-} from "../data/consts";
+import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
 import { slugs } from "../data/consts";
 
 const primaryLinks: Link[] = [
@@ -66,6 +60,8 @@ const secondaryLinks: Link[] = [
   },
 ];
 
+const logoSrc = "/src/assets/images/the-benderz.svg";
+
 const { title = "", description = "" } = Astro.props;
 ---
 
@@ -90,14 +86,14 @@ const { title = "", description = "" } = Astro.props;
       secondaryButton={secondaryButton}
       primaryLinks={primaryLinks}
       secondaryLinks={secondaryLinks}
-      logoSrc={LOGO_URL}
+      logoSrc={logoSrc}
       client:load
     />
 
     <slot />
 
     <Footer16
-      logoSrc={LOGO_URL}
+      logoSrc={logoSrc}
       bigLogoSrc={`/images/the-benderz-2.svg`}
       companyName={NAME}
       newsletterText="Subscribe to our newsletter"

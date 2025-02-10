@@ -1,0 +1,24 @@
+// Get the date in the format of "June 26, 2025"
+export function getDate(date: string) {
+  const dateObj = new Date(date);
+  return dateObj.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+// Get the time in the format of "12:00 PM"
+export function getTime(date: string) {
+  const dateObj = new Date(date);
+  return dateObj.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+// Get Day of the Week
+export function getDayOfWeek(date: string, format: "short" | "long") {
+  const dateObj = new Date(date);
+  return dateObj.toLocaleDateString("en-US", { weekday: format });
+}

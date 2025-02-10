@@ -69,7 +69,7 @@ export function Navbar9({
     >
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <a href="/">
-          <img src={logoSrc} alt="" className="h-10" />
+          <img src={logoSrc} alt="The Benderz Logo" className="h-10" />
         </a>
         <div className="absolute hidden h-screen overflow-auto border-b border-border-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">

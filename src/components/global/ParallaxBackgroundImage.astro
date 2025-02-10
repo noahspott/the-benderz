@@ -9,12 +9,18 @@ import { Image } from "astro:assets";
  * @param {string} overlayClassName - The class name to use for the overlay.
  */
 type Props = {
-  imageMetaData: ImageMetadata;
+  imageMetaData?: ImageMetadata;
   overlayClassName: string;
   parallaxSpeed?: number;
+  imgSrc?: string;
 };
 
-const { imageMetaData, overlayClassName, parallaxSpeed = 0.3 } = Astro.props;
+const {
+  imageMetaData,
+  overlayClassName,
+  parallaxSpeed = 0.3,
+  imgSrc = "",
+} = Astro.props;
 ---
 
 <div class="absolute inset-0 -z-10 overflow-hidden">
@@ -24,12 +30,26 @@ const { imageMetaData, overlayClassName, parallaxSpeed = 0.3 } = Astro.props;
   <div
     class="parallax-bg absolute bottom-0 left-0 right-0 top-0 h-[120%] overflow-hidden"
   >
-    <Image
-      src={imageMetaData}
-      class="blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none"
-      alt={""}
-      loading="eager"
-    />
+    {
+      imgSrc && (
+        <img
+          src={imgSrc}
+          class="blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none"
+          alt={""}
+          loading="eager"
+        />
+      )
+    }
+    {
+      imageMetaData && (
+        <Image
+          src={imageMetaData}
+          class="blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none"
+          alt={""}
+          loading="eager"
+        />
+      )
+    }
   </div>
 </div>
 

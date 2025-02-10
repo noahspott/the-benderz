@@ -16,6 +16,7 @@ export default defineType({
         layout: 'radio',
         direction: 'horizontal',
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'date',
@@ -26,6 +27,7 @@ export default defineType({
         dateFormat: 'MM/DD/YYYY',
         timeFormat: 'hh:mm A',
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'venue',
@@ -38,6 +40,26 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
+      description: 'The description of the event',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description: 'The slug for the event',
+      options: {
+        source: (doc: any) => {
+          const date = new Date(doc.date)
+          const formattedDate = date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          })
+          return `the-benderz-${formattedDate.replace(/,/g, '')}`
+        },
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-'),
+      },
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

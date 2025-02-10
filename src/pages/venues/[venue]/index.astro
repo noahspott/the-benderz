@@ -1,41 +1,46 @@
 ---
-// Dynamic page for each venue
+export const prerender = true;
+
+import type { GetStaticPaths } from "astro";
 
 // Global components
 import Layout from "../../../layouts/Layout.astro";
 import { Contact5 } from "../../../components/global/Contact5";
 
 // Local components
-import { PortfolioHeader1 } from "../../../components/venue/PortfolioHeader1";
+import PortfolioHeader1 from "../../../components/venue/PortfolioHeader1.astro";
 import { Event31 } from "../../../components/venue/Event31";
 import { Gallery10 } from "../../../components/venue/Gallery10";
 
 // Data
 import { NAME } from "../../../data/consts";
 
-export async function getStaticPaths() {
-  return [
-    {
-      params: { venue: "ocean-drive" },
-      props: { headline: "The Ocean Drive" },
-    },
-    {
-      params: { venue: "rusty-rudder" },
-      props: { headline: "The Rusty Rudder" },
-    },
-    {
-      params: { venue: "bottle-and-cork" },
-      props: { headline: "The Bottle and Cork" },
-    },
-  ];
-}
+import { getVenues } from "../../../lib/sanity";
+import type { Venue } from "../../../types/types";
 
-const { headline } = Astro.props;
+type VenueProps = {
+  venueData: Venue;
+};
+
+export const getStaticPaths = (async () => {
+  const venues = await getVenues();
+
+  return venues.map((venue: Venue) => ({
+    params: { venue: venue.slug.current },
+    props: { venueData: venue },
+  }));
+}) satisfies GetStaticPaths;
+
+const { venueData } = Astro.props as VenueProps;
 ---
 
 <Layout>
-  <PortfolioHeader1 headline={headline} />
+  <PortfolioHeader1
+    headline={venueData.name}
+    venueName={venueData.name}
+    coverImage={venueData.coverImage.asset.url}
+  />
   <Event31 client:load />
   <Gallery10 />
-  <Contact5 />
+  <Contact5 heading="Contact Us" />
 </Layout>

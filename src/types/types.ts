@@ -5,3 +5,37 @@ export interface Link {
   description?: string;
   iconSrc?: string;
 }
+
+export type Address = {
+  streetAddress: string;
+  city: string;
+  state: string;
+  zip: string;
+};
+
+export type Venue = {
+  name: string;
+  address: Address;
+  slug: {
+    current: string;
+  };
+  coverImage: {
+    asset: {
+      url: string;
+    };
+  };
+};
+
+export type Event = {
+  date: string;
+  showType: string;
+  venue: Venue;
+  logo: {
+    asset: {
+      url: string;
+    };
+  };
+  slug: {
+    current: string;
+  };
+};

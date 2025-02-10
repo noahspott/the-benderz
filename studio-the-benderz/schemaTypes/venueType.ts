@@ -1,5 +1,6 @@
 import {defineType, defineField} from 'sanity'
 import {HomeIcon} from '@sanity/icons'
+import addressType from './addressType'
 
 export default defineType({
   name: 'venue',
@@ -31,8 +32,21 @@ export default defineType({
     defineField({
       name: 'address',
       title: 'Address',
-      type: 'string',
-      description: 'Copy and paste the address from Google Maps',
+      type: 'address',
+      description: 'Get the address from Google Maps',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description: 'The slug for the venue',
+      options: {
+        source: (doc: any) => {
+          return `${doc.name}-${doc.address.city}-${doc.address.state}`
+        },
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-'),
+      },
+      validation: (Rule) => Rule.required(),
     }),
   ],
   icon: HomeIcon,
