@@ -3,11 +3,11 @@ import ParallaxBackgroundImage from "../global/ParallaxBackgroundImage.astro";
 
 type Props = {
   headline: string;
-  venueName: string;
+  subtext: string;
   coverImage: string;
 };
 
-const { headline = "", venueName = "", coverImage = "" } = Astro.props;
+const { headline = "", subtext = "", coverImage = "" } = Astro.props;
 ---
 
 <section id="header" class="relative px-[5%] pt-12">
@@ -18,6 +18,9 @@ const { headline = "", venueName = "", coverImage = "" } = Astro.props;
       >
         {headline}
       </h1>
+      <h2 class="font-body text-3xl font-bold text-white">
+        {subtext}
+      </h2>
     </div>
   </div>
   <ParallaxBackgroundImage imgSrc={coverImage} overlayClassName="bg-black/60" />

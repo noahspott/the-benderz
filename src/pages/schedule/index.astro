@@ -6,6 +6,7 @@ import { Contact5 } from "../../components/global/Contact5";
 
 // Local Components
 import { Event31 } from "../../components/schedule/Event31";
+import ScheduleEvent from "../../components/schedule/ScheduleEvent.astro";
 
 // Helpers
 import { getFutureEvents } from "../../lib/sanity";
@@ -29,30 +30,7 @@ const description =
   <div class="mb-16">
     {
       events.map((event: Event, index: number) => (
-        <div
-          class={`mx-auto grid max-w-xxl items-center gap-4 p-8 font-body text-black md:grid-cols-5 ${
-            index % 2 === 0 ? "bg-gray-100" : "bg-gray-50"
-          }`}
-        >
-          <div class="flex gap-1 font-heading text-2xl">
-            <p>{getDayOfWeek(event.date, "short")}, </p>
-            <p>{getDate(event.date)}</p>
-          </div>
-          <div class="flex gap-4">
-            <p>{getTime(event.date)}</p>
-          </div>
-
-          <a href={`/venues/${event.venue.slug.current}`}>{event.venue.name}</a>
-          <p>
-            {event.venue.address.city}, {event.venue.address.state}{" "}
-          </p>
-          <a
-            class="button-secondary border-black text-center"
-            href={`/${event.slug.current}`}
-          >
-            More Info
-          </a>
-        </div>
+        <ScheduleEvent event={event} index={index} />
       ))
     }
   </div>

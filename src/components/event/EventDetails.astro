@@ -1,0 +1,163 @@
+---
+import type { Event } from "../../types/types";
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+const formatTime = (date: string) => {
+  return new Date(date).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+};
+
+interface Props {
+  event: Event;
+}
+
+const { event } = Astro.props;
+
+console.log(event);
+---
+
+<article class="max-w-4xl mx-auto px-4 py-8">
+  <div class="shadow-lg overflow-hidden rounded-lg bg-white">
+    <div class="p-6 sm:p-8">
+      <div class="space-y-8">
+        <!-- Event Header -->
+        <header>
+          <h2 class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
+            The Benderz {event.showType}
+          </h2>
+        </header>
+
+        <!-- Event Details -->
+        <div class="flex flex-col gap-6 text-lg text-gray-600">
+          <section aria-labelledby="datetime-heading">
+            <h3
+              id="datetime-heading"
+              class="text-2xl font-semibold text-gray-800 sm:text-3xl"
+            >
+              When
+            </h3>
+            <div class="mt-4 space-y-4">
+              <div class="flex items-center gap-3">
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <time datetime={event.date}>
+                  {formatDate(event.date)}
+                </time>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <time datetime={event.date}>
+                  {formatTime(event.date)}
+                </time>
+              </div>
+            </div>
+          </section>
+
+          {
+            event.description && (
+              <section aria-labelledby="description-heading">
+                <h3
+                  id="description-heading"
+                  class="text-2xl font-semibold text-gray-800 sm:text-3xl"
+                >
+                  Details
+                </h3>
+                <p class="mt-4 text-lg text-gray-600">{event.description}</p>
+              </section>
+            )
+          }
+
+          {
+            event?.venue && (
+              <section aria-labelledby="venue-heading">
+                <h3
+                  id="venue-heading"
+                  class="text-2xl font-semibold text-gray-800 sm:text-3xl"
+                >
+                  Venue
+                </h3>
+                <div class="mt-4">
+                  <h4 class="text-xl font-medium text-gray-900">
+                    {event.venue.name}
+                  </h4>
+                  <address class="mt-2 text-lg not-italic text-gray-600">
+                    <div>{event.venue.address.streetAddress}</div>
+                    <div>
+                      {event.venue.address.city}, {event.venue.address.state}{" "}
+                      {event.venue.address.zip}
+                    </div>
+                  </address>
+                </div>
+              </section>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schema.org Event Markup -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MusicEvent",
+      name: `The Benderz ${event.showType}`,
+      startDate: event.date,
+      description: event.description,
+      performer: {
+        "@type": "MusicGroup",
+        name: "The Benderz",
+      },
+      location: {
+        "@type": "Place",
+        name: event.venue.name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: event.venue.address.streetAddress,
+          addressLocality: event.venue.address.city,
+          addressRegion: event.venue.address.state,
+          postalCode: event.venue.address.zip,
+          addressCountry: "US",
+        },
+      },
+      image: event.venue.coverImage.asset.url,
+    })}
+  />
+</article>

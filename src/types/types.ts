@@ -16,10 +16,22 @@ export type Address = {
 export type Venue = {
   name: string;
   address: Address;
+  description: string;
+  website: string;
+  galleryPhotos: {
+    asset: {
+      url: string;
+    };
+  }[];
   slug: {
     current: string;
   };
   coverImage: {
+    asset: {
+      url: string;
+    };
+  };
+  aboutImage: {
     asset: {
       url: string;
     };
@@ -33,6 +45,7 @@ export type Venue = {
 
 export type Event = {
   date: string;
+  description: string;
   showType: string;
   venue: Venue;
   slug: {

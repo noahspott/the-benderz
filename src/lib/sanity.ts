@@ -1,18 +1,80 @@
 import { GRAPHQL_URL } from "../data/consts";
 
 /**
- * Gets the events that are older than "today" at build time
+ * Generic function to execute any GraphQL query
+ * @param query The GraphQL query string
+ * @returns Promise with the typed query result
+ * @example
+ * const data = await executeQuery<{ users: User[] }>(`
+ *   query {
+ *     users {
+ *       id
+ *       name
+ *     }
+ *   }
+ * `);
  */
-export async function getOldEvents() {
-  const today = new Date();
-  const todayDate = today.toISOString();
+export async function executeQuery<T>(query: string): Promise<T | null> {
+  try {
+    const response = await fetchGraphQL<T>(query);
+    return response;
+  } catch (error) {
+    console.error(
+      "Query execution failed:",
+      error instanceof Error ? error.message : "Unknown error",
+    );
+    return null;
+  }
+}
 
-  const whereStatement = `where: {date: {lt: "${todayDate}"}}`;
-  const sortStatement = `sort: [{date: ASC}]`;
+// Type for GraphQL response
+interface GraphQLResponse<T> {
+  data: T;
+  errors?: Array<{ message: string }>;
+}
 
-  const query = `
-    {
-      allEvent(${whereStatement}, ${sortStatement}) {
+// Reusable fetch function
+async function fetchGraphQL<T>(query: string): Promise<T> {
+  try {
+    const response = await fetch(GRAPHQL_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = (await response.json()) as GraphQLResponse<T>;
+
+    if (!result || !result.data) {
+      console.error("GraphQL errors:", result.errors);
+      throw new Error("Invalid response format from GraphQL API");
+    }
+
+    if (result.errors) {
+      console.error("GraphQL errors:", result.errors);
+      throw new Error("GraphQL query returned errors");
+    }
+
+    return result.data;
+  } catch (error) {
+    console.error(
+      "Error fetching data:",
+      error instanceof Error ? error.message : "Unknown error",
+    );
+    throw error;
+  }
+}
+
+// Query definitions
+const QUERIES = {
+  oldEvents: (date: string) => `
+    query OldEvents {
+      allEvent(where: {date: {lt: "${date}"}}, sort: [{date: ASC}]) {
         date
         showType
         venue {
@@ -37,64 +99,46 @@ export async function getOldEvents() {
         }
       }
     }
-  `;
+  `,
 
-  try {
-    const response = await fetch(GRAPHQL_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  futureEvents: (date: string) => `
+    query FutureEvents {
+      allEvent(where: {date: {gte: "${date}"}}, sort: [{date: ASC}]) {
+        date
+        venue {
+          name
+          slug {
+            current
+          }
+          address {
+            city
+            state
+          }
+        }
+        slug {
+          current
+        }
+      }
     }
+  `,
 
-    const data = await response.json();
-
-    if (!data || !data.data || !Array.isArray(data.data.allEvent)) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("Invalid response format from GraphQL API");
-    }
-
-    if (data.errors) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("GraphQL query returned errors");
-    }
-
-    return data.data.allEvent;
-  } catch (error) {
-    console.error(
-      "Error fetching old events:",
-      error instanceof Error ? error.message : "Unknown error",
-    );
-
-    return [];
-  }
-}
-
-export function getNewEvents() {
-  const today = new Date();
-  const todayDate = today.toISOString().split("T")[0];
-
-  const oneMonthFromToday = new Date(today);
-  oneMonthFromToday.setMonth(today.getMonth() + 1);
-  const oneMonthFromTodayDate = oneMonthFromToday.toISOString().split("T")[0];
-}
-
-export async function getVenues() {
-  const query = `
-    {
+  allVenues: `
+    query Venues {
       allVenue {
         name
+        description
         address {
           streetAddress
           city
           state
           zip
         }
+        galleryPhotos {
+          asset {
+            url
+          }
+        }
+        website
         logo {
           asset {
             url
@@ -110,47 +154,13 @@ export async function getVenues() {
         }
       }
     }
-  `;
+  `,
 
-  try {
-    const response = await fetch(GRAPHQL_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!data || !data.data || !Array.isArray(data.data.allVenue)) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("Invalid response format from GraphQL API");
-    }
-
-    if (data.errors) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("GraphQL query returned errors");
-    }
-
-    return data.data.allVenue;
-  } catch (error) {
-    console.error(
-      "Error fetching venues:",
-      error instanceof Error ? error.message : "Unknown error",
-    );
-    return [];
-  }
-}
-
-export async function getAllEvents() {
-  const query = `
-    {
+  allEvents: `
+    query Events {
       allEvent {
+        showType
+        description
         date
         venue {
           name
@@ -158,8 +168,10 @@ export async function getAllEvents() {
             current
           }
           address {
+            streetAddress
             city
             state
+            zip
           }
           coverImage {
             asset {
@@ -172,102 +184,46 @@ export async function getAllEvents() {
         }
       }
     }
-  `;
+  `,
+};
 
+// Exported functions
+export async function getOldEvents() {
   try {
-    const response = await fetch(GRAPHQL_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!data || !data.data || !Array.isArray(data.data.allEvent)) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("Invalid response format from GraphQL API");
-    }
-
-    if (data.errors) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("GraphQL query returned errors");
-    }
-
-    return data.data.allEvent;
-  } catch (error) {
-    console.error(
-      "Error fetching all events:",
-      error instanceof Error ? error.message : "Unknown error",
-    );
+    const today = new Date();
+    const query = QUERIES.oldEvents(today.toISOString());
+    const response = await fetchGraphQL<{ allEvent: any[] }>(query);
+    return response.allEvent;
+  } catch {
     return [];
   }
 }
 
 export async function getFutureEvents() {
-  const today = new Date();
-  const todayDate = today.toISOString();
-
-  const whereStatement = `where: {date: {gte: "${todayDate}"}}`;
-  const sortStatement = `sort: [{date: ASC}]`;
-
-  const query = `
-    {
-      allEvent(${whereStatement}, ${sortStatement}) {
-        date
-        venue {
-          name
-          slug {
-            current
-          }
-          address {
-            city
-            state
-          }
-        }
-        slug {
-          current
-        }
-      }
-    }
-  `;
-
   try {
-    const response = await fetch(GRAPHQL_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-    });
+    const today = new Date();
+    const query = QUERIES.futureEvents(today.toISOString());
+    const response = await fetchGraphQL<{ allEvent: any[] }>(query);
+    return response.allEvent;
+  } catch {
+    return [];
+  }
+}
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+export async function getVenues() {
+  try {
+    const response = await fetchGraphQL<{ allVenue: any[] }>(QUERIES.allVenues);
+    return response.allVenue;
+  } catch {
+    return [];
+  }
+}
 
-    const data = await response.json();
-
-    if (!data || !data.data || !Array.isArray(data.data.allEvent)) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("Invalid response format from GraphQL API");
-    }
-
-    if (data.errors) {
-      console.error("GraphQL errors:", data.errors);
-      throw new Error("GraphQL query returned errors");
-    }
-
-    return data.data.allEvent;
-  } catch (error) {
-    console.error(
-      "Error fetching future events:",
-      error instanceof Error ? error.message : "Unknown error",
-    );
+export async function getAllEvents() {
+  try {
+    const response = await fetchGraphQL<{ allEvent: any[] }>(QUERIES.allEvents);
+    return response.allEvent;
+  } catch {
     return [];
   }
 }

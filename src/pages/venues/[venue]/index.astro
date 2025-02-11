@@ -1,6 +1,5 @@
 ---
 export const prerender = true;
-
 import type { GetStaticPaths } from "astro";
 
 // Global components
@@ -9,20 +8,21 @@ import { Contact5 } from "../../../components/global/Contact5";
 
 // Local components
 import PortfolioHeader1 from "../../../components/venue/PortfolioHeader1.astro";
-import { Event31 } from "../../../components/venue/Event31";
-import { Gallery10 } from "../../../components/venue/Gallery10";
+import UpcomingShows from "../../../components/venue/UpcomingShows.astro";
+import { Gallery7 } from "../../../components/venue/Gallery7";
+import { Layout3 } from "../../../components/venue/Layout3";
 
-// Data
-import { NAME } from "../../../data/consts";
-
-import { getVenues } from "../../../lib/sanity";
-import type { Venue } from "../../../types/types";
+// Sanity
+import { getVenues, executeQuery } from "../../../lib/sanity";
+import type { Venue, Event } from "../../../types/types";
 
 type VenueProps = {
   venueData: Venue;
 };
 
+// Get the static paths for the venues
 export const getStaticPaths = (async () => {
+  // Get the venues
   const venues = await getVenues();
 
   return venues.map((venue: Venue) => ({
@@ -32,15 +32,85 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { venueData } = Astro.props as VenueProps;
+
+const todayAt0 = new Date().toISOString();
+const venueFilter = `{venue: {name: {eq: "${venueData.name.toString()}"}}}`;
+const sortFilter = `[{date: ASC}]`;
+
+// Get the events for the venue
+const response = await executeQuery<{ allEvent: Event[] }>(`
+  query {
+    allEvent (where: ${venueFilter}, sort: ${sortFilter}) {
+      date
+      venue {      
+        name
+        description
+        address {
+          city
+          state
+        }
+        aboutImage {
+          asset {
+            url
+          }
+        }
+        website
+        slug {
+          current
+        }
+      }
+      slug {
+        current
+      }
+    }
+  }
+`);
+
+let events: Event[] = [];
+
+if (response) {
+  events = response.allEvent;
+
+  // Filter out events that are in the past
+  events = events.filter((event: Event) => {
+    return new Date(event.date) > new Date();
+  });
+}
+
+let galleryImages: { src: string; alt: string }[] = [];
+if (venueData.galleryPhotos) {
+  galleryImages = venueData.galleryPhotos.map((photo) => ({
+    src: photo.asset.url,
+    alt: venueData.name,
+  }));
+}
 ---
 
 <Layout>
   <PortfolioHeader1
     headline={venueData.name}
-    venueName={venueData.name}
+    subtext={`${venueData.address.city}, ${venueData.address.state}`}
     coverImage={venueData.coverImage.asset.url}
   />
-  <Event31 client:load />
-  <Gallery10 />
+  {
+    venueData.description && (
+      <Layout3
+        city={venueData.address.city}
+        state={venueData.address.state}
+        description={venueData.description}
+        aboutImage={venueData.aboutImage?.asset.url}
+        venueWebsite={venueData.website}
+      />
+    )
+  }
+  <UpcomingShows events={events} />
+  {
+    galleryImages.length > 0 && (
+      <Gallery7
+        heading={`The Benderz at ${venueData.name}`}
+        images={galleryImages}
+      />
+    )
+  }
   <Contact5 heading="Contact Us" />
 </Layout>
