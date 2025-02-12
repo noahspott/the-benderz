@@ -5,10 +5,10 @@ import type { GetStaticPaths } from "astro";
 // Global components
 import Layout from "../../../layouts/Layout.astro";
 import { Contact5 } from "../../../components/global/Contact5";
+import UpcomingShows from "../../../components/global/UpcomingShows.astro";
 
 // Local components
 import PortfolioHeader1 from "../../../components/venue/PortfolioHeader1.astro";
-import UpcomingShows from "../../../components/venue/UpcomingShows.astro";
 import { Gallery7 } from "../../../components/venue/Gallery7";
 import { Layout3 } from "../../../components/venue/Layout3";
 
@@ -68,6 +68,7 @@ const response = await executeQuery<{ allEvent: Event[] }>(`
 
 let events: Event[] = [];
 
+// Make sure the response is valid
 if (response) {
   events = response.allEvent;
 
@@ -77,6 +78,7 @@ if (response) {
   });
 }
 
+// Get the gallery images for the venue
 let galleryImages: { src: string; alt: string }[] = [];
 if (venueData.galleryPhotos) {
   galleryImages = venueData.galleryPhotos.map((photo) => ({

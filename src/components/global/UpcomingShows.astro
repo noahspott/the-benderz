@@ -1,0 +1,59 @@
+---
+// Components
+import { Button } from "@relume_io/relume-ui";
+import ScheduleEvent from "../schedule/ScheduleEvent.astro";
+import { Image } from "astro:assets";
+import ParallaxBackgroundImage from "./ParallaxBackgroundImage.astro";
+
+// Types
+import type { Event } from "../../types/types";
+
+// Images
+import bgImage from "../../assets/images/layered-peaks-bg-2.svg";
+
+// Props
+const { events } = Astro.props as { events: Event[] | null };
+---
+
+<section id="upcoming-shows" class="relative px-[5%] py-16 md:py-24 lg:py-28">
+  <div class="container">
+    <div class="mb-12 md:mb-18 lg:mb-20">
+      <div class="mx-auto max-w-lg text-center">
+        <h4 class="kicker">Schedule</h4>
+        <h1 class="mt-3 font-heading text-5xl md:mt-4 md:text-7xl lg:text-8xl">
+          Upcoming Shows
+        </h1>
+      </div>
+    </div>
+    <div class="flex w-full flex-col gap-4 bg-white/50 p-8 backdrop-blur-md">
+      {
+        events ? (
+          events.map((event, index) => (
+            <>
+              <ScheduleEvent event={event} index={index} />
+              {index !== events.length - 1 && (
+                <div class="h-px w-full bg-black/90" />
+              )}
+            </>
+          ))
+        ) : (
+          <p>No upcoming shows... check back soon!</p>
+        )
+      }
+    </div>
+    <div class="mt-12 flex w-full justify-center">
+      <a
+        href="/schedule"
+        class="button inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-accent-700 transition-colors hover:bg-accent-700 hover:text-white"
+      >
+        See full schedule
+      </a>
+    </div>
+  </div>
+  <!-- <Image
+    src={bgImage}
+    alt="Layered Peaks Background"
+    class="absolute inset-0 bottom-0 left-0 -z-10 h-full object-cover"
+  /> -->
+  <ParallaxBackgroundImage imageMetaData={bgImage} overlayClassName="" />
+</section>

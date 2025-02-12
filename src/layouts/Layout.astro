@@ -3,7 +3,7 @@
 
 // Global components
 import { Navbar9 } from "../components/global/Navbar9";
-import { Footer16 } from "../components/global/Footer16";
+import Footer16 from "../components/global/Footer16.astro";
 
 // Styles
 import "../styles/global.css";
@@ -60,7 +60,7 @@ const secondaryLinks: Link[] = [
   },
 ];
 
-const logoSrc = "/src/assets/images/the-benderz.svg";
+const logoSrc = "/images/the-benderz.svg";
 
 const { title = "", description = "" } = Astro.props;
 ---
@@ -116,9 +116,9 @@ const { title = "", description = "" } = Astro.props;
           { text: "Youtube", href: YOUTUBE_URL },
         ],
       }}
-      footerText=""
+      footerText="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast. "
       policies={[]}
-      client:load
+      footerImageSrc="src/assets/images/footer-bg.svg"
     />
   </body>
 </html>

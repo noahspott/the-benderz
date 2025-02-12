@@ -2,7 +2,7 @@
 // Global Components
 import Layout from "../layouts/Layout.astro";
 import { Contact5 } from "../components/global/Contact5";
-import MyApolloProvider from "../components/apollo/MyApolloProvider";
+import UpcomingShows from "../components/global/UpcomingShows.astro";
 
 // Local Components
 import Header30 from "../components/home/Header30.astro";
@@ -18,6 +18,40 @@ import testimonialAvatarImage from "../assets/images/angelique-buckley-rockstar-
 // data
 import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
+import { executeQuery } from "../lib/sanity";
+
+const today = new Date();
+const startDate = today.toISOString();
+const numberOfGigs = 5;
+const whereStatement = `where: {date: {gte: "${startDate}"}}`;
+const sortStatement = `sort: [{date: ASC}]`;
+const limitStatement = `limit: ${numberOfGigs}`;
+const query = `
+  {
+    allEvent(${whereStatement}, ${sortStatement}, ${limitStatement}) {
+      date
+      showType
+      venue {
+        name
+        address {
+          city
+          state
+        }
+        slug {
+          current
+        }
+      }
+      slug {
+        current
+      }
+    }
+  }
+`;
+
+const response = (await executeQuery(query)) as any;
+const events = response?.allEvent ?? [];
+
+// --- CONTENT --- //
 // Hero Copy
 const heading = "The Benderz";
 const subheading = ["Not just a cover band.", "A party you'll never forget."];
@@ -58,7 +92,8 @@ const backgroundImage = testimonialBackgroundImage;
     avatarImage={avatarImage}
     backgroundImage={backgroundImage}
   />
-  <Event31 client:load />
+  <!-- <Event31 client:load /> -->
+  <UpcomingShows events={events} />
   <Logo2 />
   <Contact5
     heading="Get in Touch"

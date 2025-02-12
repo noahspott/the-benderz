@@ -27,14 +27,12 @@ const description =
 <Layout>
   <Header46 headline={headline} description={description} />
 
-  <div class="mb-16">
+  <div class="my-16">
     {
       events.map((event: Event, index: number) => (
         <ScheduleEvent event={event} index={index} />
       ))
     }
   </div>
+  <Contact5 heading="Contact Us" />
 </Layout>
-
-<!-- <Event31 /> -->
-<Contact5 heading="Contact Us" />
