@@ -1,16 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-import { Header46 } from "../../components/global/Header46";
+import Header46 from "../../components/global/Header46.astro";
 import { Gallery6 } from "../../components/photos/Gallery6";
-import { Contact5 } from "../../components/global/Contact5";
+import { ContactSection } from "../../components/global/ContactSection";
 
 const headline = "Photos";
 const description = "Press photos for The Benderz";
+const contactHeading = "Contact Us";
 ---
 
 <Layout>
   <Header46 headline={headline} description={description} />
   <Gallery6 />
-  <Contact5 />
+  <ContactSection client:load heading={contactHeading} />
 </Layout>

@@ -1,0 +1,132 @@
+---
+// Components
+import { Image } from "astro:assets";
+import { Button } from "@relume_io/relume-ui";
+
+// Images
+import bgImage from "../../assets/images/layered-peaks-bg-2.svg";
+import ceremonyImage from "../../assets/images/service-cards/piano.jpg";
+import {
+  MdChurch,
+  MdLocalBar,
+  MdDinnerDining,
+  MdLibraryMusic,
+  MdCelebration,
+} from "react-icons/md";
+
+// Links
+const links = [
+  { text: "Book Now", href: "/contact" },
+  { text: "View Schedule", href: "/schedule" },
+];
+---
+
+<section id="wedding-services" class="relative px-[5%] py-16 md:py-24 lg:py-28">
+  <div class="container relative z-10">
+    <div
+      class="grid grid-cols-1 items-start gap-y-12 md:grid-flow-row md:grid-cols-2 md:gap-x-12 lg:gap-x-20"
+    >
+      <div class="static md:sticky md:top-[30%]">
+        <p class="kicker mb-3 md:mb-4">Full Service Wedding Band</p>
+        <h2
+          class="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl"
+        >
+          We've got your music needs covered.
+        </h2>
+        <p class="font-body md:text-md">
+          We know weddings are a lot of planning. That's why we take care of all
+          of your music and sound needs from Ceremony to Reception.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
+          <a href={links[0].href}>
+            <Button
+              className="button-secondary border-accent-600 text-accent-600"
+              variant="secondary"
+            >
+              {links[0].text}
+            </Button>
+          </a>
+          <a href={links[1].href} class="button-link my-auto">
+            <Button variant="link" size="link" className="">
+              {links[1].text}
+            </Button>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div
+          class="sticky mb-8 border-r-4 border-accent-600 bg-background-primary p-8"
+          style={{ top: "30%" }}
+        >
+          <div class="mb-3 md:mb-4">
+            <MdChurch className="size-12" />
+          </div>
+          <h3
+            class="mb-3 bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text font-body text-xl font-bold text-transparent md:mb-4 md:text-2xl"
+          >
+            Ceremony
+          </h3>
+          <p class="font-body">
+            Classic Solo Piano, Intimate Acoustic Guitar, or your own selection
+            of prerecorded music.
+          </p>
+        </div>
+        <div
+          class="sticky mb-8 border-r-4 border-accent-600 bg-background-primary p-8"
+          style={{ top: "32%" }}
+        >
+          <div class="mb-3 md:mb-4">
+            <MdLocalBar className="size-12" />
+          </div>
+          <h3
+            class="mb-3 bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text font-body text-xl font-bold text-transparent md:mb-4 md:text-2xl"
+          >
+            Cocktail Hour
+          </h3>
+          <p class="font-body">
+            Solo Acoustic, Jazz Piano, The Benderz Duo, or our own cocktail hour
+            playlist to get the vibe right.
+          </p>
+        </div>
+        <div
+          class="sticky mb-8 border border-r-4 border-accent-600 bg-background-primary p-8"
+          style={{ top: "34%" }}
+        >
+          <div class="mb-3 md:mb-4">
+            <MdLibraryMusic className="size-12" />
+          </div>
+          <h3
+            class="mb-3 bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text font-body text-xl font-bold text-accent-600 text-transparent md:mb-4 md:text-2xl"
+          >
+            Dinner Music
+          </h3>
+          <p class="font-body">
+            We've got your dinner music covered with our carefully curated
+            playlists to set the tone for the main event.
+          </p>
+        </div>
+        <div
+          class="sticky mb-8 border border-r-4 border-accent-600 bg-background-primary p-8"
+          style={{ top: "36%" }}
+        >
+          <div class="mb-3 md:mb-4">
+            <MdCelebration className="size-12" />
+          </div>
+          <h3
+            class="mb-3 bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text font-body text-xl font-bold text-transparent md:mb-4 md:text-2xl"
+          >
+            The Benderz Live
+          </h3>
+          <p class="font-body">
+            Our high-energy dance party complete with full sound and lights.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <Image
+    src={bgImage}
+    alt=""
+    class="absolute inset-0 -z-10 h-full object-cover"
+  />
+</section>

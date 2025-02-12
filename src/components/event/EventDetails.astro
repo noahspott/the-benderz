@@ -26,10 +26,11 @@ const { event } = Astro.props;
 console.log(event);
 ---
 
+<!-- The whole things should be centered on the page -->
 <article class="max-w-4xl mx-auto px-4 py-8">
   <div class="shadow-lg overflow-hidden rounded-lg bg-white">
     <div class="p-6 sm:p-8">
-      <div class="space-y-8">
+      <div class="flex flex-col items-center space-y-8">
         <!-- Event Header -->
         <header>
           <h2 class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -90,7 +91,7 @@ console.log(event);
           </section>
 
           {
-            event.description && (
+            event?.description && (
               <section aria-labelledby="description-heading">
                 <h3
                   id="description-heading"
@@ -131,33 +132,33 @@ console.log(event);
       </div>
     </div>
   </div>
-
-  <!-- Schema.org Event Markup -->
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "MusicEvent",
-      name: `The Benderz ${event.showType}`,
-      startDate: event.date,
-      description: event.description,
-      performer: {
-        "@type": "MusicGroup",
-        name: "The Benderz",
-      },
-      location: {
-        "@type": "Place",
-        name: event.venue.name,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: event.venue.address.streetAddress,
-          addressLocality: event.venue.address.city,
-          addressRegion: event.venue.address.state,
-          postalCode: event.venue.address.zip,
-          addressCountry: "US",
-        },
-      },
-      image: event.venue.coverImage.asset.url,
-    })}
-  />
 </article>
+
+<!-- Schema.org Event Markup -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    name: `The Benderz ${event.showType}`,
+    startDate: event.date,
+    description: event.description,
+    performer: {
+      "@type": "MusicGroup",
+      name: "The Benderz",
+    },
+    location: {
+      "@type": "Place",
+      name: event.venue.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: event.venue.address.streetAddress,
+        addressLocality: event.venue.address.city,
+        addressRegion: event.venue.address.state,
+        postalCode: event.venue.address.zip,
+        addressCountry: "US",
+      },
+    },
+    image: event?.venue?.coverImage?.asset?.url,
+  })}
+/>

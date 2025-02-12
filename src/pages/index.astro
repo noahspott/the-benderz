@@ -1,7 +1,9 @@
 ---
+// /pages/index.astro -- Home Page
+
 // Global Components
 import Layout from "../layouts/Layout.astro";
-import { Contact5 } from "../components/global/Contact5";
+import { ContactSection } from "../components/global/ContactSection";
 import UpcomingShows from "../components/global/UpcomingShows.astro";
 
 // Local Components
@@ -95,8 +97,9 @@ const backgroundImage = testimonialBackgroundImage;
   <!-- <Event31 client:load /> -->
   <UpcomingShows events={events} />
   <Logo2 />
-  <Contact5
+  <ContactSection
     heading="Get in Touch"
     body="Need a party band for your club, private event, or wedding? Let's talk!"
+    client:load
   />
 </Layout>

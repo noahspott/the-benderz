@@ -33,7 +33,7 @@ const { event } = Astro.props as EventProps;
   <PortfolioHeader1
     headline={getDate(event.date)}
     subtext={`${event.venue.name}, ${event.venue.address.city}, ${event.venue.address.state}`}
-    coverImage={event.venue.coverImage.asset.url}
+    coverImage={event.venue?.coverImage?.asset?.url}
   />
   <EventDetails event={event} />
 </Layout>

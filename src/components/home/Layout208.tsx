@@ -68,7 +68,7 @@ export function Layout208({
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="kicker mb-3 text-neutral-dark md:mb-4">What We Do</p>
+            <p className="kicker mb-3 md:mb-4">What We Do</p>
             <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               Non-stop flow of a DJ, Unmatched vibe of a band
             </h2>
@@ -89,7 +89,7 @@ export function Layout208({
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <a href={links[0].href}>
                 <Button
-                  className="button-secondary border-accent-700 text-accent-700"
+                  className="button-secondary border-accent-600 text-accent-600"
                   variant="secondary"
                 >
                   {links[0].text}

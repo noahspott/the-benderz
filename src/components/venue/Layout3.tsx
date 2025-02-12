@@ -25,12 +25,14 @@ export function Layout3({
             </h1>
             <p className="md:text-md">{description}</p>
             {/* Put link to venue website here */}
-            <div className="mt-4">
-              <p>For more information about this venue, visit:</p>
-              <a href={venueWebsite} className="text-blue-500">
-                {venueWebsite}
-              </a>
-            </div>
+            {venueWebsite && (
+              <div className="mt-4">
+                <p>For more information about this venue, visit:</p>
+                <a href={venueWebsite} className="text-blue-500">
+                  {venueWebsite}
+                </a>
+              </div>
+            )}
           </div>
           <div>
             <img src={aboutImage} className="w-full object-cover" alt="" />

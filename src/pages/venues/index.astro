@@ -1,11 +1,15 @@
 ---
 // Global Components
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
-import { Header46 } from "../../components/global/Header46";
-import { Contact5 } from "../../components/global/Contact5";
+import Header46 from "../../components/global/Header46.astro";
+import { ContactSection } from "../../components/global/ContactSection";
 
 // Types
 import type { Venue } from "../../types/types";
+
+// Images
+import defaultImage from "../../assets/images/layered-peaks-bg.svg";
 
 // Get all venues
 import { getVenues } from "../../lib/sanity";
@@ -26,12 +30,14 @@ const description = "Explore the locations where we perform.";
           href={`/venues/${venue.slug.current}`}
           class="overflow-hidden rounded-lg bg-white shadow-large transition-shadow duration-300 hover:shadow-xlarge"
         >
-          {venue.coverImage.asset.url && (
+          {venue.coverImage?.asset?.url ? (
             <img
               src={venue.coverImage.asset.url}
               alt={`${venue.name} venue`}
               class="h-48 w-full object-cover"
             />
+          ) : (
+            <Image src={defaultImage} alt={``} class="h-48 object-cover" />
           )}
           <div class="p-6">
             <h2 class="mb-2 font-heading text-2xl">{venue.name}</h2>
@@ -46,5 +52,5 @@ const description = "Explore the locations where we perform.";
       ))
     }
   </section>
-  <Contact5 heading="Contact Us" />
+  <ContactSection client:load heading="Contact Us" />
 </Layout>

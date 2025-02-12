@@ -6,7 +6,7 @@ import { Layout32 } from "../../components/private-events/Layout32";
 import { Layout306 } from "../../components/private-events/Layout306";
 import { Testimonial4 } from "../../components/private-events/Testimonial4";
 import { Faq3 } from "../../components/private-events/Faq3";
-import { Contact5 } from "../../components/global/Contact5";
+import { ContactSection } from "../../components/global/ContactSection";
 
 // Types
 import type { Link } from "../../types/types";
@@ -39,7 +39,8 @@ const buttons: Link[] = [
   <Layout306 />
   <Testimonial4 />
   <Faq3 />
-  <Contact5
+  <ContactSection
+    client:load
     heading="Get in Touch"
     body="Need a party band for your club, private event, or wedding? Let's talk!"
   />

@@ -3,8 +3,9 @@ export const prerender = true;
 import type { GetStaticPaths } from "astro";
 
 // Global components
+import { Image } from "astro:assets";
 import Layout from "../../../layouts/Layout.astro";
-import { Contact5 } from "../../../components/global/Contact5";
+import { ContactSection } from "../../../components/global/ContactSection";
 import UpcomingShows from "../../../components/global/UpcomingShows.astro";
 
 // Local components
@@ -12,6 +13,8 @@ import PortfolioHeader1 from "../../../components/venue/PortfolioHeader1.astro";
 import { Gallery7 } from "../../../components/venue/Gallery7";
 import { Layout3 } from "../../../components/venue/Layout3";
 
+// Images
+import defaultImage from "../../../assets/images/layered-peaks-bg.svg";
 // Sanity
 import { getVenues, executeQuery } from "../../../lib/sanity";
 import type { Venue, Event } from "../../../types/types";
@@ -92,7 +95,7 @@ if (venueData.galleryPhotos) {
   <PortfolioHeader1
     headline={venueData.name}
     subtext={`${venueData.address.city}, ${venueData.address.state}`}
-    coverImage={venueData.coverImage.asset.url}
+    coverImage={venueData?.coverImage?.asset?.url}
   />
   {
     venueData.description && (
@@ -114,5 +117,5 @@ if (venueData.galleryPhotos) {
       />
     )
   }
-  <Contact5 heading="Contact Us" />
+  <ContactSection client:load heading="Contact Us" />
 </Layout>

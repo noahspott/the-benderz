@@ -1,0 +1,33 @@
+---
+// Header46
+
+// Tools
+import { Image } from "astro:assets";
+import bgImage from "../../assets/images/hero-shapes-1.svg";
+
+// Props
+const {
+  headline = "Headline",
+  description = "This is where your description goes",
+  image = bgImage,
+} = Astro.props;
+---
+
+<section
+  id="header"
+  class="relative overflow-hidden px-[5%] py-16 md:py-24 lg:py-28"
+>
+  <div class="container mt-12">
+    <div class="w-full max-w-lg">
+      <h1 class="mb-5 font-heading text-6xl md:mb-6 md:text-9xl lg:text-10xl">
+        {headline}
+      </h1>
+      <p class="font-bodymd:text-md">{description}</p>
+    </div>
+  </div>
+  <Image
+    src={image}
+    alt=""
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+  />
+</section>

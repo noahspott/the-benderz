@@ -3,8 +3,8 @@
 
 // Global Components
 import Layout from "../../layouts/Layout.astro";
-import { Header46 } from "../../components/global/Header46";
-import { Contact5 } from "../../components/global/Contact5";
+import Header46 from "../../components/global/Header46.astro";
+import { ContactSection } from "../../components/global/ContactSection";
 
 const headline = "Playlist";
 const description =
@@ -12,11 +12,7 @@ const description =
 ---
 
 <Layout>
-  <Header46
-    headline={headline}
-    description={description}
-    image="src/assets/images/hero-shapes-1.svg"
-  />
+  <Header46 headline={headline} description={description} />
   <!-- Add playlist here -->
-  <Contact5 heading="Contact Us" />
+  <ContactSection client:load heading="Contact Us" />
 </Layout>

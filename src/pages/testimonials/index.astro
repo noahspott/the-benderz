@@ -3,8 +3,8 @@
 
 // Global Components
 import Layout from "../../layouts/Layout.astro";
-import { Header46 } from "../../components/global/Header46";
-import { Contact5 } from "../../components/global/Contact5";
+import Header46 from "../../components/global/Header46.astro";
+import { ContactSection } from "../../components/global/ContactSection";
 
 // Local Components
 import { Testimonial18 } from "../../components/testimonials/Testimonial18";
@@ -12,10 +12,11 @@ import { Testimonial18 } from "../../components/testimonials/Testimonial18";
 // Page Data
 const headline = "Testimonials";
 const description = "Hear what people are saying about The Benderz";
+const contactHeading = "Contact Us";
 ---
 
 <Layout>
   <Header46 headline={headline} description={description} />
   <Testimonial18 />
-  <Contact5 />
+  <ContactSection client:load heading={contactHeading} />
 </Layout>

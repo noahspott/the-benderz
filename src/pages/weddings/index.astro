@@ -7,7 +7,8 @@ import Layout from "../../layouts/Layout.astro";
 // Local components
 import Header50 from "../../components/global/Header50.astro";
 import { Layout193 } from "../../components/global/Layout193";
-import { Layout353 } from "../../components/weddings/Layout353";
+// import { Layout353 } from "../../components/weddings/Layout353";
+import Layout353 from "../../components/weddings/Layout353.astro";
 import { Layout300 } from "../../components/weddings/Layout300";
 import { Faq3 } from "../../components/weddings/Faq3";
 import { Contact2 } from "../../components/weddings/Contact2";
@@ -30,6 +31,7 @@ const buttons: Link[] = [
 ---
 
 <Layout>
+  <!-- Hero -->
   <Header50
     headline={headline}
     body={body}
@@ -37,9 +39,19 @@ const buttons: Link[] = [
     buttons={buttons}
     imageMetaData={backgroundImage}
   />
+
+  <!-- Video Section -->
   <Layout193 />
+
+  <!-- Our Wedding Services -->
   <Layout353 />
+
+  <!-- The Benderz Playlist -->
   <Layout300 />
-  <Faq3 />
+
+  <!-- FAQ -->
+  <Faq3 client:load />
+
+  <!-- Contact -->
   <Contact2 />
 </Layout>

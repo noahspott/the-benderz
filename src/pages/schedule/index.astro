@@ -1,8 +1,8 @@
 ---
 // Global Components
 import Layout from "../../layouts/Layout.astro";
-import { Header46 } from "../../components/global/Header46";
-import { Contact5 } from "../../components/global/Contact5";
+import Header46 from "../../components/global/Header46.astro";
+import { ContactSection } from "../../components/global/ContactSection";
 
 // Local Components
 import { Event31 } from "../../components/schedule/Event31";
@@ -22,6 +22,7 @@ import type { Event } from "../../types/types";
 const headline = "Schedule";
 const description =
   "The Benderz deliver unforgettable performances, uniting music lovers through energy and passion for every occasion.";
+const contactHeading = "Contact Us";
 ---
 
 <Layout>
@@ -29,10 +30,47 @@ const description =
 
   <div class="my-16">
     {
-      events.map((event: Event, index: number) => (
-        <ScheduleEvent event={event} index={index} />
-      ))
+      events.map((event: Event, index: number) => {
+        // A function that returns a month header if it's a new month
+        const getMonthHeader = (event: Event, index: number) => {
+          const date = new Date(event.date);
+
+          if (
+            index === 0 ||
+            date.getMonth() !== new Date(events[index - 1].date).getMonth()
+          ) {
+            return (
+              <div class="mx-auto max-w-xxl px-8 py-12 sm:py-16">
+                <div class="relative">
+                  {/* Decorative element */}
+                  <div class="bg-primary/80 absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2" />
+
+                  <h2 class="font-heading text-4xl sm:text-5xl">
+                    {date.toLocaleString("default", {
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </h2>
+                </div>
+
+                {/* Enhanced divider */}
+                <div class="mt-6 flex items-center gap-4">
+                  <div class="h-px flex-1 bg-gradient-to-r from-black/15 to-black/5" />
+                  <div class="bg-primary/60 h-1 w-1 rounded-full" />
+                </div>
+              </div>
+            );
+          }
+          return null;
+        };
+        return (
+          <>
+            {getMonthHeader(event, index)}
+            <ScheduleEvent event={event} index={index} />
+          </>
+        );
+      })
     }
   </div>
-  <Contact5 heading="Contact Us" />
+  <ContactSection client:load heading={contactHeading} />
 </Layout>

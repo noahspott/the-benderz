@@ -8,6 +8,16 @@ import {
 import { FaCirclePlay } from "react-icons/fa6";
 import { RxChevronRight } from "react-icons/rx";
 
+// Youtube Data
+const youtubeEmbedUrl = "https://www.youtube.com/embed/tasi6UpOaO8";
+const youtubeThumbnailUrl = "https://i.ytimg.com/vi/tasi6UpOaO8/hqdefault.jpg";
+
+// Links
+const links = [
+  { text: "Check Availability", href: "/contact" },
+  { text: "Come See the Band", href: "/schedule" },
+];
+
 export function Layout193() {
   return (
     <section id="video-section" className="px-[5%] py-16 md:py-24 lg:py-28">
@@ -17,7 +27,7 @@ export function Layout193() {
             <Dialog>
               <DialogTrigger className="relative flex w-full items-center justify-center">
                 <img
-                  src="https://d22po4pjz3o32e.cloudfront.net/placeholder-video-thumbnail.svg"
+                  src={youtubeThumbnailUrl}
                   alt="Relume placeholder image"
                   className="size-full object-cover"
                 />
@@ -25,13 +35,13 @@ export function Layout193() {
                 <FaCirclePlay className="absolute z-20 size-16 text-white" />
               </DialogTrigger>
               <DialogContent>
-                <VideoIframe video="https://www.youtube.com/embed/8DKLYsikxTs?si=Ch9W0KrDWWUiCMMW" />
+                <VideoIframe video={youtubeEmbedUrl} />
               </DialogContent>
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="mb-3 font-semibold md:mb-4">The Wedding Party</p>
-            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
+            <p className="kicker mb-3 md:mb-4">The Wedding Party</p>
+            <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               We bring the shore party vibe to every wedding.
             </h2>
             <p className="md:text-md">
@@ -41,10 +51,24 @@ export function Layout193() {
               delivering it to you on your special night.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-              <Button variant="secondary">Check Availability</Button>
-              <Button variant="link" size="link" iconRight={<RxChevronRight />}>
-                Come See the Band
-              </Button>
+              <a href={links[0].href}>
+                <Button
+                  className="button-secondary border-accent-600 text-accent-600"
+                  variant="secondary"
+                >
+                  {links[0].text}
+                </Button>
+              </a>
+              <a href={links[1].href} className="button-link my-auto">
+                <Button
+                  variant="link"
+                  size="link"
+                  iconRight={<RxChevronRight />}
+                  className=""
+                >
+                  {links[1].text}
+                </Button>
+              </a>
             </div>
           </div>
         </div>
