@@ -1,8 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-import { Header46 } from "../../components/global/Header46";
-import { Contact5 } from "../../components/global/ContactSection";
+import Header46 from "../../components/global/Header46.astro";
+import { ContactSection } from "../../components/global/ContactSection.tsx";
 
 const headline = "Contact Us";
 const description =
@@ -11,5 +11,5 @@ const description =
 
 <Layout>
   <Header46 headline={headline} description={description} />
-  <Contact5 />
+  <ContactSection heading={headline} client:load />
 </Layout>
