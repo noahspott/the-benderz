@@ -7,9 +7,8 @@ import Layout from "../../layouts/Layout.astro";
 // Local components
 import Header50 from "../../components/global/Header50.astro";
 import { Layout193 } from "../../components/global/Layout193";
-// import { Layout353 } from "../../components/weddings/Layout353";
 import Layout353 from "../../components/weddings/Layout353.astro";
-import { Layout300 } from "../../components/weddings/Layout300";
+import OurPlaylistSection from "../../components/weddings/OurPlaylistSection.astro";
 import { Faq3 } from "../../components/weddings/Faq3";
 import { Contact2 } from "../../components/weddings/Contact2";
 
@@ -27,6 +26,37 @@ const body =
 const buttons: Link[] = [
   { title: "Book Now", href: "/contact" },
   { title: "View Schedule", href: "/schedule" },
+];
+
+// FAQS
+const faqBody =
+  "Find answers to your most common questions about booking The Benderz for your wedding.";
+const faqs = [
+  {
+    question: "What genres do you play?",
+    answer:
+      "The Benderz cover a wide range of genres, including rock, pop, R&B, and country. We pride ourselves on our versatility and can tailor our setlist to match your wedding theme.",
+  },
+  {
+    question: "How long do you play?",
+    answer:
+      "Our standard performance length is typically 4 hours, including breaks. We can customize the duration based on your event's needs. Just let us know your schedule, and we’ll accommodate!",
+  },
+  {
+    question: "Do you provide equipment?",
+    answer:
+      "Yes, we bring all necessary sound and lighting equipment for our performances. Our team ensures everything is set up and ready before your guests arrive. You can focus on enjoying your special day while we handle the music!",
+  },
+  {
+    question: "Can we request songs?",
+    answer:
+      "Absolutely! We encourage couples to provide us with a list of their favorite songs. This helps us create a personalized experience that reflects your taste and style.",
+  },
+  {
+    question: "How do we book?",
+    answer:
+      "Booking The Benderz is simple! Just reach out through our contact form, and we'll get back to you promptly. We look forward to making your wedding unforgettable!",
+  },
 ];
 ---
 
@@ -47,11 +77,11 @@ const buttons: Link[] = [
   <Layout353 />
 
   <!-- The Benderz Playlist -->
-  <Layout300 />
+  <OurPlaylistSection />
 
   <!-- FAQ -->
-  <Faq3 client:load />
+  <Faq3 faqs={faqs} body={faqBody} client:load />
 
   <!-- Contact -->
-  <Contact2 />
+  <Contact2 client:load />
 </Layout>

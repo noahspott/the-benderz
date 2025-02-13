@@ -52,10 +52,7 @@ export function Layout193() {
             </p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <a href={links[0].href}>
-                <Button
-                  className="button-secondary border-accent-600 text-accent-600"
-                  variant="secondary"
-                >
+                <Button className="button-secondary" variant="secondary">
                   {links[0].text}
                 </Button>
               </a>

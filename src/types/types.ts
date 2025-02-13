@@ -52,3 +52,8 @@ export type Event = {
     current: string;
   };
 };
+
+export type Faq = {
+  question: string;
+  answer: string;
+};

@@ -14,18 +14,19 @@ import {
   SelectValue,
   Textarea,
 } from "@relume_io/relume-ui";
-import React from "react";
 
 export function Contact2() {
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="wedding-contact" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container max-w-lg">
         <div className="mx-auto mb-8 w-full max-w-lg text-center md:mb-10 lg:mb-12">
-          <p className="mb-3 font-semibold md:mb-4">Contact</p>
-          <h2 className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
+          <p className="kicker mb-3 md:mb-4">Contact</p>
+          <h2 className="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
             Ready to Book Your Wedding Band?
           </h2>
-          <p className="md:text-md">Let's make magic.</p>
+          <p className="font-body text-neutral-dark md:text-md">
+            Let's make magic.
+          </p>
         </div>
         <form className="grid grid-cols-1 grid-rows-[auto_auto] gap-6">
           <div className="grid grid-cols-2 gap-6">
@@ -57,46 +58,8 @@ export function Contact2() {
             </div>
           </div>
           <div className="grid w-full items-center">
-            <Label className="mb-2">Choose a Topic</Label>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Select One..." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="first-choice">First Choice</SelectItem>
-                <SelectItem value="second-choice">Second Choice</SelectItem>
-                <SelectItem value="third-choice">Third Choice</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grid w-full items-center py-3 md:py-4">
-            <Label className="mb-3 md:mb-4">Which best describes you?</Label>
-            <RadioGroup className="grid grid-cols-2 gap-x-6 gap-y-3.5">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="Wedding Planner" id="#first_choice" />
-                <Label htmlFor="#first_choice">Wedding Planner</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="First choice" id="#second_choice" />
-                <Label htmlFor="#second_choice">Event Coordinator</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="First choice" id="#third_choice" />
-                <Label htmlFor="#third_choice">Client Inquiry</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="First choice" id="#fourth_choice" />
-                <Label htmlFor="#fourth_choice">General Question</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="First choice" id="#fifth_choice" />
-                <Label htmlFor="#fifth_choice">Other Inquiry</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="First choice" id="#other" />
-                <Label htmlFor="#other">Other</Label>
-              </div>
-            </RadioGroup>
+            <Label className="mb-2">When is your wedding?</Label>
+            <Input type="date" />
           </div>
           <div className="grid w-full items-center">
             <Label htmlFor="message" className="mb-2">
@@ -108,14 +71,10 @@ export function Contact2() {
               className="min-h-[11.25rem] overflow-auto"
             />
           </div>
-          <div className="mb-3 flex items-center space-x-2 text-sm md:mb-4">
-            <Checkbox id="terms" />
-            <Label htmlFor="terms" className="cursor-pointer">
-              I accept the Terms
-            </Label>
-          </div>
           <div className="text-center">
-            <Button title="Submit">Submit</Button>
+            <Button title="Submit" className="button">
+              Submit
+            </Button>
           </div>
         </form>
       </div>

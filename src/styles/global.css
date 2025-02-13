@@ -10,7 +10,7 @@
 
   /* Buttons */
   .button {
-    @apply rounded-full font-heading text-xl;
+    @apply min-h-12 min-w-28 rounded-full font-heading text-xl transition-all duration-100 hover:border-accent-600 hover:bg-accent-600 hover:text-white;
   }
 
   .button-secondary {
@@ -27,6 +27,10 @@
 
   .heading-nav {
     @apply text-xl;
+  }
+
+  .green-gradient-text {
+    @apply bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text text-transparent;
   }
 }
 
