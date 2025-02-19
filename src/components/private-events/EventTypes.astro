@@ -1,0 +1,127 @@
+---
+/**
+ * EventTypes
+ * src/components/private-events/EventTypes.tsx
+ *
+ * Relume Component: Layout32
+ *
+ * @param children - This is meant to be for an Astro Image component.
+ */
+
+// Components
+import { Image } from "astro:assets";
+import { Button } from "@relume_io/relume-ui";
+import { RxChevronRight } from "react-icons/rx";
+import { MdBusinessCenter, MdCelebration, MdCake } from "react-icons/md";
+
+// Images
+import decorationImage from "../../assets/images/angelique-buckley-with-crowd-at-ocean-drive.jpg";
+import backgroundImage from "../../assets/images/patterns/stacked-waves-green.svg";
+
+// Links
+const links = [
+  { text: "Book Now", href: "/contact" },
+  { text: "View Schedule", href: "/schedule" },
+];
+
+// Constants
+const eventTypes = [
+  {
+    title: "Corporate Events",
+    description:
+      "Elevate your corporate gatherings with live music that energizes and engages your team.",
+  },
+  {
+    title: "Holiday Parties",
+    description:
+      "Celebrate the season with festive tunes that create a joyful atmosphere for everyone.",
+  },
+  {
+    title: "Birthday Parties",
+    description:
+      "Make your special day unforgettable with live performances that get everyone on the dance floor.",
+  },
+];
+---
+
+<section
+  id="event-types"
+  class="relative overflow-hidden px-[5%] py-16 md:py-24 lg:py-28"
+>
+  <!-- flip image horizontally -->
+  <Image
+    src={backgroundImage}
+    class="absolute inset-0 size-full -scale-x-100 object-cover"
+    alt=""
+    style={{
+      objectPosition: "80% center",
+    }}
+  />
+  <div class="container relative z-10">
+    <div
+      class="grid grid-cols-1 items-center gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20"
+    >
+      <div>
+        <div class="grid grid-cols-1 gap-x-6 gap-y-8 py-2">
+          {
+            eventTypes.map((event) => {
+              return (
+                <div class="flex self-start">
+                  <div class="mr-6 flex-none self-start">
+                    {
+                      {
+                        "Corporate Events": (
+                          <MdBusinessCenter className="size-12 text-accent-900" />
+                        ),
+                        "Holiday Parties": (
+                          <MdCelebration className="size-12 text-accent-900" />
+                        ),
+                        "Birthday Parties": (
+                          <MdCake className="size-12 text-accent-900" />
+                        ),
+                      }[event.title]
+                    }
+                  </div>
+                  <div>
+                    <h1 class="mb-3 bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text font-heading text-4xl text-transparent md:mb-4 md:text-5xl">
+                      {event.title}
+                    </h1>
+                    <p class="font-body text-neutral-dark">
+                      {event.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
+          <a href={links[0].href}>
+            <Button className="button-secondary" variant="secondary">
+              {links[0].text}
+            </Button>
+          </a>
+          <a href={links[1].href} class="button-link my-auto">
+            <Button variant="link" size="link" iconRight={""} className="">
+              {links[1].text}
+            </Button>
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <Image
+          src={decorationImage}
+          class="w-full rounded-full object-cover"
+          alt="Angelique Buckley with crowd at Ocean Drive"
+          style={{
+            boxShadow: "0 0 0 64px rgba(255, 255, 255, 0.5)",
+          }}
+        />
+        <!-- <div
+          class="absolute inset-0 left-12 -z-10 size-full rounded-full bg-gradient-to-b from-transparent to-black/50"
+        >
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>

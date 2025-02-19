@@ -1,18 +1,30 @@
 ---
+/**
+ * Private Events Page
+ * src/pages/private-events/index.astro
+ *
+ * A page to sell the band for private events.
+ */
+
+// Global Components
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
-import Header50 from "../../components/global/Header50.astro";
-import { Layout193 } from "../../components/global/Layout193";
-import { Layout32 } from "../../components/private-events/Layout32";
+import HeroSubpage from "../../components/global/HeroSubpage.astro";
+import AboutVideoSection from "../../components/global/AboutVideoSection.tsx";
+import { ContactSection } from "../../components/global/ContactSection";
+
+// Local Components
+import EventTypes from "../../components/private-events/EventTypes.astro";
 import { Layout306 } from "../../components/private-events/Layout306";
 import { Testimonial4 } from "../../components/private-events/Testimonial4";
 import { Faq3 } from "../../components/private-events/Faq3";
-import { ContactSection } from "../../components/global/ContactSection";
 
 // Types
 import type { Link } from "../../types/types";
 
 // Images
 import backgroundImage from "../../assets/images/hero-1.jpg";
+import eventTypesImage from "../../assets/images/angelique-buckley-with-crowd-at-ocean-drive.jpg";
 
 // Copy
 const kicker = "Corporate Events & Private Parties";
@@ -27,15 +39,15 @@ const buttons: Link[] = [
 ---
 
 <Layout>
-  <Header50
+  <HeroSubpage
     headline={headline}
     body={body}
     kicker={kicker}
     buttons={buttons}
     imageMetaData={backgroundImage}
   />
-  <Layout193 />
-  <Layout32 />
+  <AboutVideoSection client:load />
+  <EventTypes />
   <Layout306 />
   <Testimonial4 />
   <Faq3 />

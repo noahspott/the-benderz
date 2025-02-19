@@ -27,12 +27,6 @@ export default defineType({
         dateFormat: 'MM/DD/YYYY',
         timeFormat: 'hh:mm A',
       },
-      components: {
-        input: (props) => {
-          ;(props.elementProps as any).timeZone = 'America/New_York'
-          return props.renderDefault(props)
-        },
-      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

@@ -1,3 +1,12 @@
+/**
+ * Home - What We Do
+ *
+ * Relume Component: Layout208
+ *
+ * @note This component is used to display the "What We Do" section of the home page.
+ */
+
+// Global Components
 import {
   Button,
   Dialog,
@@ -7,6 +16,11 @@ import {
 } from "@relume_io/relume-ui";
 import { FaCirclePlay } from "react-icons/fa6";
 import { RxChevronRight } from "react-icons/rx";
+import {
+  MdPlaylistAddCheck,
+  MdElectricBolt,
+  MdPlayCircleOutline,
+} from "react-icons/md";
 
 // Data
 import { slugs } from "../../data/consts";
@@ -14,16 +28,16 @@ import { slugs } from "../../data/consts";
 // Copy
 const features = [
   {
-    icon: "./images/icons/playlist-add-check.svg",
+    icon: <MdPlaylistAddCheck className="size-6 text-black/70" />,
     description:
       "Diverse setlists featuring the best Pop, Rock, Country, and Hip-Hop songs.",
   },
   {
-    icon: "./images/icons/electric-bolt.svg",
+    icon: <MdElectricBolt className="size-6 text-black/70" />,
     description: "High energy performances every single night.",
   },
   {
-    icon: "./images/icons/autoplay.svg",
+    icon: <MdPlayCircleOutline className="size-6 text-black/70" />,
     description: "Non-stop music from start to finish.",
   },
 ];
@@ -40,7 +54,7 @@ const links = [
   },
 ];
 
-export function Layout208({
+export default function WhatWeDo({
   youtubeEmbedUrl,
   youtubeThumbnailUrl,
 }: {
@@ -80,7 +94,12 @@ export function Layout208({
               {features.map((feature, key) => (
                 <div key={key} className="flex self-start">
                   <div className="mr-4 flex-none self-start">
-                    <img src={feature.icon} alt="" className="size-6" />
+                    {feature.icon}
+                    {/* <img
+                      src={feature.icon}
+                      alt=""
+                      className="size-6 text-gray-500"
+                    /> */}
                   </div>
                   <p>{feature.description}</p>
                 </div>

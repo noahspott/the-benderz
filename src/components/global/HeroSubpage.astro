@@ -1,4 +1,17 @@
 ---
+/**
+ * HeroSubpage
+ * src/components/global/HeroSubpage.astro
+ *
+ * Relume Component: SubpageHero
+ *
+ * @param kicker - The kicker to display
+ * @param headline - The headline to display
+ * @param body - The body to display
+ * @param buttons - The buttons to display
+ * @param imageMetaData - The image metadata to display
+ */
+
 // Global Components
 import { Button } from "@relume_io/relume-ui";
 import ParallaxBackgroundImage from "./ParallaxBackgroundImage.astro";
@@ -12,7 +25,7 @@ interface Header50Props {
   kicker: string;
   headline: string;
   body: string;
-  buttons: Link[];
+  buttons?: Link[];
   imageMetaData: ImageMetadata;
 }
 
@@ -35,18 +48,19 @@ const { kicker, headline, body, buttons, imageMetaData } =
       <p class="font-body text-text-alternative md:text-md">{body}</p>
       <div class="mt-6 flex flex-wrap gap-4 md:mt-8">
         {
-          buttons.map((button: Link, index: number) => (
-            <a href={button.href}>
-              <Button
-                key={button.title}
-                title={button.title}
-                variant={index === 0 ? "primary" : "secondary-alt"}
-                className={`${index === 0 ? "button animated-gradient border-2 border-white" : "button-secondary"}`}
-              >
-                {button.title}
-              </Button>
-            </a>
-          ))
+          buttons &&
+            buttons.map((button: Link, index: number) => (
+              <a href={button.href}>
+                <Button
+                  key={button.title}
+                  title={button.title}
+                  variant={index === 0 ? "primary" : "secondary-alt"}
+                  className={`${index === 0 ? "button animated-gradient border-2 border-white" : "button-secondary"}`}
+                >
+                  {button.title}
+                </Button>
+              </a>
+            ))
         }
       </div>
     </div>

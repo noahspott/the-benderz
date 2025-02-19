@@ -1,12 +1,23 @@
 ---
+/**
+ * Home - VenueLogos
+ *
+ * Relume Component: Logo 2
+ *
+ * @note This component is used to display the logos of the venues that the band has played at.
+ */
+
+// Tools
 import { Image } from "astro:assets";
 
+// Images
 import oceanDriveLogo from "../../assets/images/venue-logos/ocean-drive-logo.svg";
 import hardRockLogo from "../../assets/images/venue-logos/hard-rock-logo.svg";
 import seacretsLogo from "../../assets/images/venue-logos/seacrets-logo-purple.svg";
 import xfinityLiveLogo from "../../assets/images/venue-logos/xfinity-live-logo.png";
 import caesarsLogo from "../../assets/images/venue-logos/caesars-logo.webp";
 
+// Data
 const logos = [
   // {
   //   src: liveCasinoLogo,
@@ -35,7 +46,10 @@ const logos = [
 ];
 ---
 
-<section id="logos" class="bg-gradient-to-r px-[5%] py-12 md:py-16 lg:py-20">
+<section
+  id="venue-logos"
+  class="bg-gradient-to-r px-[5%] py-12 md:py-16 lg:py-20"
+>
   <div
     class="container grid grid-cols-1 items-start justify-start gap-x-12 gap-y-8 md:grid-cols-[max-content_1fr] md:items-center md:justify-between md:gap-y-4 lg:gap-x-16"
   >

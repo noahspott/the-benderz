@@ -1,3 +1,14 @@
+/**
+ * AboutVideoSection
+ * src/components/global/Layout193.tsx
+ *
+ * Relume Component: Layout193
+ *
+ * @param youtubeEmbedUrl - The URL of the YouTube video to display
+ * @param youtubeThumbnailUrl - The URL of the YouTube thumbnail to display
+ * @param links - The links to display
+ */
+
 import {
   Button,
   Dialog,
@@ -18,7 +29,7 @@ const links = [
   { text: "Come See the Band", href: "/schedule" },
 ];
 
-export function Layout193() {
+export default function AboutVideoSection() {
   return (
     <section id="video-section" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">

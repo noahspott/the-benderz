@@ -12,11 +12,11 @@ import { ContactSection } from "../components/global/ContactSection";
 import UpcomingShows from "../components/global/UpcomingShows.astro";
 
 // Local Components
-import Header30 from "../components/home/Header30.astro";
-import { Layout208 } from "../components/home/Layout208";
-import Testimonial4 from "../components/home/Testimonial4.astro";
+import Hero from "../components/home/Hero.astro";
+import WhatWeDo from "../components/home/WhatWeDo";
+import TestimonialBlockParallax from "../components/home/TestimonialBlockParallax.astro";
 import { Event31 } from "../components/home/Event31";
-import Logo2 from "../components/home/Logo2.astro";
+import VenueLogos from "../components/home/VenueLogos.astro";
 
 // Images
 import testimonialBackgroundImage from "../assets/images/hero-1.jpg";
@@ -83,27 +83,26 @@ const backgroundImage = testimonialBackgroundImage;
 ---
 
 <Layout>
-  <Header30
+  <Hero
     imageMetaData={heroImage}
     heading={heading}
     subheading={subheading}
     button={button}
   />
-  <Layout208
+  <WhatWeDo
     client:load
     youtubeEmbedUrl={youtubeEmbedUrl}
     youtubeThumbnailUrl={youtubeThumbnailUrl}
   />
-  <Testimonial4
+  <TestimonialBlockParallax
     quote={quote}
     author={author}
     title={title}
     avatarImage={avatarImage}
     backgroundImage={backgroundImage}
   />
-  <!-- <Event31 client:load /> -->
   <UpcomingShows events={events} />
-  <Logo2 />
+  <VenueLogos />
   <ContactSection
     heading="Get in Touch"
     body="Need a party band for your club, private event, or wedding? Let's talk!"

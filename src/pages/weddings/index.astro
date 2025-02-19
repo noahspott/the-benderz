@@ -5,9 +5,9 @@
 import Layout from "../../layouts/Layout.astro";
 
 // Local components
-import Header50 from "../../components/global/Header50.astro";
-import { Layout193 } from "../../components/global/Layout193";
-import Layout353 from "../../components/weddings/Layout353.astro";
+import HeroSubpage from "../../components/global/HeroSubpage.astro";
+import AboutVideoSection from "../../components/global/AboutVideoSection";
+import WeddingServicesSection from "../../components/weddings/WeddingServicesSection.astro";
 import OurPlaylistSection from "../../components/weddings/OurPlaylistSection.astro";
 import { Faq3 } from "../../components/weddings/Faq3";
 import { Contact2 } from "../../components/weddings/Contact2";
@@ -62,7 +62,7 @@ const faqs = [
 
 <Layout>
   <!-- Hero -->
-  <Header50
+  <HeroSubpage
     headline={headline}
     body={body}
     kicker={kicker}
@@ -71,10 +71,10 @@ const faqs = [
   />
 
   <!-- Video Section -->
-  <Layout193 />
+  <AboutVideoSection client:load />
 
   <!-- Our Wedding Services -->
-  <Layout353 />
+  <WeddingServicesSection />
 
   <!-- The Benderz Playlist -->
   <OurPlaylistSection />
