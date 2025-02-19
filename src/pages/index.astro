@@ -1,5 +1,10 @@
 ---
-// /pages/index.astro -- Home Page
+/**
+ * HOME PAGE
+ * src/pages/index.astro
+ *
+ * This is the home page of the website.
+ */
 
 // Global Components
 import Layout from "../layouts/Layout.astro";
@@ -17,11 +22,13 @@ import Logo2 from "../components/home/Logo2.astro";
 import testimonialBackgroundImage from "../assets/images/hero-1.jpg";
 import testimonialAvatarImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
-// data
+// Data
 import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
+// Functions
 import { executeQuery } from "../lib/sanity";
 
+// Constants
 const today = new Date();
 const startDate = today.toISOString();
 const numberOfGigs = 5;

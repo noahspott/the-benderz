@@ -1,3 +1,15 @@
+import { format, parseISO } from "date-fns";
+
+export function formatShowTime(dateString: string) {
+  const date = parseISO(dateString);
+  return format(date, "h:mm a");
+}
+
+export function formatShowDate(dateString: string) {
+  const date = parseISO(dateString);
+  return format(date, "EEE MMM d, yyyy");
+}
+
 // Get the date in the format of "June 26, 2025"
 export function getDate(date: string) {
   const dateObj = new Date(date);

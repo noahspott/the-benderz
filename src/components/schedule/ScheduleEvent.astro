@@ -1,5 +1,11 @@
 ---
-import { getDayOfWeek, getDate, getTime } from "../../lib/dateHelpers";
+import {
+  formatShowDate,
+  formatShowTime,
+  getDayOfWeek,
+  getDate,
+  getTime,
+} from "../../lib/dateHelpers";
 
 const { event, index } = Astro.props;
 ---
@@ -8,14 +14,13 @@ const { event, index } = Astro.props;
   class={`mx-auto w-full grid max-w-xxl items-center gap-4 p-8 font-body text-black md:grid-cols-5 `}
 >
   <div class="flex gap-1 font-heading text-2xl">
-    <p>{getDayOfWeek(event.date, "short")},</p>
-    <p>{getDate(event.date)}</p>
+    <p>{formatShowDate(event.date)}</p>
+    <!-- <p>{getDayOfWeek(event.date, "short")},</p>
+    <p>{getDate(event.date)}</p> -->
   </div>
   <div class="flex gap-4">
-    <p>{getTime(event.date)}</p>
+    <p>{formatShowTime(event.date)}</p>
   </div>
-
-  <!-- Style this to look like a link -->
   <a
     class="font-heading text-xl hover:underline"
     href={`/venues/${event.venue.slug.current}`}
