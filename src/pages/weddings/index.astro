@@ -9,7 +9,7 @@ import HeroSubpage from "../../components/global/HeroSubpage.astro";
 import AboutVideoSection from "../../components/global/AboutVideoSection";
 import WeddingServicesSection from "../../components/weddings/WeddingServicesSection.astro";
 import OurPlaylistSection from "../../components/weddings/OurPlaylistSection.astro";
-import { Faq3 } from "../../components/weddings/Faq3";
+import Faqs from "../../components/global/Faqs";
 import { Contact2 } from "../../components/weddings/Contact2";
 
 // Types
@@ -27,6 +27,12 @@ const buttons: Link[] = [
   { title: "Book Now", href: "/contact" },
   { title: "View Schedule", href: "/schedule" },
 ];
+
+const weddingSectionCopy = {
+  kicker: "The Wedding Party",
+  headline: "We bring the shore party vibe to every wedding.",
+  body: "For over a decade, The Benderz have been creating the nightlife soundtrack for the best clubs in Atlantic City, Sea Isle City, Dewey Beach, and more. Our specialty is packaging that energy and delivering it to you on your special night.",
+};
 
 // FAQS
 const faqBody =
@@ -71,7 +77,7 @@ const faqs = [
   />
 
   <!-- Video Section -->
-  <AboutVideoSection client:load />
+  <AboutVideoSection {...weddingSectionCopy} client:load />
 
   <!-- Our Wedding Services -->
   <WeddingServicesSection />
@@ -80,7 +86,7 @@ const faqs = [
   <OurPlaylistSection />
 
   <!-- FAQ -->
-  <Faq3 faqs={faqs} body={faqBody} client:load />
+  <Faqs faqs={faqs} body={faqBody} client:load />
 
   <!-- Contact -->
   <Contact2 client:load />

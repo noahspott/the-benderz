@@ -61,7 +61,7 @@ const eventTypes = [
     <div
       class="grid grid-cols-1 items-center gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20"
     >
-      <div>
+      <div class="relative z-20">
         <div class="grid grid-cols-1 gap-x-6 gap-y-8 py-2">
           {
             eventTypes.map((event) => {
@@ -114,13 +114,10 @@ const eventTypes = [
           class="w-full rounded-full object-cover"
           alt="Angelique Buckley with crowd at Ocean Drive"
           style={{
-            boxShadow: "0 0 0 64px rgba(255, 255, 255, 0.5)",
+            boxShadow:
+              "0 0 0 64px rgba(255, 255, 255, 0.5), 0 0 16px 128px rgba(255, 255, 255, 0.5)",
           }}
         />
-        <!-- <div
-          class="absolute inset-0 left-12 -z-10 size-full rounded-full bg-gradient-to-b from-transparent to-black/50"
-        >
-        </div> -->
       </div>
     </div>
   </div>

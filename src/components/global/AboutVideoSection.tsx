@@ -29,7 +29,17 @@ const links = [
   { text: "Come See the Band", href: "/schedule" },
 ];
 
-export default function AboutVideoSection() {
+type AboutVideoSectionProps = {
+  kicker: string;
+  headline: string;
+  body: string;
+};
+
+export default function AboutVideoSection({
+  kicker,
+  headline,
+  body,
+}: AboutVideoSectionProps) {
   return (
     <section id="video-section" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
@@ -51,16 +61,11 @@ export default function AboutVideoSection() {
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="kicker mb-3 md:mb-4">The Wedding Party</p>
+            <p className="kicker mb-3 md:mb-4">{kicker}</p>
             <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
-              We bring the shore party vibe to every wedding.
+              {headline}
             </h2>
-            <p className="md:text-md">
-              For over a decade, The Benderz have been creating the nightlife
-              soundtrack for the best clubs in Atlantic City, Sea Isle City,
-              Dewey Beach, and more. Our specialty is packaging that energy and
-              delivering it to you on your special night.
-            </p>
+            <p className="md:text-md">{body}</p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <a href={links[0].href}>
                 <Button className="button-secondary" variant="secondary">

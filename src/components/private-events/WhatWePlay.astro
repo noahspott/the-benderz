@@ -1,0 +1,163 @@
+---
+/**
+ *
+ */
+
+import { Button } from "@relume_io/relume-ui";
+import { Image } from "astro:assets";
+
+// Images
+import top40 from "../../assets/images/genre-images/top-40.svg";
+import clubStaples from "../../assets/images/genre-images/club-staples.svg";
+import rockSingalongs from "../../assets/images/genre-images/rock-singalongs.svg";
+import theClassics from "../../assets/images/genre-images/the-classics.svg";
+import ninetiesHits from "../../assets/images/genre-images/nineties-hits.svg";
+import country from "../../assets/images/genre-images/country.svg";
+import alternative from "../../assets/images/genre-images/alternative.svg";
+import hipHop from "../../assets/images/genre-images/hip-hop.svg";
+
+import backgroundImage from "../../assets/images/patterns/layered-peaks-accent-100.svg";
+
+// Design system constants
+const PRIMARY_OPACITY = 0.2;
+const SECONDARY_OPACITY = 0.1;
+
+const cardData = [
+  {
+    title: "Top 40 Hits",
+    description: "Dua Lipa, Post Malone, Taylor Swift, and more.",
+    image: top40,
+    primaryHex: `rgba(255, 0, 127, ${PRIMARY_OPACITY})`, // Hot Pink (Background)
+    secondaryHex: `rgba(0, 212, 255, ${SECONDARY_OPACITY})`, // Electric Blue (Hover)
+  },
+  {
+    title: "Club Staples",
+    description: "Usher, Rihanna, Pitbull, and more.",
+    image: clubStaples,
+    primaryHex: `rgba(128, 0, 255, ${PRIMARY_OPACITY})`, // Deep Purple (Background)
+    secondaryHex: `rgba(255, 0, 128, ${SECONDARY_OPACITY})`, // Neon Pink (Hover)
+  },
+  {
+    title: "Rock Singalongs",
+    description: "Bon Jovi, AC/DC, Fleetwood Mac, and more.",
+    image: rockSingalongs,
+    primaryHex: `rgba(34, 34, 34, ${PRIMARY_OPACITY})`, // Deep Black (Background)
+    secondaryHex: `rgba(255, 0, 0, ${SECONDARY_OPACITY})`, // Rock Red (Hover)
+  },
+  {
+    title: "The Classics",
+    description: "You know the ones 😉",
+    image: theClassics,
+    primaryHex: `rgba(44, 62, 80, ${PRIMARY_OPACITY})`, // Muted Navy (Background)
+    secondaryHex: `rgba(193, 154, 107, ${SECONDARY_OPACITY})`, // Vintage Gold (Hover)
+  },
+  {
+    title: "90's Hits",
+    description: "Spice Girls, Britney Spears, Matchbox Twenty, and more.",
+    image: ninetiesHits,
+    primaryHex: `rgba(0, 255, 197, ${PRIMARY_OPACITY})`, // Neon Teal (Background)
+    secondaryHex: `rgba(255, 92, 255, ${SECONDARY_OPACITY})`, // Vivid Magenta (Hover)
+  },
+  {
+    title: "Country",
+    description: "Zack Brown, Carrie Underwood, Shania Twain, and more.",
+    image: country,
+    primaryHex: `rgba(166, 124, 82, ${PRIMARY_OPACITY})`, // Warm Brown (Background)
+    secondaryHex: `rgba(244, 169, 0, ${SECONDARY_OPACITY})`, // Golden Yellow (Hover)
+  },
+  {
+    title: "Alternative",
+    description: "Fall Out Boy, Paramore, Panic! At The Disco, and more.",
+    image: alternative,
+    primaryHex: `rgba(75, 0, 130, ${PRIMARY_OPACITY})`, // Deep Indigo (Background)
+    secondaryHex: `rgba(255, 69, 0, ${SECONDARY_OPACITY})`, // Burnt Orange (Hover)
+  },
+  {
+    title: "Hip Hop",
+    description: "Nelly, Drake, Eminem, and more.",
+    image: hipHop,
+    primaryHex: `rgba(0, 0, 0, ${PRIMARY_OPACITY})`, // Black (Background)
+    secondaryHex: `rgba(255, 215, 0, ${SECONDARY_OPACITY})`, // Gold (Hover)
+  },
+];
+
+const buttons = [
+  {
+    title: "View Playlist",
+    href: "/playlist",
+  },
+  {
+    title: "View Schedule",
+    href: "/schedule",
+  },
+];
+---
+
+<section id="what-we-play" class="relative px-[5%] py-16 md:py-24 lg:py-28">
+  <Image
+    src={backgroundImage}
+    alt=""
+    class="absolute inset-0 z-0 h-full w-full object-cover opacity-30"
+  />
+  <div class="container relative z-10">
+    <div class="mb-12 md:mb-18 lg:mb-20">
+      <div class="max-w-lg">
+        <p class="kicker mb-3 md:mb-4">What We Play</p>
+        <h2 class="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
+          Our Playlist has something for everyone.
+        </h2>
+        <p class="font-body text-neutral-dark md:text-md">
+          Our goal is to get your party on the dance floor. That's why we pride
+          ourselves on our diverse setlist from "Mr. Brightside" to "September".
+        </p>
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-4"
+    >
+      {
+        cardData.map((card) => {
+          return (
+            <div
+              class={`group rounded-lg bg-white p-6 transition-all duration-300 hover:bg-[var(--secondary-color)] hover:shadow-[inset_0_0_4px_2px_var(--primary-color)]`}
+              style={{
+                "--primary-color": card.primaryHex,
+                "--secondary-color": card.secondaryHex,
+              }}
+            >
+              <div class="mb-5 aspect-video w-full overflow-hidden rounded-md md:mb-6">
+                <Image
+                  src={card.image}
+                  alt={`${card.title}`}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <h3 class="mb-3 font-heading text-2xl md:mb-4 md:text-3xl lg:text-4xl">
+                {card.title}
+              </h3>
+              <p class="font-body text-neutral-600">{card.description}</p>
+            </div>
+          );
+        })
+      }
+
+      <div class="mt-12 flex flex-wrap items-center gap-4 md:mt-18 lg:mt-20">
+        <Button
+          title="View Playlist"
+          variant="secondary"
+          className="button-secondary"
+        >
+          <a href={buttons[0].href}>{buttons[0].title}</a>
+        </Button>
+        <Button
+          title="View Schedule"
+          variant="link"
+          size="link"
+          className="button-link"
+        >
+          <a href={buttons[1].href}>{buttons[1].title}</a>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
