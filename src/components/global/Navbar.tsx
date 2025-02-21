@@ -74,7 +74,7 @@ export function Navbar({
   return (
     <motion.section
       id="navbar"
-      className="fixed z-[999] mx-auto flex min-h-16 w-full max-w-[1920px] items-center bg-white px-[5%] font-subheading text-neutral-darkest shadow-small md:min-h-18"
+      className="fixed z-[999] mx-auto flex min-h-16 w-full min-w-[320px] max-w-[1920px] items-center bg-white px-[5%] font-subheading text-neutral-darkest shadow-small md:min-h-18"
     >
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <a href="/">
@@ -265,7 +265,7 @@ export function Navbar({
                 <a
                   key={link.href}
                   href={link.href}
-                  className="heading-nav block py-3 hover:text-accent-900"
+                  className="heading-nav py-3 hover:text-accent-900"
                 >
                   {link.text}
                 </a>
@@ -315,20 +315,20 @@ export function Navbar({
                             <a
                               key={link.href}
                               href={link.href}
-                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2 hover:text-accent-900"
+                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-center gap-x-3 py-2 hover:text-accent-900"
                             >
                               <div className="flex size-6 flex-col items-center justify-center">
                                 {link.title === "About Us" && (
-                                  <MdGroups className="size-12" />
+                                  <MdGroups className="size-12 text-accent-900/80" />
                                 )}
                                 {link.title === "Photos" && (
-                                  <MdCollections className="size-12" />
+                                  <MdCollections className="size-12 text-accent-900/80" />
                                 )}
                                 {link.title === "Venues" && (
-                                  <MdPlace className="size-12" />
+                                  <MdPlace className="size-12 text-accent-900/80" />
                                 )}
                                 {link.title === "Blog" && (
-                                  <MdArticle className="size-12" />
+                                  <MdArticle className="size-12 text-accent-900/80" />
                                 )}
                               </div>
                               <div className="flex flex-col items-start justify-center">

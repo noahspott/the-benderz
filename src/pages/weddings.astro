@@ -1,24 +1,29 @@
 ---
-// WEDDING PAGE
+/**
+ * Wedding Page
+ * src/pages/weddings.astro
+ *
+ * A page to sell the band for weddings.
+ */
 
 // Global components
 import { Image } from "astro:assets";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro";
 
 // Local components
-import HeroSubpage from "../../components/global/HeroSubpage.astro";
-import AboutVideoSection from "../../components/global/AboutVideoSection";
-import WeddingServicesSection from "../../components/weddings/WeddingServicesSection.astro";
-import OurPlaylistSection from "../../components/weddings/OurPlaylistSection.astro";
-import Faqs from "../../components/global/Faqs";
-import { Contact2 } from "../../components/weddings/Contact2";
+import HeroSubpage from "../components/global/HeroSubpage.astro";
+import AboutVideoSection from "../components/global/AboutVideoSection";
+import WeddingServicesSection from "../components/weddings/WeddingServicesSection.astro";
+import OurPlaylistSection from "../components/weddings/OurPlaylistSection.astro";
+import Faqs from "../components/global/Faqs";
+import { Contact2 } from "../components/weddings/Contact2";
 
 // Types
-import type { Link } from "../../types/types";
+import type { Link } from "../types/types";
 
 // Images
-import backgroundImage from "../../assets/images/hero-2.jpg";
-import faqBackgroundImage from "../../assets/images/patterns/polygon-scatter-accent-100.svg";
+import backgroundImage from "../assets/images/hero-2.jpg";
+import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent-100.svg";
 
 // Copy
 const kicker = "Wedding Band • Philadelphia";

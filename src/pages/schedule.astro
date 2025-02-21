@@ -1,22 +1,30 @@
 ---
+/**
+ * Schedule Page
+ * src/pages/schedule.astro
+ *
+ * This page is used to display the schedule of upcoming events.
+ * It includes a list of upcoming shows at the venue.
+ */
+
 // Global Components
-import Layout from "../../layouts/Layout.astro";
-import Header46 from "../../components/global/Header46.astro";
-import { ContactSection } from "../../components/global/ContactSection";
+import Layout from "../layouts/Layout.astro";
+import Header46 from "../components/global/Header46.astro";
+import ContactSection from "../components/global/ContactSection";
 
 // Local Components
-import { Event31 } from "../../components/schedule/Event31";
-import ScheduleEvent from "../../components/schedule/ScheduleEvent.astro";
+import { Event31 } from "../components/schedule/Event31";
+import ScheduleEvent from "../components/schedule/ScheduleEvent.astro";
 
 // Helpers
-import { getFutureEvents } from "../../lib/sanity";
-import { getDate, getTime, getDayOfWeek } from "../../lib/dateHelpers";
+import { getFutureEvents } from "../lib/sanity";
+import { getDate, getTime, getDayOfWeek } from "../lib/dateHelpers";
 
 const events = await getFutureEvents();
 console.log("[schedule-page] events", events);
 
 // Types
-import type { Event } from "../../types/types";
+import type { Event } from "../types/types";
 
 // Page Data
 const headline = "Schedule";

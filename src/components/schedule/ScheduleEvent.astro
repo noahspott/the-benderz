@@ -1,4 +1,8 @@
 ---
+//
+
+import { FiChevronRight } from "react-icons/fi";
+
 import {
   formatShowDate,
   formatShowTime,
@@ -10,30 +14,40 @@ import {
 const { event, index } = Astro.props;
 ---
 
-<div
-  class={`mx-auto w-full grid max-w-xxl items-center gap-4 p-8 font-body text-black md:grid-cols-5 `}
+<article
+  class={`mx-auto w-full text-center md:text-left grid max-w-xxl items-center gap-4 p-8 font-body text-black md:grid-cols-3 duration-200`}
 >
-  <div class="flex gap-1 font-heading text-2xl">
-    <p>{formatShowDate(event.date)}</p>
-    <!-- <p>{getDayOfWeek(event.date, "short")},</p>
-    <p>{getDate(event.date)}</p> -->
+  <div class="">
+    <h2 class="text-primary-600 gap-1 text-2xl font-black uppercase">
+      {formatShowDate(event.date)}
+    </h2>
+    <time class="gap-4 text-2xl font-light" datetime={event.date}>
+      {formatShowTime(event.date)}
+    </time>
   </div>
-  <div class="flex gap-4">
-    <p>{formatShowTime(event.date)}</p>
+
+  <div class="col-span-1 md:col-span-2">
+    <h3 class="">
+      <a
+        class="text-xl font-black text-black/80 sm:text-2xl md:text-xl lg:text-2xl"
+        href={`/venues/${event.venue.slug.current}`}
+        aria-label={`View ${event.venue.name} page`}
+      >
+        {event.venue.name}
+      </a>
+    </h3>
+
+    <address class="text-xl font-light not-italic lg:text-2xl">
+      {event.venue.address.city}, {event.venue.address.state}
+    </address>
   </div>
+
   <a
-    class="font-heading text-xl hover:underline"
-    href={`/venues/${event.venue.slug.current}`}
-  >
-    {event.venue.name}
-  </a>
-  <p>
-    {event.venue.address.city}, {event.venue.address.state}{" "}
-  </p>
-  <a
-    class="button-secondary flex w-full items-center justify-center justify-self-end border-black text-center md:w-24 lg:justify-self-center"
+    class="flex w-full items-center justify-center gap-2 text-center font-light uppercase text-black/80 md:col-start-3 md:justify-end"
     href={`/${event.slug.current}`}
+    aria-label={`View more details about the show on ${formatShowDate(event.date)}`}
   >
-    More Info
+    More info
+    <FiChevronRight className="text-black/80" />
   </a>
-</div>
+</article>

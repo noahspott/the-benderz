@@ -15,17 +15,17 @@ interface ContactSectionProps {
   body?: string;
 }
 
-export function ContactSection({ heading, body }: ContactSectionProps) {
+export default function ContactSection({ heading, body }: ContactSectionProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   return (
-    <section id="contact" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="contact-section" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="grid grid-cols-1 items-start gap-y-12 md:grid-flow-row md:grid-cols-2 md:gap-x-12 lg:grid-flow-col lg:gap-x-20 lg:gap-y-16">
           <div>
             {/* Contact Heading */}
             <div className="mb-6 md:mb-8">
-              <p className="kicker mb-3 md:mb-4">Contact</p>
+              <p className="kicker-dark mb-3 md:mb-4">Contact</p>
               <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
                 {heading}
               </h2>

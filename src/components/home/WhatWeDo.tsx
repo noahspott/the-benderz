@@ -82,7 +82,7 @@ export default function WhatWeDo({
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="kicker mb-3 md:mb-4">What We Do</p>
+            <p className="kicker-dark mb-3 md:mb-4">What We Do</p>
             <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               Non-stop flow of a DJ, Unmatched vibe of a band
             </h2>

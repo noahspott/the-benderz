@@ -1,25 +1,37 @@
 ---
-import { Image } from "astro:assets";
-
 /**
+ * Parallax Background Image
+ *
  *
  * @note Parent element must be position:relative
  *
  * @param {ImageMetadata} imageMetaData - The image metadata to use for the background image.
  * @param {string} overlayClassName - The class name to use for the overlay.
  */
+
+//  Tools
+import { Image } from "astro:assets";
+
+//  Types
 type Props = {
   imageMetaData?: ImageMetadata;
   overlayClassName: string;
   parallaxSpeed?: number;
   imgSrc?: string;
+  loading?: "eager" | "lazy";
+  objectPosition?: string;
+  imageClasses?: string;
 };
 
+//  Props
 const {
   imageMetaData,
   overlayClassName,
   parallaxSpeed = 0.3,
   imgSrc = "",
+  loading = "eager",
+  objectPosition = "50% center",
+  imageClasses = "",
 } = Astro.props;
 ---
 
@@ -34,7 +46,7 @@ const {
       imgSrc && (
         <img
           src={imgSrc}
-          class="blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none"
+          class={`blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none ${imageClasses}`}
           alt={""}
           loading="eager"
         />
@@ -44,9 +56,14 @@ const {
       imageMetaData && (
         <Image
           src={imageMetaData}
-          class="blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none"
+          class={`blur-xs absolute h-[120%] w-full object-cover object-center sm:blur-none ${imageClasses}`}
           alt={""}
-          loading="eager"
+          loading={loading}
+          widths={[320, 480, 640, 768, 1024, 1280, 1536, 1920]}
+          sizes="100vw"
+          style={{
+            objectPosition: objectPosition,
+          }}
         />
       )
     }

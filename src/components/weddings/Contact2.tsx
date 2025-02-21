@@ -20,7 +20,7 @@ export function Contact2() {
     <section id="wedding-contact" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container max-w-lg">
         <div className="mx-auto mb-8 w-full max-w-lg text-center md:mb-10 lg:mb-12">
-          <p className="kicker mb-3 md:mb-4">Contact</p>
+          <p className="kicker-dark mb-3 md:mb-4">Contact</p>
           <h2 className="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
             Ready to Book Your Wedding Band?
           </h2>

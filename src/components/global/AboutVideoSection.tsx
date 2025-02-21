@@ -61,7 +61,7 @@ export default function AboutVideoSection({
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="kicker mb-3 md:mb-4">{kicker}</p>
+            <p className="kicker-dark mb-3 md:mb-4">{kicker}</p>
             <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               {headline}
             </h2>

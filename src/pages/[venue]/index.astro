@@ -1,23 +1,32 @@
 ---
+/**
+ * Venue Template Page
+ *
+ * This page is used to display a single venue's information.
+ * It includes the venue's name, description, address, website, and gallery photos.
+ * It also includes a list of upcoming shows at the venue.
+ *
+ */
+
 export const prerender = true;
 import type { GetStaticPaths } from "astro";
 
 // Global components
 import { Image } from "astro:assets";
-import Layout from "../../../layouts/Layout.astro";
-import { ContactSection } from "../../../components/global/ContactSection";
-import UpcomingShows from "../../../components/global/UpcomingShows.astro";
+import Layout from "../../layouts/Layout.astro";
+import { ContactSection } from "../../components/global/ContactSection";
+import UpcomingShows from "../../components/global/UpcomingShows.astro";
 
 // Local components
-import PortfolioHeader1 from "../../../components/venue/PortfolioHeader1.astro";
-import { Gallery7 } from "../../../components/venue/Gallery7";
-import { Layout3 } from "../../../components/venue/Layout3";
+import PortfolioHeader1 from "../../components/venue/PortfolioHeader1.astro";
+import { Gallery7 } from "../../components/venue/Gallery7";
+import { Layout3 } from "../../components/venue/Layout3";
 
 // Images
-import defaultImage from "../../../assets/images/layered-peaks-bg.svg";
+import defaultImage from "../../assets/images/layered-peaks-bg.svg";
 // Sanity
-import { getVenues, executeQuery } from "../../../lib/sanity";
-import type { Venue, Event } from "../../../types/types";
+import { getVenues, executeQuery } from "../../lib/sanity";
+import type { Venue, Event } from "../../types/types";
 
 type VenueProps = {
   venueData: Venue;

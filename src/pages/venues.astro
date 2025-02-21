@@ -1,18 +1,18 @@
 ---
 // Global Components
 import { Image } from "astro:assets";
-import Layout from "../../layouts/Layout.astro";
-import Header46 from "../../components/global/Header46.astro";
-import { ContactSection } from "../../components/global/ContactSection";
+import Layout from "../layouts/Layout.astro";
+import Header46 from "../components/global/Header46.astro";
+import ContactSection from "../components/global/ContactSection";
 
 // Types
-import type { Venue } from "../../types/types";
+import type { Venue } from "../types/types";
 
 // Images
-import defaultImage from "../../assets/images/layered-peaks-bg.svg";
+import defaultImage from "../assets/images/layered-peaks-bg.svg";
 
 // Get all venues
-import { getVenues } from "../../lib/sanity";
+import { getVenues } from "../lib/sanity";
 const venues = await getVenues();
 
 const headline = "Venues";

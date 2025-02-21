@@ -25,6 +25,7 @@ const teamMembers = [
     role: "Lead Vocals",
     image: angeliqueBuckley,
     instagram: "https://www.instagram.com/xangeliquex/",
+    nicknames: ["Buckley", "Bucks", "Boss Lady"],
     description:
       "Bringing passion and energy to every performance, Angelique Buckley captivates audiences with her powerful voice.",
   },
@@ -33,6 +34,7 @@ const teamMembers = [
     role: "Keys & Bass",
     image: joeVeltri,
     instagram: "https://www.instagram.com/joevibz/",
+    nicknames: ["Joey Vibes", "JRV (Ephasis on the V)", "Doctor Vibes"],
     description:
       "A talented keyboardist, Joe Veltri enriches our music with his dynamic bass lines and impressive riffs.",
   },
@@ -41,6 +43,7 @@ const teamMembers = [
     role: "Drums",
     image: johnZadeh,
     instagram: "https://www.instagram.com/the_drummer_john_zadeh/",
+    nicknames: ["The Pope"],
     description:
       "With unmatched rhythm, John Zadeh on drums keeps the beat and drives our performances to new heights.",
   },
@@ -49,6 +52,7 @@ const teamMembers = [
     role: "Guitar & Vocals",
     image: jayceBradley,
     instagram: "https://www.instagram.com/jaycebradleyxx/",
+    nicknames: ["Logan Paul"],
     description:
       "Jayce Bradley's guitar and vocals bring a dynamic energy to our diverse musical repertoire.",
   },
@@ -61,18 +65,18 @@ const teamMembers = [
 >
   <div class="container">
     <div class="rb-12 mb-12 max-w-lg md:mb-18 lg:mb-20">
-      <p class="kicker mb-3 md:mb-4">Meet</p>
+      <p class="kicker-dark mb-3 md:mb-4">The Benderz</p>
       <h2
         class="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl"
       >
-        Our Team
+        Meet Our Team
       </h2>
       <p class="font-body text-md md:text-lg">
         Talented musicians dedicated to creating unforgettable experiences.
       </p>
     </div>
 
-    <ul class="grid auto-rows-fr grid-cols-1 gap-8 sm:grid-cols-2">
+    <ul class="grid auto-rows-fr grid-cols-1 gap-8 md:grid-cols-2">
       {
         teamMembers.map((member) => {
           return (
@@ -90,10 +94,11 @@ const teamMembers = [
                 />
               </div>
               <div class="mb-4">
-                <h5 class="font-heading text-3xl leading-tight">
-                  {member.name}
-                </h5>
-                <h6 class="text-lg font-medium text-gray-600">{member.role}</h6>
+                <h5 class="font-heading text-3xl">{member.name}</h5>
+                <h6 class="text-lg font-light text-gray-600">{member.role}</h6>
+                <p class="text-sm text-gray-500">
+                  Nicknames: {member.nicknames.join(", ")}
+                </p>
               </div>
               <p class="text-gray-700">{member.description}</p>
               {member.instagram && (

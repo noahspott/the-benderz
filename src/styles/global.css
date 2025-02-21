@@ -10,7 +10,7 @@
 
   /* Buttons */
   .button {
-    @apply min-h-12 min-w-28 rounded-full font-heading text-xl transition-all duration-100 hover:border-accent-600 hover:bg-accent-600 hover:text-white;
+    @apply min-h-12 min-w-28 rounded-full font-heading text-xl transition-all duration-100 hover:border-accent-600 hover:bg-accent-600 hover:text-white xs:text-2xl;
   }
 
   .button-secondary {
@@ -18,15 +18,19 @@
   }
 
   .button-link {
-    @apply font-heading text-xl;
+    @apply font-heading text-xl xs:text-2xl;
   }
 
   .kicker {
-    @apply font-subheading text-2xl tracking-wider;
+    @apply font-subheading text-2xl tracking-wider xs:text-3xl;
+  }
+
+  .kicker-dark {
+    @apply kicker text-black/80;
   }
 
   .heading-nav {
-    @apply text-xl;
+    @apply text-3xl lg:text-2xl;
   }
 
   .green-gradient-text {

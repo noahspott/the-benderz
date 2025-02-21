@@ -7,7 +7,10 @@ export function formatShowTime(dateString: string) {
 
 export function formatShowDate(dateString: string) {
   const date = parseISO(dateString);
-  return format(date, "EEE MMM d, yyyy");
+  let formattedDate = format(date, "MMM dd");
+  const formattedDay = format(date, "EEE");
+
+  return `${formattedDate} ${formattedDay}`;
 }
 
 // Get the date in the format of "June 26, 2025"
