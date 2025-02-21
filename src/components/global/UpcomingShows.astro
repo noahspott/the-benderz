@@ -1,8 +1,14 @@
 ---
+/**
+ * Upcoming Shows
+ * src/components/global/UpcomingShows.astro
+ *
+ * To display the next 3 upcoming shows
+ *
+ */
+
 // Components
-import { Button } from "@relume_io/relume-ui";
 import ScheduleEvent from "../schedule/ScheduleEvent.astro";
-import { Image } from "astro:assets";
 import ParallaxBackgroundImage from "./ParallaxBackgroundImage.astro";
 
 // Types
@@ -50,10 +56,5 @@ const { events } = Astro.props as { events: Event[] | null };
       </a>
     </div>
   </div>
-  <!-- <Image
-    src={bgImage}
-    alt="Layered Peaks Background"
-    class="absolute inset-0 bottom-0 left-0 -z-10 h-full object-cover"
-  /> -->
   <ParallaxBackgroundImage imageMetaData={bgImage} overlayClassName="" />
 </section>

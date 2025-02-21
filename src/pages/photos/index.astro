@@ -1,17 +1,28 @@
 ---
+/**
+ * Photos Page
+ *
+ * This page displays a gallery of photos for The Benderz.
+ * It also includes a contact section for booking the band.
+ */
+
 import Layout from "../../layouts/Layout.astro";
 
 import Header46 from "../../components/global/Header46.astro";
-import { Gallery6 } from "../../components/photos/Gallery6";
+import Gallery from "../../components/photos/Gallery.astro";
 import { ContactSection } from "../../components/global/ContactSection";
 
+// Header
 const headline = "Photos";
-const description = "Press photos for The Benderz";
-const contactHeading = "Contact Us";
+const description = "Photos of the sickest band on the planet.";
+
+// Contact Section
+const contactHeading = "Like what you see?";
+const contactBody = "Reach out to book The Benderz for your next event!";
 ---
 
 <Layout>
   <Header46 headline={headline} description={description} />
-  <Gallery6 />
-  <ContactSection client:load heading={contactHeading} />
+  <Gallery />
+  <ContactSection client:load heading={contactHeading} body={contactBody} />
 </Layout>

@@ -1,0 +1,52 @@
+---
+/**
+ * MeetTheBenderz
+ * src/components/about-us/MeetTheBenderz.astro
+ *
+ * Relume component: Layout3
+ *
+ * A short bio + photo section for the About page.
+ *
+ */
+
+//  Tools
+import { Image } from "astro:assets";
+
+// Images
+// @ts-ignore
+import theBenderz from "../../assets/images/the-benderz/the-benderz-on-a-couch.JPEG";
+---
+
+<section
+  id="meet-the-benderz"
+  class="relative overflow-hidden px-[5%] py-16 md:py-24 lg:py-28"
+>
+  <div class="container relative">
+    <div
+      class="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20"
+    >
+      <div>
+        <h1
+          class="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-6xl lg:text-7xl"
+        >
+          Meet The Benderz: <br class="block md:hidden lg:block" />
+          Philly's Premier Cover Band
+        </h1>
+        <p class="font-body text-md text-neutral-dark md:text-lg">
+          Since 2013, The Benderz, led by Angelique Buckley, have been
+          captivating audiences with their energy and charisma. Known throughout
+          the Philadelphia and South Jersey area, they create an atmosphere of
+          fun, making friends wherever they perform. Join us for an experience
+          that will keep you dancing all night long!
+        </p>
+      </div>
+      <div>
+        <Image
+          src={theBenderz}
+          alt="The Benderz chillin on a couch"
+          class="w-full rounded-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>

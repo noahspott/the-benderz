@@ -2,6 +2,7 @@
 // WEDDING PAGE
 
 // Global components
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 
 // Local components
@@ -17,6 +18,7 @@ import type { Link } from "../../types/types";
 
 // Images
 import backgroundImage from "../../assets/images/hero-2.jpg";
+import faqBackgroundImage from "../../assets/images/patterns/polygon-scatter-accent-100.svg";
 
 // Copy
 const kicker = "Wedding Band • Philadelphia";
@@ -86,7 +88,16 @@ const faqs = [
   <OurPlaylistSection />
 
   <!-- FAQ -->
-  <Faqs faqs={faqs} body={faqBody} client:load />
+  <Faqs faqs={faqs} body={faqBody} client:load>
+    <Image
+      src={faqBackgroundImage}
+      alt=""
+      class="absolute inset-0 z-0 h-full object-cover opacity-20"
+      style={{
+        objectPosition: "90% center",
+      }}
+    />
+  </Faqs>
 
   <!-- Contact -->
   <Contact2 client:load />

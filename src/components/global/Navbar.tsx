@@ -1,3 +1,11 @@
+/**
+ * Navbar
+ * src/components/global/Navbar9.tsx
+ *
+ * Relume component: Navbar9
+ *
+ */
+
 "use client";
 
 // Components
@@ -9,6 +17,7 @@ import React, { useState } from "react";
 
 // Icons
 import { RxChevronDown } from "react-icons/rx";
+import { MdGroups, MdCollections, MdPlace, MdArticle } from "react-icons/md";
 
 // Types
 import type { Link } from "../../types/types";
@@ -45,7 +54,7 @@ const useRelume = () => {
   };
 };
 
-interface Navbar9Props {
+interface NavbarProps {
   primaryButton: Link;
   secondaryButton: Link;
   primaryLinks: Link[];
@@ -53,13 +62,13 @@ interface Navbar9Props {
   logoSrc: string;
 }
 
-export function Navbar9({
+export function Navbar({
   primaryButton,
   secondaryButton,
   primaryLinks,
   secondaryLinks,
   logoSrc,
-}: Navbar9Props) {
+}: NavbarProps) {
   const useActive = useRelume();
 
   return (
@@ -78,7 +87,7 @@ export function Navbar9({
               <a
                 key={link.href}
                 href={link.href}
-                className="heading-nav relative block w-auto py-3 lg:inline-block lg:px-4 lg:py-6"
+                className="heading-nav relative block w-auto py-3 hover:text-accent-900 lg:inline-block lg:px-4 lg:py-6"
               >
                 {link.text}
               </a>
@@ -89,7 +98,7 @@ export function Navbar9({
               onMouseLeave={useActive.closeOnDesktopDropdownMenu}
             >
               <button
-                className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
+                className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 hover:text-accent-900 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
                 onClick={useActive.openOnMobileDropdownMenu}
               >
                 <span>More Info</span>
@@ -131,17 +140,21 @@ export function Navbar9({
                           <a
                             key={link.href}
                             href={link.href}
-                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
+                            className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2 hover:text-accent-900"
                           >
                             <div className="flex size-6 flex-col items-center justify-center">
-                              <img
-                                src={
-                                  link.iconSrc ||
-                                  "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                }
-                                alt={link.title}
-                                className="shrink-0"
-                              />
+                              {link.title === "About Us" && (
+                                <MdGroups className="size-12" />
+                              )}
+                              {link.title === "Photos" && (
+                                <MdCollections className="size-12" />
+                              )}
+                              {link.title === "Venues" && (
+                                <MdPlace className="size-12" />
+                              )}
+                              {link.title === "Blog" && (
+                                <MdArticle className="size-12" />
+                              )}
                             </div>
                             <div className="flex flex-col items-start justify-center">
                               <h5 className="heading-nav">{link.title}</h5>
@@ -178,7 +191,7 @@ export function Navbar9({
                 title={primaryButton.text}
                 variant="primary"
                 size="sm"
-                className="button border-accent-600 bg-accent-600 font-button text-neutral-lightest"
+                className="button border-2 border-accent-600 bg-accent-600 font-button hover:bg-white hover:text-accent-600"
               >
                 {primaryButton.text}
               </Button>
@@ -252,14 +265,14 @@ export function Navbar9({
                 <a
                   key={link.href}
                   href={link.href}
-                  className="heading-nav block py-3"
+                  className="heading-nav block py-3 hover:text-accent-900"
                 >
                   {link.text}
                 </a>
               ))}
               <div>
                 <button
-                  className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
+                  className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 hover:text-accent-900 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
                   onClick={useActive.openOnMobileDropdownMenu}
                 >
                   <span>More Info</span>
@@ -302,17 +315,21 @@ export function Navbar9({
                             <a
                               key={link.href}
                               href={link.href}
-                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
+                              className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2 hover:text-accent-900"
                             >
                               <div className="flex size-6 flex-col items-center justify-center">
-                                <img
-                                  src={
-                                    link.iconSrc ||
-                                    "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                                  }
-                                  alt={link.title}
-                                  className="shrink-0"
-                                />
+                                {link.title === "About Us" && (
+                                  <MdGroups className="size-12" />
+                                )}
+                                {link.title === "Photos" && (
+                                  <MdCollections className="size-12" />
+                                )}
+                                {link.title === "Venues" && (
+                                  <MdPlace className="size-12" />
+                                )}
+                                {link.title === "Blog" && (
+                                  <MdArticle className="size-12" />
+                                )}
                               </div>
                               <div className="flex flex-col items-start justify-center">
                                 <h5 className="heading-nav">{link.title}</h5>

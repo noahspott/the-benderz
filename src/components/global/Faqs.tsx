@@ -5,6 +5,8 @@
  *
  * A component that displays a list of FAQs.
  *
+ * For background image, send in as child with absolute positioning and size-full.
+ *
  * @param {Object} props - The component props.
  * @param {Faq[]} props.faqs - The list of FAQs.
  * @param {string} props.body - The body text of the section.

@@ -1,0 +1,50 @@
+---
+/**
+ * Testimonial
+ * src/components/global/TestimonialSimple.tsx
+ *
+ * A simple testimonial component that displays a testimonial quote and a
+ * testimonial avatar.
+ */
+
+import { BiSolidStar } from "react-icons/bi";
+
+// Content
+const quote =
+  "The Benderz made our holiday party unforgettable! Their energy and talent kept everyone on the dance floor all night long.";
+
+const name = "Emily Johnson";
+const position = "Bride, Personal Event";
+---
+
+<section id="relume" class="px-[5%] py-16 md:py-24 lg:py-28">
+  <div class="container">
+    <div class="mx-auto w-full max-w-lg text-center">
+      <div class="mb-6 flex items-center justify-center md:mb-8">
+        {
+          Array.from({ length: 5 }).map((_, index) => (
+            <BiSolidStar className="size-6 text-yellow-500" />
+          ))
+        }
+      </div>
+      <blockquote class="text-xl font-bold md:text-2xl">
+        {quote}
+      </blockquote>
+      <div
+        class="mt-6 flex w-full flex-col items-center justify-center gap-3 text-center md:mt-8 md:w-auto md:flex-row md:gap-5 md:text-left"
+      >
+        <div>
+          <img
+            src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg"
+            alt="Testimonial avatar 1"
+            class="size-14 min-h-14 min-w-14 rounded-full object-cover"
+          />
+        </div>
+        <div class="mb-4 md:mb-0">
+          <p>{name}</p>
+          <p>{position}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

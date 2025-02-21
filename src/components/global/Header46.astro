@@ -3,14 +3,20 @@
 
 // Tools
 import { Image } from "astro:assets";
-import bgImage from "../../assets/images/hero-shapes-1.svg";
+import bgImage from "../../assets/images/patterns/sound-waves.svg";
+
+type Header46Props = {
+  headline: string;
+  description?: string;
+  image?: ImageMetadata;
+};
 
 // Props
 const {
   headline = "Headline",
-  description = "This is where your description goes",
+  description = "",
   image = bgImage,
-} = Astro.props;
+} = Astro.props as Header46Props;
 ---
 
 <section
@@ -29,5 +35,8 @@ const {
     src={image}
     alt=""
     class="absolute inset-0 -z-10 h-full w-full object-cover"
+    style={{
+      objectPosition: "90% center",
+    }}
   />
 </section>

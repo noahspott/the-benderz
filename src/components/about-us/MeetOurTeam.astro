@@ -1,0 +1,118 @@
+---
+/**
+ * MeetOurTeam
+ * src/components/about-us/MeetOurTeam.astro
+ *
+ * Relume Component: Team14
+ *
+ * This component is used to display the team members of the band.
+ */
+
+//  Components
+import { Image } from "astro:assets";
+import { FaInstagram } from "react-icons/fa";
+
+//  Images
+import angeliqueBuckley from "../../assets/images/the-benderz/angelique-buckley/angelique-buckley-singing-caesars-casino-2.jpeg";
+import joeVeltri from "../../assets/images/the-benderz/joe-veltri/joe-veltri-keyboard-caesars-casino-wild-wild-west.jpeg";
+import johnZadeh from "../../assets/images/the-benderz/john-zadeh/john-zadeh-the-benderz-drums.jpg";
+import jayceBradley from "../../assets/images/the-benderz/jayce-bradley/jayce-bradley-the-benderz-guitar-at-caesars-casino.jpg";
+
+// Content
+const teamMembers = [
+  {
+    name: "Angelique Buckley",
+    role: "Lead Vocals",
+    image: angeliqueBuckley,
+    instagram: "https://www.instagram.com/xangeliquex/",
+    description:
+      "Bringing passion and energy to every performance, Angelique Buckley captivates audiences with her powerful voice.",
+  },
+  {
+    name: "Joe Veltri",
+    role: "Keys & Bass",
+    image: joeVeltri,
+    instagram: "https://www.instagram.com/joevibz/",
+    description:
+      "A talented keyboardist, Joe Veltri enriches our music with his dynamic bass lines and impressive riffs.",
+  },
+  {
+    name: "John Zadeh",
+    role: "Drums",
+    image: johnZadeh,
+    instagram: "https://www.instagram.com/the_drummer_john_zadeh/",
+    description:
+      "With unmatched rhythm, John Zadeh on drums keeps the beat and drives our performances to new heights.",
+  },
+  {
+    name: "Jayce Bradley",
+    role: "Guitar & Vocals",
+    image: jayceBradley,
+    instagram: "https://www.instagram.com/jaycebradleyxx/",
+    description:
+      "Jayce Bradley's guitar and vocals bring a dynamic energy to our diverse musical repertoire.",
+  },
+];
+---
+
+<section
+  id="meet-our-team"
+  class="bg-gradient-to-br from-white to-accent-50/50 px-[5%] py-16 md:py-24 lg:py-28"
+>
+  <div class="container">
+    <div class="rb-12 mb-12 max-w-lg md:mb-18 lg:mb-20">
+      <p class="kicker mb-3 md:mb-4">Meet</p>
+      <h2
+        class="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl"
+      >
+        Our Team
+      </h2>
+      <p class="font-body text-md md:text-lg">
+        Talented musicians dedicated to creating unforgettable experiences.
+      </p>
+    </div>
+
+    <ul class="grid auto-rows-fr grid-cols-1 gap-8 sm:grid-cols-2">
+      {
+        teamMembers.map((member) => {
+          return (
+            <li class="group flex h-full flex-col rounded-lg bg-white p-4 transition-all duration-300 hover:shadow-large md:p-6">
+              <div
+                class="relative mb-6 w-full overflow-hidden rounded-lg"
+                style="aspect-ratio: 1 / 1;"
+              >
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  widths={[600, 800]}
+                  sizes="100%"
+                />
+              </div>
+              <div class="mb-4">
+                <h5 class="font-heading text-3xl leading-tight">
+                  {member.name}
+                </h5>
+                <h6 class="text-lg font-medium text-gray-600">{member.role}</h6>
+              </div>
+              <p class="text-gray-700">{member.description}</p>
+              {member.instagram && (
+                <div class="mt-6">
+                  <a
+                    href={member.instagram}
+                    class="inline-flex items-center gap-2 text-gray-600 transition-colors hover:text-[#E1306C]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaInstagram className="size-5" />
+                    <span class="text-sm font-medium">Follow on Instagram</span>
+                  </a>
+                </div>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>

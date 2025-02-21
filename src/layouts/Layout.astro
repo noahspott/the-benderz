@@ -2,7 +2,7 @@
 // MAIN LAYOUT
 
 // Global components
-import { Navbar9 } from "../components/global/Navbar9";
+import { Navbar } from "../components/global/Navbar";
 import Footer16 from "../components/global/Footer16.astro";
 
 // Styles
@@ -20,7 +20,7 @@ const primaryLinks: Link[] = [
   { href: slugs.weddings, text: "Weddings" },
   { href: slugs.privateEvents, text: "Private Events" },
   { href: slugs.playlist, text: "Playlist" },
-  { href: slugs.testimonials, text: "Testimonials" },
+  // { href: slugs.testimonials, text: "Testimonials" },
 ];
 
 const primaryButton: Link = {
@@ -81,7 +81,7 @@ const { title = "", description = "" } = Astro.props;
     <meta name="description" content={description} />
   </head>
   <body>
-    <Navbar9
+    <Navbar
       primaryButton={primaryButton}
       secondaryButton={secondaryButton}
       primaryLinks={primaryLinks}
@@ -106,7 +106,7 @@ const { title = "", description = "" } = Astro.props;
         ],
         moreInfo: [
           { text: "About Us", href: slugs.about },
-          { text: "Testimonials", href: slugs.testimonials },
+          // { text: "Testimonials", href: slugs.testimonials },
           { text: "Photos", href: slugs.photos },
           { text: "Contact Us", href: slugs.contact },
         ],
