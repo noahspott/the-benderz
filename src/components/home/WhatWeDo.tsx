@@ -25,16 +25,17 @@ import {
 // Data
 import { slugs } from "../../data/consts";
 
+const icon = <MdPlayCircleOutline className="size-6 text-black/70" />;
+
 // Copy
 const features = [
   {
     icon: <MdPlaylistAddCheck className="size-6 text-black/70" />,
-    description:
-      "Diverse setlists featuring the best Pop, Rock, Country, and Hip-Hop songs.",
+    description: "The best Pop, Rock, Country, and Hip-Hop.",
   },
   {
     icon: <MdElectricBolt className="size-6 text-black/70" />,
-    description: "High energy performances every single night.",
+    description: "High energy performances every night.",
   },
   {
     icon: <MdPlayCircleOutline className="size-6 text-black/70" />,
@@ -86,22 +87,19 @@ export default function WhatWeDo({
             <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               Non-stop flow of a DJ, Unmatched vibe of a band
             </h2>
-            <p className="mb-5 font-body md:mb-6 md:text-md">
+            <p className="mb-5 font-body text-md md:mb-6 md:text-lg">
               Prepare to Dance the Night Away as we mix together your favorite
               pop hits, singalongs, and club classics with live band energy.
             </p>
             <div className="grid grid-cols-1 gap-4 py-2 font-body">
               {features.map((feature, key) => (
-                <div key={key} className="flex self-start">
-                  <div className="mr-4 flex-none self-start">
-                    {feature.icon}
-                    {/* <img
-                      src={feature.icon}
-                      alt=""
-                      className="size-6 text-gray-500"
-                    /> */}
+                <div key={key} className="flex items-start gap-4">
+                  <div className="">
+                    <MdPlayCircleOutline className="size-6 text-black/60" />
                   </div>
-                  <p>{feature.description}</p>
+                  <p className="text-black/80 md:text-md">
+                    {feature.description}
+                  </p>
                 </div>
               ))}
             </div>
