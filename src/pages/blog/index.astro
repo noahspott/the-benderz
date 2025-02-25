@@ -1,9 +1,21 @@
 ---
+/**
+ * Blog Page
+ * src/pages/blog/index.astro
+ *
+ * To display the blog page
+ *
+ */
+
 import Layout from "../../layouts/Layout.astro";
-import Header46 from "../../components/global/Header46.astro";
+import { TitleHeaderSubpage } from "../../components";
 ---
 
-<Layout title="Blog" description="Check out our blog!">
-  <Header46 headline="The Benderz Blog" description="Coming Soon!" />
+<Layout title="Blog | The Benderz" description="Check out our blog!">
+  <TitleHeaderSubpage
+    headline="The Benderz Blog"
+    description="Coming Soon!"
+    kicker="Blog"
+  />
   <div class="my-96"></div>
 </Layout>

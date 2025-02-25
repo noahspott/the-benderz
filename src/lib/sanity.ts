@@ -168,7 +168,7 @@ const QUERIES = {
             state
             zip
           }
-          coverImage {
+          image {
             asset {
               url
             }

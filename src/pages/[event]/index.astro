@@ -1,17 +1,22 @@
 ---
+/**
+ * Event Page
+ * src/pages/[event]/index.astro
+ *
+ * To display a single event
+ *
+ */
 export const prerender = true;
 
-import type { GetStaticPaths } from "astro";
-
 import Layout from "../../layouts/Layout.astro";
-import PortfolioHeader1 from "../../components/venue/PortfolioHeader1.astro";
+import { TitleHeaderSubpage } from "../../components";
 import EventDetails from "../../components/event/EventDetails.astro";
 
-import { getDate, getTime } from "../../lib/dateHelpers";
+import { getDate, getTime, formatShowDate } from "../../lib/dateHelpers";
 import { getAllEvents } from "../../lib/sanity";
 import type { Event } from "../../types/types";
 
-export const getStaticPaths = (async () => {
+export async function getStaticPaths() {
   const events = await getAllEvents();
 
   return events.map((event: Event) => ({
@@ -20,7 +25,7 @@ export const getStaticPaths = (async () => {
     },
     props: { event: event },
   }));
-}) satisfies GetStaticPaths;
+}
 
 type EventProps = {
   event: Event;
@@ -29,11 +34,17 @@ type EventProps = {
 const { event } = Astro.props as EventProps;
 ---
 
-<Layout>
-  <PortfolioHeader1
+<Layout
+  title={`${event.venue.name} ${formatShowDate(event.date)} | The Benderz`}
+>
+  <TitleHeaderSubpage
+    headline={formatShowDate(event.date)}
+    description={`${event.venue.name}, ${event.venue.address.city}, ${event.venue.address.state}`}
+  />
+  <!-- <PortfolioHeader1
     headline={getDate(event.date)}
     subtext={`${event.venue.name}, ${event.venue.address.city}, ${event.venue.address.state}`}
     coverImage={event.venue?.coverImage?.asset?.url}
-  />
+  /> -->
   <EventDetails event={event} />
 </Layout>

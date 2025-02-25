@@ -1,135 +1,136 @@
 ---
+/**
+ * EventDetails
+ * src/components/event/EventDetails.astro
+ *
+ * To display the details of an event
+ *
+ */
+
+// Types
 import type { Event } from "../../types/types";
 
-const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
-const formatTime = (date: string) => {
-  return new Date(date).toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-};
+// Lib
+import {
+  getDate,
+  getTime,
+  formatShowDate,
+  formatShowTime,
+} from "../../lib/dateHelpers";
 
 interface Props {
   event: Event;
 }
 
 const { event } = Astro.props;
-
-console.log(event);
 ---
 
-<!-- The whole things should be centered on the page -->
-<article class="max-w-4xl mx-auto px-4 py-8">
-  <div class="shadow-lg overflow-hidden rounded-lg bg-white">
-    <div class="p-6 sm:p-8">
-      <div class="flex flex-col items-center space-y-8">
-        <!-- Event Header -->
-        <header>
-          <h2 class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
-            The Benderz {event.showType}
-          </h2>
-        </header>
+<article class="relative px-[5%] py-12 md:py-18 lg:py-20">
+  <div class="container">
+    <h2 class="mb-6 font-heading text-6xl text-gray-900 sm:text-8xl">
+      The Benderz {event.showType}
+    </h2>
 
-        <!-- Event Details -->
-        <div class="flex flex-col gap-6 text-lg text-gray-600">
-          <section aria-labelledby="datetime-heading">
+    <!-- Event Details -->
+    <div
+      class="grid grid-cols-1 gap-x-[8vw] gap-y-12 pb-8 md:gap-y-16 md:pb-10 lg:grid-cols-[0.75fr_1fr] lg:gap-y-4 lg:pb-12"
+    >
+      <!-- Date and Time -->
+      <section aria-labelledby="datetime-heading">
+        <h3
+          id="datetime-heading"
+          class="font-heading text-4xl text-gray-800 sm:text-6xl"
+        >
+          When
+        </h3>
+        <div class="mt-6 space-y-6">
+          <!-- Date -->
+          <div class="flex items-center gap-4">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <time datetime={event.date} class="text-lg">
+              {formatShowDate(event.date)}
+            </time>
+          </div>
+
+          <!-- Time -->
+          <div class="flex items-center gap-3">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <time datetime={event.date} class="text-lg">
+              {formatShowTime(event.date)}
+            </time>
+          </div>
+        </div>
+      </section>
+
+      <!-- Description -->
+      {
+        event?.description && (
+          <section aria-labelledby="description-heading">
             <h3
-              id="datetime-heading"
+              id="description-heading"
               class="text-2xl font-semibold text-gray-800 sm:text-3xl"
             >
-              When
+              Details
             </h3>
-            <div class="mt-4 space-y-4">
-              <div class="flex items-center gap-3">
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <time datetime={event.date}>
-                  {formatDate(event.date)}
-                </time>
-              </div>
-              <div class="flex items-center gap-3">
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <time datetime={event.date}>
-                  {formatTime(event.date)}
-                </time>
-              </div>
+            <p class="mt-4 text-lg leading-relaxed text-gray-600">
+              {event.description}
+            </p>
+          </section>
+        )
+      }
+
+      <!-- Venue -->
+      {
+        event?.venue && (
+          <section aria-labelledby="venue-heading">
+            <h3
+              id="venue-heading"
+              class="font-heading text-4xl text-gray-800 sm:text-6xl"
+            >
+              Where
+            </h3>
+            <div class="mt-4">
+              <h4 class="text-xl font-medium text-gray-900">
+                {event.venue.name}
+              </h4>
+              <address class="mt-2 text-lg not-italic leading-relaxed text-gray-600">
+                <div>{event.venue.address.streetAddress}</div>
+                <div>
+                  {event.venue.address.city}, {event.venue.address.state}{" "}
+                  {event.venue.address.zip}
+                </div>
+              </address>
             </div>
           </section>
-
-          {
-            event?.description && (
-              <section aria-labelledby="description-heading">
-                <h3
-                  id="description-heading"
-                  class="text-2xl font-semibold text-gray-800 sm:text-3xl"
-                >
-                  Details
-                </h3>
-                <p class="mt-4 text-lg text-gray-600">{event.description}</p>
-              </section>
-            )
-          }
-
-          {
-            event?.venue && (
-              <section aria-labelledby="venue-heading">
-                <h3
-                  id="venue-heading"
-                  class="text-2xl font-semibold text-gray-800 sm:text-3xl"
-                >
-                  Venue
-                </h3>
-                <div class="mt-4">
-                  <h4 class="text-xl font-medium text-gray-900">
-                    {event.venue.name}
-                  </h4>
-                  <address class="mt-2 text-lg not-italic text-gray-600">
-                    <div>{event.venue.address.streetAddress}</div>
-                    <div>
-                      {event.venue.address.city}, {event.venue.address.state}{" "}
-                      {event.venue.address.zip}
-                    </div>
-                  </address>
-                </div>
-              </section>
-            )
-          }
-        </div>
-      </div>
+        )
+      }
     </div>
   </div>
 </article>
@@ -159,6 +160,6 @@ console.log(event);
         addressCountry: "US",
       },
     },
-    image: event?.venue?.coverImage?.asset?.url,
+    image: event?.venue?.image?.asset?.url,
   })}
 />

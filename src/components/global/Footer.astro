@@ -52,7 +52,7 @@ const {
         <a href="/" class="mb-5 md:mb-6">
           <img src={logoSrc} alt="" class="h-10" />
         </a>
-        <p class="mb-5 md:mb-6">{footerText}</p>
+        <p class="mb-5 text-md md:mb-6">{footerText}</p>
         {
           /* <p class="mb-5 md:mb-6">{newsletterText}</p>
             <div class="w-full max-w-md">
@@ -91,7 +91,7 @@ const {
           <ul class="flex flex-col items-start">
             {
               links.whatWeDo.map((link, index) => (
-                <li class="py-2 text-sm">
+                <li class="py-2">
                   <a href={link.href} class="flex items-center gap-3 font-body">
                     <span>{link.text}</span>
                   </a>
@@ -105,7 +105,7 @@ const {
           <ul class="flex flex-col items-start">
             {
               links.moreInfo.map((link, index) => (
-                <li class="py-2 text-sm">
+                <li class="py-2">
                   <a href={link.href} class="flex items-center gap-3 font-body">
                     <span>{link.text}</span>
                   </a>
@@ -119,7 +119,7 @@ const {
           <ul class="flex flex-col items-start">
             {
               links.followUs.map((link, index) => (
-                <li class="py-2 text-sm">
+                <li class="py-2">
                   <a href={link.href} class="flex items-center gap-3 font-body">
                     {link.text === "Facebook" ? (
                       <BiLogoFacebookCircle className="size-6" />
