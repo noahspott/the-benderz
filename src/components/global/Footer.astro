@@ -1,4 +1,12 @@
 ---
+/**
+ * Footer
+ * src/components/global/Footer.astro
+ *
+ * Relume component: Footer16
+ *
+ */
+
 import { Image } from "astro:assets";
 import footerBg from "../../assets/images/footer-bg.svg";
 
@@ -8,7 +16,7 @@ import {
   BiLogoYoutube,
 } from "react-icons/bi";
 
-interface Footer16Props {
+interface FooterProps {
   logoSrc?: string;
   bigLogoSrc?: string;
   companyName: string;
@@ -32,7 +40,7 @@ const {
   footerText,
   policies,
   footerImageSrc,
-} = Astro.props as Footer16Props;
+} = Astro.props as FooterProps;
 ---
 
 <footer id="footer" class="relative px-[5%] py-12 md:py-18 lg:py-20">

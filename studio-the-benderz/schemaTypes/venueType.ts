@@ -1,6 +1,5 @@
 import {defineType, defineField} from 'sanity'
 import {HomeIcon, ImageIcon} from '@sanity/icons'
-import addressType from './addressType'
 
 export default defineType({
   name: 'venue',
@@ -29,18 +28,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      description: 'This should be a big, high-quality image',
-      group: 'photos',
-    }),
-    defineField({
-      name: 'aboutImage',
-      title: 'About Image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       group: 'photos',
-      description: 'This will display next to the venue description on the venue page.',
+      description:
+        'This will display on the card on the venues page as well as the about section on the venue page.',
     }),
     defineField({
       name: 'galleryPhotos',
@@ -48,20 +41,15 @@ export default defineType({
       type: 'array',
       of: [{type: 'image'}],
       group: 'photos',
-      description: 'These will display in the gallery on the venue page.',
+      description:
+        "These will display in the gallery on the venue's page. The idea is to be photos of the band performing at the venue. Ideal photos are 500px, square, and .webp",
       validation: (Rule) => Rule.max(3),
-    }),
-    defineField({
-      name: 'logo',
-      title: 'Logo',
-      type: 'image',
-      description: "The venue's logo",
-      group: 'photos',
     }),
     defineField({
       name: 'website',
       title: 'Website',
       type: 'url',
+      description: "Put the URL to the venue's website here.",
     }),
     defineField({
       name: 'slug',
@@ -72,7 +60,15 @@ export default defineType({
         source: (doc: any) => {
           return `${doc.name}-${doc.address.city}-${doc.address.state}`
         },
-        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-'),
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .replace(/'/g, '') // Remove apostrophes
+            .replace(/&/g, 'and') // Replace & with 'and'
+            .replace(/[\/:?#\[\]@!$'()*+,;=<>%{}|\\^~`"]/g, '') // Remove reserved and special characters
+            .replace(/--+/g, '-') // Replace multiple hyphens with a single hyphen
+            .replace(/^-+|-+$/g, ''), // Trim hyphens from the start and end
       },
       validation: (Rule) => Rule.required(),
     }),

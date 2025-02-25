@@ -1,0 +1,56 @@
+---
+/**
+ * About Section
+ * src/components/venue/AboutSection.astro
+ *
+ * Relume component: Layout3
+ *
+ * This is the about section of template venue page.
+ */
+
+import { Button } from "@relume_io/relume-ui";
+
+type AboutSectionProps = {
+  city: string;
+  state: string;
+  description: string;
+  aboutImage: string;
+  venueWebsite: string;
+};
+
+const { city, state, description, aboutImage, venueWebsite } =
+  Astro.props as AboutSectionProps;
+---
+
+<section id="relume" class="px-[5%] py-16 md:py-24 lg:py-28">
+  <div class="container">
+    <div
+      class="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20"
+    >
+      <div>
+        <h1
+          class="rb-5 mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl"
+        >
+          Live Music in <br />
+          {city}, {state}
+        </h1>
+        <p class="md:text-md">{description}</p>
+        {/* Put link to venue website here */}
+        {
+          venueWebsite && (
+            <div class="mt-4">
+              <a href={venueWebsite} target="_blank">
+                <Button className="button-secondary" variant="secondary">
+                  Visit Venue Website
+                </Button>
+              </a>
+            </div>
+          )
+        }
+      </div>
+      <div>
+        <img src={aboutImage} class="w-full object-cover" alt="" />
+      </div>
+    </div>
+  </div>
+</section>

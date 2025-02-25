@@ -5,12 +5,14 @@ import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent
 // Components
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import Header46 from "../components/global/Header46.astro";
+import {
+  TitleHeaderSubpage,
+  ContactSection,
+  Faqs,
+  TestimonialSimple,
+} from "../components";
 import MeetTheBenderz from "../components/about-us/MeetTheBenderz.astro";
 import MeetOurTeam from "../components/about-us/MeetOurTeam.astro";
-import TestimonialSimple from "../components/global/TestimonialSimple.astro";
-import Faqs from "../components/global/Faqs";
-import ContactSection from "../components/global/ContactSection";
 
 // Content
 const headline = "About Us";
@@ -61,7 +63,7 @@ const aboutUsFaqs = [
 ---
 
 <Layout>
-  <Header46 headline={headline} description={description} />
+  <TitleHeaderSubpage headline={headline} description={description} />
   <MeetTheBenderz />
   <MeetOurTeam />
   <!-- <TestimonialSimple /> -->

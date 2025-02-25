@@ -26,17 +26,7 @@ export type Venue = {
   slug: {
     current: string;
   };
-  coverImage: {
-    asset: {
-      url: string;
-    };
-  };
-  aboutImage: {
-    asset: {
-      url: string;
-    };
-  };
-  logo: {
+  image: {
     asset: {
       url: string;
     };

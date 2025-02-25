@@ -1,27 +1,36 @@
 ---
+/**
+ * Venues Page
+ *
+ * This page displays all of the venues that The Benderz frequent.
+ * Fetches venues from Sanity and displays them in a grid.
+ * Each venue card links to a page that displays more information about the venue.
+ */
+
 // Global Components
 import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import Header46 from "../components/global/Header46.astro";
-import ContactSection from "../components/global/ContactSection";
+import Layout from "../../layouts/Layout.astro";
+import ContactSection from "../../components/global/ContactSection";
+import { TitleHeaderSubpage } from "../../components";
 
 // Types
-import type { Venue } from "../types/types";
+import type { Venue } from "../../types/types";
 
 // Images
-import defaultImage from "../assets/images/layered-peaks-bg.svg";
+import defaultImage from "../../assets/images/layered-peaks-bg.svg";
 
 // Get all venues
-import { getVenues } from "../lib/sanity";
+import { getVenues } from "../../lib/sanity";
 const venues = await getVenues();
 
+// Content
 const headline = "Venues";
 const description =
   "We get to play some of the best venues in the world. Here are some of our favorites!";
 ---
 
 <Layout>
-  <Header46 headline={headline} description={description} />
+  <TitleHeaderSubpage headline={headline} description={description} />
   <section
     class="max-w-7xl mx-auto grid grid-cols-1 gap-6 px-[5%] py-16 md:grid-cols-2 md:py-24 lg:grid-cols-3 lg:py-28"
   >
@@ -31,14 +40,20 @@ const description =
           href={`/venues/${venue.slug.current}`}
           class="overflow-hidden rounded-lg bg-white shadow-large transition-shadow duration-300 hover:shadow-xlarge"
         >
-          {venue.coverImage?.asset?.url ? (
+          {venue.image?.asset?.url ? (
             <img
-              src={venue.coverImage.asset.url}
+              src={venue.image.asset.url}
               alt={`${venue.name} venue`}
               class="h-48 w-full object-cover"
             />
           ) : (
-            <Image src={defaultImage} alt={``} class="h-48 object-cover" />
+            <Image
+              src={defaultImage}
+              alt={`${venue.name} venue`}
+              class="h-48 object-cover"
+              widths={[400, 800, 1200]}
+              sizes="100vw"
+            />
           )}
           <div class="p-6">
             <h2 class="mb-2 font-heading text-2xl">{venue.name}</h2>
@@ -53,5 +68,9 @@ const description =
       ))
     }
   </section>
-  <ContactSection client:load heading="Contact Us" />
+  <ContactSection
+    client:load
+    heading="Contact Us"
+    body="Did you see us at one of these venues and want to book us for your event? We'd love to hear from you!"
+  />
 </Layout>

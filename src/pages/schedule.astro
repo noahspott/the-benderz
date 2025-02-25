@@ -9,11 +9,9 @@
 
 // Global Components
 import Layout from "../layouts/Layout.astro";
-import Header46 from "../components/global/Header46.astro";
-import ContactSection from "../components/global/ContactSection";
+import { TitleHeaderSubpage, ContactSection } from "../components";
 
 // Local Components
-import { Event31 } from "../components/schedule/Event31";
 import ScheduleEvent from "../components/schedule/ScheduleEvent.astro";
 
 // Helpers
@@ -33,8 +31,11 @@ const description =
 const contactHeading = "Contact Us";
 ---
 
-<Layout>
-  <Header46 headline={headline} description={description} />
+<Layout
+  title="Schedule | The Benderz"
+  description="The Benderz deliver unforgettable performances, uniting music lovers through energy and passion for every occasion."
+>
+  <TitleHeaderSubpage headline={headline} description={description} />
 
   <div class="my-16">
     {

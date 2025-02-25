@@ -1,7 +1,14 @@
 ---
+/**
+ * Stage Plot Page
+ * src/pages/stageplot.astro
+ *
+ * This is a page to display the stage plot for The Benderz.
+ *
+ */
 // Global Components
 import Layout from "../layouts/Layout.astro";
-import Header46 from "../components/global/Header46.astro";
+import { TitleHeaderSubpage } from "../components";
 
 // Local Components
 import { Gallery1 } from "../components/stageplot/Gallery1";
@@ -13,8 +20,11 @@ const headline = "Stage Plot";
 const description = "Technical specs for The Benderz";
 ---
 
-<Layout>
-  <Header46 headline={headline} description={description} />
+<Layout
+  title="Stage Plot | The Benderz"
+  description="Technical specs for The Benderz"
+>
+  <TitleHeaderSubpage headline={headline} description={description} />
   <!-- Add Input List -->
   <!-- Add Quick Members Reference  -->
   <Gallery1 />

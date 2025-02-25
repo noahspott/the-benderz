@@ -9,13 +9,12 @@
 // Global Components
 import Layout from "../layouts/Layout.astro";
 import ContactSection from "../components/global/ContactSection";
-import UpcomingShows from "../components/global/UpcomingShows.astro";
+import { UpcomingShows } from "../components";
 
 // Local Components
 import Hero from "../components/home/Hero.astro";
 import WhatWeDo from "../components/home/WhatWeDo";
 import TestimonialBlockParallax from "../components/home/TestimonialBlockParallax.astro";
-import { Event31 } from "../components/home/Event31";
 import VenueLogos from "../components/home/VenueLogos.astro";
 
 // Images
@@ -82,7 +81,10 @@ const avatarImage = testimonialAvatarImage;
 const backgroundImage = testimonialBackgroundImage;
 ---
 
-<Layout>
+<Layout
+  title="The Benderz | Your Party Starts Here"
+  description="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast."
+>
   <Hero
     imageMetaData={heroImage}
     heading={heading}

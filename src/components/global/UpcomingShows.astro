@@ -17,36 +17,49 @@ import type { Event } from "../../types/types";
 // Images
 import bgImage from "../../assets/images/layered-peaks-bg-2.svg";
 
+type UpcomingShowsProps = {
+  events: Event[] | null;
+  kicker?: string;
+  headline?: string;
+};
+
 // Props
-const { events } = Astro.props as { events: Event[] | null };
+const {
+  events,
+  kicker = "Schedule",
+  headline = "Upcoming Shows",
+} = Astro.props as UpcomingShowsProps;
 ---
 
 <section id="upcoming-shows" class="relative px-[5%] py-16 md:py-24 lg:py-28">
   <div class="container">
     <div class="mb-12 md:mb-18 lg:mb-20">
       <div class="mx-auto max-w-lg text-center">
-        <h4 class="kicker-dark">Schedule</h4>
+        <h4 class="kicker-dark">{kicker}</h4>
         <h1 class="mt-3 font-heading text-5xl md:mt-4 md:text-7xl lg:text-8xl">
-          Upcoming Shows
+          {headline}
         </h1>
       </div>
     </div>
-    <div class="flex w-full flex-col gap-4 bg-white/70 p-8 backdrop-blur-md">
-      {
-        events ? (
-          events.map((event, index) => (
+
+    {
+      events && events.length > 0 ? (
+        <div class="flex w-full flex-col gap-4 bg-white/70 p-8 backdrop-blur-md">
+          {events.map((event, index) => (
             <>
               <ScheduleEvent event={event} index={index} />
               {index !== events.length - 1 && (
                 <div class="h-[2px] w-full rounded-full bg-black/10" />
               )}
             </>
-          ))
-        ) : (
-          <p>No upcoming shows... check back soon!</p>
-        )
-      }
-    </div>
+          ))}
+        </div>
+      ) : (
+        <p class="bg-white/70 p-16 text-center text-lg text-black/50 backdrop-blur-md">
+          No upcoming shows at this time... check back soon!
+        </p>
+      )
+    }
     <div class="mt-12 flex w-full justify-center">
       <a
         href="/schedule"

@@ -1,18 +1,26 @@
 ---
-// Playlist Page
+/**
+ * Playlist Page
+ * src/pages/playlist.astro
+ *
+ * This is a page to display the Benderz playlist.
+ *
+ */
 
 // Global Components
 import Layout from "../layouts/Layout.astro";
-import Header46 from "../components/global/Header46.astro";
-import ContactSection from "../components/global/ContactSection";
+import { TitleHeaderSubpage, ContactSection } from "../components";
 
 const headline = "Playlist";
 const description =
   "The perfect mix of energy, fun, and groove—straight from our stage to your ears.";
 ---
 
-<Layout>
-  <Header46 headline={headline} description={description} />
+<Layout
+  title="Playlist | The Benderz"
+  description="The perfect mix of energy, fun, and groove—straight from our stage to your ears."
+>
+  <TitleHeaderSubpage headline={headline} description={description} />
   <!-- Add playlist here -->
   <ContactSection client:load heading="Contact Us" />
 </Layout>

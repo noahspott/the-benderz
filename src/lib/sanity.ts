@@ -139,12 +139,7 @@ const QUERIES = {
           }
         }
         website
-        logo {
-          asset {
-            url
-          }
-        }
-        coverImage {
+        image {
           asset {
             url
           }

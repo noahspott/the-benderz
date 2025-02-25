@@ -1,15 +1,27 @@
 ---
+/**
+ * Contact Page
+ * src/pages/contact.astro
+ *
+ */
+
+// Global Components
 import Layout from "../layouts/Layout.astro";
+import { TitleHeaderSubpage, ContactSection } from "../components";
 
-import Header46 from "../components/global/Header46.astro";
-import ContactSection from "../components/global/ContactSection.tsx";
-
-const headline = "Contact Us";
+const headline = "Contact";
 const description =
   "Want The Benderz to bring the party to your event or wedding?";
 ---
 
-<Layout>
-  <Header46 headline={headline} description={description} />
-  <ContactSection heading={headline} client:load />
+<Layout
+  title="Contact Us | The Benderz"
+  description="Want The Benderz to bring the party to your event or wedding?"
+>
+  <TitleHeaderSubpage headline={headline} description={description} />
+  <ContactSection
+    heading={"Let's Party!"}
+    body="We're ready to make your event unforgettable. Reach out to us today to discuss your event and how we can help you create a memorable experience."
+    client:load
+  />
 </Layout>

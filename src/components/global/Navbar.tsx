@@ -62,7 +62,7 @@ interface NavbarProps {
   logoSrc: string;
 }
 
-export function Navbar({
+export default function Navbar({
   primaryButton,
   secondaryButton,
   primaryLinks,

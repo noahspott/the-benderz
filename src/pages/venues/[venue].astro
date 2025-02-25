@@ -7,23 +7,25 @@
  * It also includes a list of upcoming shows at the venue.
  *
  */
-
 export const prerender = true;
+
 import type { GetStaticPaths } from "astro";
 
 // Global components
-import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
-import ContactSection from "../../components/global/ContactSection";
-import UpcomingShows from "../../components/global/UpcomingShows.astro";
+import {
+  UpcomingShows,
+  TitleHeaderSubpage,
+  ContactSection,
+} from "../../components";
 
 // Local components
-import PortfolioHeader1 from "../../components/venue/PortfolioHeader1.astro";
 import { Gallery7 } from "../../components/venue/Gallery7";
-import { Layout3 } from "../../components/venue/Layout3";
+import AboutSection from "../../components/venue/AboutSection.astro";
 
 // Images
 import defaultImage from "../../assets/images/layered-peaks-bg.svg";
+
 // Sanity
 import { getVenues, executeQuery } from "../../lib/sanity";
 import type { Venue, Event } from "../../types/types";
@@ -33,15 +35,18 @@ type VenueProps = {
 };
 
 // Get the static paths for the venues
-export const getStaticPaths = (async () => {
+export async function getStaticPaths() {
   // Get the venues
   const venues = await getVenues();
 
-  return venues.map((venue: Venue) => ({
-    params: { venue: venue.slug.current },
-    props: { venueData: venue },
-  }));
-}) satisfies GetStaticPaths;
+  return venues.map((venue: Venue) => {
+    console.log("Generating Venue Page for:", venue.slug.current);
+    return {
+      params: { venue: venue?.slug?.current },
+      props: { venueData: venue },
+    };
+  });
+}
 
 const { venueData } = Astro.props as VenueProps;
 
@@ -61,7 +66,7 @@ const response = await executeQuery<{ allEvent: Event[] }>(`
           city
           state
         }
-        aboutImage {
+        image {
           asset {
             url
           }
@@ -100,24 +105,30 @@ if (venueData.galleryPhotos) {
 }
 ---
 
-<Layout>
-  <PortfolioHeader1
+<Layout
+  title={`${venueData.name} | The Benderz`}
+  description={`The Benderz at ${venueData.name}`}
+>
+  <TitleHeaderSubpage
     headline={venueData.name}
-    subtext={`${venueData.address.city}, ${venueData.address.state}`}
-    coverImage={venueData?.coverImage?.asset?.url}
+    description={`${venueData.address.city}, ${venueData.address.state}`}
   />
   {
     venueData.description && (
-      <Layout3
+      <AboutSection
         city={venueData.address.city}
         state={venueData.address.state}
         description={venueData.description}
-        aboutImage={venueData.aboutImage?.asset.url}
+        aboutImage={venueData.image?.asset.url || defaultImage}
         venueWebsite={venueData.website}
       />
     )
   }
-  <UpcomingShows events={events} />
+  <UpcomingShows
+    kicker="Upcoming Shows"
+    headline={`The Benderz at ${venueData.name}`}
+    events={events}
+  />
   {
     galleryImages.length > 0 && (
       <Gallery7
