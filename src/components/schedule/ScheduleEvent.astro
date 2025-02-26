@@ -15,7 +15,7 @@ const { event, index } = Astro.props;
 ---
 
 <article
-  class={`mx-auto w-full text-center md:text-left grid max-w-xxl items-center gap-8 py-8 px-4 font-body text-black md:grid-cols-3 duration-200`}
+  class={`relative mx-auto w-full text-center md:text-left grid max-w-xxl items-center gap-8 py-8 font-body text-black md:grid-cols-3 duration-200`}
 >
   <div class="">
     <h2 class="text-primary-600 gap-1 font-heading text-4xl uppercase">
@@ -43,7 +43,7 @@ const { event, index } = Astro.props;
   </div>
 
   <a
-    class="flex w-full items-center justify-center gap-2 font-light uppercase text-black/80 md:col-start-3 md:justify-end"
+    class="flex w-full items-center justify-center gap-2 font-light uppercase text-black/80 md:absolute md:bottom-0 md:right-0 md:col-start-3"
     href={`/${event.slug.current}`}
     aria-label={`View more details about the show on ${formatShowDate(event.date)}`}
   >
