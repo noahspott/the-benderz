@@ -92,7 +92,10 @@ const {
             {
               links.whatWeDo.map((link, index) => (
                 <li class="py-2">
-                  <a href={link.href} class="flex items-center gap-3 font-body">
+                  <a
+                    href={link.href}
+                    class="flex items-center gap-3 font-body hover:text-accent-900"
+                  >
                     <span>{link.text}</span>
                   </a>
                 </li>
@@ -106,7 +109,10 @@ const {
             {
               links.moreInfo.map((link, index) => (
                 <li class="py-2">
-                  <a href={link.href} class="flex items-center gap-3 font-body">
+                  <a
+                    href={link.href}
+                    class="flex items-center gap-3 font-body hover:text-accent-900"
+                  >
                     <span>{link.text}</span>
                   </a>
                 </li>
@@ -119,7 +125,7 @@ const {
           <ul class="flex flex-col items-start">
             {
               links.followUs.map((link, index) => (
-                <li class="py-2">
+                <li class="py-2 hover:text-accent-900">
                   <a href={link.href} class="flex items-center gap-3 font-body">
                     {link.text === "Facebook" ? (
                       <BiLogoFacebookCircle className="size-6" />
@@ -161,7 +167,9 @@ const {
         class="font-body text-sm"
       >
         Developed by{" "}
-        <span class="font-semibold">Summit Avenue Web Solutions</span>
+        <span class="font-semibold hover:text-accent-900"
+          >Summit Avenue Web Solutions</span
+        >
       </a>
     </div>
   </div>
