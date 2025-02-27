@@ -95,7 +95,7 @@ export default function WhatWeDo({
               {features.map((feature, key) => (
                 <div key={key} className="flex items-start gap-4">
                   <div className="">
-                    <MdPlayCircleOutline className="size-6 text-black/60" />
+                    <MdPlayCircleOutline className="size-6 text-accent-600" />
                   </div>
                   <p className="text-black/80 md:text-md">
                     {feature.description}

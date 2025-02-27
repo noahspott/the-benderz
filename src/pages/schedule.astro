@@ -50,7 +50,8 @@ const contactBody =
               date.getMonth() !== new Date(events[index - 1].date).getMonth()
             ) {
               return (
-                <div class="inline-block py-12 sm:py-16">
+                // Month Header
+                <div class="py-12 sm:py-16">
                   <h2 class="inline-block font-heading text-6xl sm:text-8xl">
                     {date.toLocaleString("default", {
                       month: "long",
@@ -66,8 +67,14 @@ const contactBody =
           return (
             <>
               {getMonthHeader(event, index)}
-              <ScheduleEvent event={event} index={index} />
-              <div class="mt-8 h-px bg-gradient-to-r from-accent-700/15 to-transparent" />
+
+              <ScheduleEvent
+                event={event}
+                index={index}
+                classes="p-8 shadow-xsmall rounded-sm bg-gradient-to-br from-white to-gray-100"
+              />
+
+              {/* <div class="mt-8 h-px bg-gradient-to-r from-accent-700/15 to-transparent" /> */}
             </>
           );
         })

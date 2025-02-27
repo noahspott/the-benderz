@@ -1,3 +1,5 @@
 Kicker Dark
 bg-black/80
 
+All body text should be:
+font-light

@@ -46,7 +46,7 @@ const { imageMetaData, heading, subheading, button } = Astro.props;
           {heading}
         </h1>
         <p
-          class="justify-self-center font-heading text-2xl font-extralight tracking-wider text-text-alternative md:text-4xl"
+          class="justify-self-center font-heading text-2xl font-extralight tracking-wider text-text-alternative xs:text-4xl md:text-5xl"
         >
           {
             Array.isArray(subheading)
@@ -62,7 +62,7 @@ const { imageMetaData, heading, subheading, button } = Astro.props;
         <div class="flex items-center justify-center gap-x-4">
           <Button
             title={button.title}
-            className="animated-gradient rounded-full border-4 border-white font-heading text-4xl font-medium uppercase tracking-wide shadow-large"
+            className="animated-gradient rounded-full border-4 border-white font-heading text-4xl font-medium uppercase tracking-wide shadow-large hover:border-accent-600 md:text-6xl"
           >
             <a href={button.href}>
               {button.title}

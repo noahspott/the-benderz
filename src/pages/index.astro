@@ -24,10 +24,10 @@ import testimonialAvatarImage from "../assets/images/angelique-buckley-rockstar-
 // Data
 import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
-// Functions
+// Lib
 import { executeQuery } from "../lib/sanity";
 
-// Constants
+// Query
 const today = new Date();
 const startDate = today.toISOString();
 const numberOfGigs = 5;
@@ -55,11 +55,10 @@ const query = `
     }
   }
 `;
-
 const response = (await executeQuery(query)) as any;
 const events = response?.allEvent ?? [];
 
-// --- CONTENT --- //
+// Content
 // Hero Copy
 const heading = "The Benderz";
 const subheading = ["Not just a cover band.", "A party you'll never forget."];

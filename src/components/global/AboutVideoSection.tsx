@@ -67,7 +67,7 @@ export default function AboutVideoSection({
             </h2>
             <p className="md:text-md">{body}</p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-              <a href={links[0].href}>
+              <a href={links[0].href} className="hidden">
                 <Button className="button-secondary" variant="secondary">
                   {links[0].text}
                 </Button>

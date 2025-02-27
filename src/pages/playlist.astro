@@ -11,6 +11,9 @@
 import Layout from "../layouts/Layout.astro";
 import { TitleHeaderSubpage, ContactSection } from "../components";
 
+// Local Components
+import PlaylistSection from "../components/playlist/PlaylistSection.astro";
+
 const headline = "Playlist";
 const description =
   "The perfect mix of energy, fun, and groove—straight from our stage to your ears.";
@@ -21,6 +24,6 @@ const description =
   description="The perfect mix of energy, fun, and groove—straight from our stage to your ears."
 >
   <TitleHeaderSubpage headline={headline} description={description} />
-  <!-- Add playlist here -->
+  <PlaylistSection />
   <ContactSection client:load heading="Contact Us" />
 </Layout>
