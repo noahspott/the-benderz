@@ -18,7 +18,7 @@ import { slugs } from "../data/consts";
 const primaryLinks: Link[] = [
   { href: slugs.weddings, text: "Weddings" },
   { href: slugs.privateEvents, text: "Private Events" },
-  { href: slugs.playlist, text: "Playlist" },
+  // { href: slugs.playlist, text: "Playlist" },
   // { href: slugs.testimonials, text: "Testimonials" },
 ];
 
@@ -52,11 +52,17 @@ const secondaryLinks: Link[] = [
     iconSrc: "",
   },
   {
-    href: slugs.blog,
-    title: "Blog",
-    description: "Check out our blog!",
+    href: slugs.playlist,
+    title: "Playlist",
+    description: "Check out our playlist!",
     iconSrc: "",
   },
+  // {
+  //   href: slugs.blog,
+  //   title: "Blog",
+  //   description: "Check out our blog!",
+  //   iconSrc: "",
+  // },
 ];
 
 const logoSrc = "/images/the-benderz.svg";
@@ -67,6 +73,23 @@ const { title = "", description = "" } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Benderz" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -101,10 +124,10 @@ const { title = "", description = "" } = Astro.props;
           { text: "Weddings", href: slugs.weddings },
           { text: "Private Events", href: slugs.privateEvents },
           { text: "Upcoming Shows", href: slugs.schedule },
-          { text: "Playlist", href: slugs.playlist },
         ],
         moreInfo: [
           { text: "About Us", href: slugs.about },
+          { text: "Playlist", href: slugs.playlist },
           // { text: "Testimonials", href: slugs.testimonials },
           { text: "Photos", href: slugs.photos },
           { text: "Contact Us", href: slugs.contact },

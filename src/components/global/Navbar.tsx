@@ -17,7 +17,13 @@ import React, { useState } from "react";
 
 // Icons
 import { RxChevronDown } from "react-icons/rx";
-import { MdGroups, MdCollections, MdPlace, MdArticle } from "react-icons/md";
+import {
+  MdGroups,
+  MdCollections,
+  MdPlace,
+  MdArticle,
+  MdMusicNote,
+} from "react-icons/md";
 
 // Types
 import type { Link } from "../../types/types";
@@ -155,6 +161,9 @@ export default function Navbar({
                               {link.title === "Blog" && (
                                 <MdArticle className="size-12" />
                               )}
+                              {link.title === "Playlist" && (
+                                <MdMusicNote className="size-12" />
+                              )}
                             </div>
                             <div className="flex flex-col items-start justify-center">
                               <h5 className="heading-nav">{link.title}</h5>
@@ -175,7 +184,7 @@ export default function Navbar({
           <div className="flex items-center gap-4">
             <a
               href={secondaryButton.href}
-              className="hidden [@media(min-width:1100px)]:flex"
+              // className="hidden [@media(min-width:1100px)]:flex"
             >
               <Button
                 title={secondaryButton.text}
