@@ -18,7 +18,7 @@ import bgImage from "../../assets/images/patterns/layered-peaks-accent-100.svg";
 
 // Content
 const kicker = "The Benderz Playlist";
-const headline = "Our Playlist has something for everyone.";
+const headline = "";
 const body =
   "Our goal is to get your party on the dance floor. That's why we pride ourselves on our diverse setlist from 'September' to 'Mr. Brightside'.";
 
@@ -48,17 +48,6 @@ const cards = [
     alt: "Rock Singalongs",
   },
 ];
-
-const buttons = [
-  {
-    title: "View Playlist",
-    href: "/playlist",
-  },
-  {
-    title: "View Schedule",
-    href: "/schedule",
-  },
-];
 ---
 
 <section
@@ -67,20 +56,24 @@ const buttons = [
 >
   <Image
     src={bgImage}
-    alt="Layered Peaks Accent 100"
+    alt=""
     class="absolute inset-0 z-0 h-full w-full object-cover opacity-30"
+    widths={[320, 640, 960, 1280, 1600, 1920]}
+    sizes="100vw"
   />
   <div class="container relative z-10">
     <div class="flex flex-col items-start">
       <div
         class="mx-auto mb-12 w-full max-w-lg items-start justify-between gap-5 md:mb-18 lg:mb-20"
       >
-        <p class="kicker-dark mb-3 text-center md:mb-4">{kicker}</p>
-        <h2
+        <h2 class="kicker-dark mb-3 text-center md:mb-4">{kicker}</h2>
+        <p
           class="mb-5 text-center font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl"
         >
-          {headline}
-        </h2>
+          Our Playlist has <span class="animated-gradient-text"
+            >something for everyone.</span
+          >
+        </p>
         <p class="text-center font-body text-neutral-dark md:text-md">
           {body}
         </p>
@@ -97,6 +90,8 @@ const buttons = [
                     src={card.image}
                     alt={card.alt}
                     class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                    widths={[320, 480]}
+                    sizes="100%"
                   />
                 </div>
                 <div class="p-6 md:p-5">
@@ -112,25 +107,6 @@ const buttons = [
           })
         }
       </div>
-      <!-- <div
-        class="mt-12 flex w-full flex-wrap items-center justify-center gap-4 md:mt-18 lg:mt-20"
-      >
-        <Button
-          title="View Playlist"
-          variant="secondary"
-          className="button-secondary"
-        >
-          <a href={buttons[0].href}>{buttons[0].title}</a>
-        </Button>
-        <Button
-          title="View Schedule"
-          variant="link"
-          size="link"
-          className="button-link"
-        >
-          <a href={buttons[1].href}>{buttons[1].title}</a>
-        </Button>
-      </div> -->
     </div>
   </div>
 </section>

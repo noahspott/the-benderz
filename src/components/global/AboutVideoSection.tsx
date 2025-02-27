@@ -61,10 +61,10 @@ export default function AboutVideoSection({
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="kicker-dark mb-3 md:mb-4">{kicker}</p>
-            <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
+            <h2 className="kicker-dark mb-3 md:mb-4">{kicker}</h2>
+            <p className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               {headline}
-            </h2>
+            </p>
             <p className="md:text-md">{body}</p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <a href={links[0].href} className="hidden">
@@ -72,12 +72,15 @@ export default function AboutVideoSection({
                   {links[0].text}
                 </Button>
               </a>
-              <a href={links[1].href} className="button-link my-auto">
+              <a
+                href={links[1].href}
+                className="button-link group my-auto transition-colors hover:text-accent-900"
+              >
                 <Button
                   variant="link"
                   size="link"
                   iconRight={<RxChevronRight />}
-                  className=""
+                  className="transition-colors group-hover:text-accent-900"
                 >
                   {links[1].text}
                 </Button>

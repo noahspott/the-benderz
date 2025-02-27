@@ -80,7 +80,6 @@ export default function ContactForm({ setIsSubmitted }: ContactFormProps) {
           type="submit"
           className="button border-2 border-accent-600 bg-accent-600 hover:border-accent-600 hover:bg-white hover:text-accent-600"
           disabled={isSending}
-          onClick={() => handleSubmit}
         >
           {isSending ? "Sending..." : "Send"}
         </Button>

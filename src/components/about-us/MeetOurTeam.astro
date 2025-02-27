@@ -89,13 +89,13 @@ const teamMembers = [
                   src={member.image}
                   alt={member.name}
                   class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  widths={[600, 800]}
+                  widths={[300, 400, 500, 600, 660]}
                   sizes="100%"
                 />
               </div>
               <div class="mb-4">
-                <h5 class="font-heading text-3xl">{member.name}</h5>
-                <h6 class="text-lg font-light text-gray-600">{member.role}</h6>
+                <h3 class="font-heading text-3xl">{member.name}</h3>
+                <h4 class="text-lg font-light text-gray-600">{member.role}</h4>
                 <p class="text-sm text-gray-500">
                   Nicknames: {member.nicknames.join(", ")}
                 </p>

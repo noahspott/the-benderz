@@ -36,27 +36,31 @@ const links = [
       class="grid grid-cols-1 items-start gap-y-12 md:grid-flow-row md:grid-cols-2 md:gap-x-12 lg:gap-x-20"
     >
       <div class="static md:sticky md:top-[30%]">
-        <p class="kicker-dark mb-3 md:mb-4">Full Service Wedding Band</p>
-        <h2
+        <h2 class="kicker-dark mb-3 md:mb-4">Full Service Wedding Band</h2>
+        <p
           class="rb-5 mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl"
         >
           We've got your music needs covered.
-        </h2>
+        </p>
         <p class="font-body md:text-md">
           We know weddings are a lot of planning. That's why we take care of all
           of your music and sound needs from Ceremony to Reception.
         </p>
         <div class="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
-          <a href={links[0].href}>
+          <a href={links[0].href} class="">
             <Button
-              className="button-secondary border-accent-600 text-accent-600"
+              className="button-secondary border-accent-600 bg-white text-accent-600"
               variant="secondary"
             >
               {links[0].text}
             </Button>
           </a>
           <a href={links[1].href} class="button-link my-auto">
-            <Button variant="link" size="link" className="">
+            <Button
+              variant="link"
+              size="link"
+              className="transition-colors hover:text-accent-900"
+            >
               {links[1].text}
             </Button>
           </a>
@@ -137,5 +141,7 @@ const links = [
     src={bgImage}
     alt=""
     class="absolute inset-0 -z-10 h-full object-cover opacity-10"
+    widths={[320, 640, 960, 1280, 1600, 1920]}
+    sizes="100vw"
   />
 </section>

@@ -44,6 +44,11 @@ function reduceJsonToSong(json: CsvRow[]): Song[] {
   })) as Song[];
 }
 
+/**
+ * Sorts songs by genre.
+ * @param songs - an array of Songs to be sorted by genre
+ * @returns
+ */
 export function sortByGenre(songs: Song[]) {
   return [...songs].sort((songA, songB) => {
     const genreA = songA.genre.toUpperCase();

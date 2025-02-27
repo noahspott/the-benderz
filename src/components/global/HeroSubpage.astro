@@ -39,17 +39,17 @@ const { kicker, headline, body, buttons, imageMetaData } =
 >
   <div class="container my-24">
     <div class="w-full max-w-lg">
-      <p class="kicker mb-3 text-accent-100 md:mb-4">
+      <h1 class="kicker mb-3 text-accent-100 md:mb-4">
         {kicker}
-      </p>
-      <h1
+      </h1>
+      <p
         class="mb-5 font-heading text-6xl text-white md:mb-6 md:text-9xl lg:text-10xl"
         style="text-shadow: 0 0 10px rgba(0, 0, 0, 0.5)"
       >
         {headline}
-      </h1>
+      </p>
       <p class="font-body text-lg font-light text-white md:text-xl">{body}</p>
-      <div class="mt-6 flex flex-wrap gap-4 md:mt-8">
+      <div class="mt-6 grid max-w-xs grid-cols-2 gap-4 md:mt-8">
         {
           buttons &&
             buttons.map((button: Link, index: number) => (
@@ -58,7 +58,7 @@ const { kicker, headline, body, buttons, imageMetaData } =
                   key={button.title}
                   title={button.title}
                   variant={index === 0 ? "primary" : "secondary-alt"}
-                  className={`${index === 0 ? "button animated-gradient border-2 border-white" : "button-secondary"}`}
+                  className={`w-full ${index === 0 ? "button animated-gradient border-2 border-white" : "button-secondary"}`}
                 >
                   {button.title}
                 </Button>

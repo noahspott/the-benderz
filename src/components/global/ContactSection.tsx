@@ -11,11 +11,16 @@ import ContactForm from "./ContactForm";
 import { EMAIL_ADDRESS, PHONE_NUMBER, LOCATION } from "../../data/consts";
 
 interface ContactSectionProps {
+  kicker?: string;
   heading: string;
   body?: string;
 }
 
-export default function ContactSection({ heading, body }: ContactSectionProps) {
+export default function ContactSection({
+  kicker = "Contact",
+  heading,
+  body,
+}: ContactSectionProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   return (
@@ -25,10 +30,10 @@ export default function ContactSection({ heading, body }: ContactSectionProps) {
           <div>
             {/* Contact Heading */}
             <div className="mb-6 md:mb-8">
-              <p className="kicker-dark mb-3 md:mb-4">Contact</p>
-              <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
+              <h2 className="kicker-dark mb-3 md:mb-4">{kicker}</h2>
+              <p className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
                 {heading}
-              </h2>
+              </p>
               <p className="md:text-md">{body}</p>
             </div>
             <div className="grid grid-cols-1 gap-4 py-2">

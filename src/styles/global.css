@@ -22,12 +22,13 @@ body {
   }
 
   /* Buttons */
+
   .button {
     @apply min-h-12 min-w-28 rounded-full font-heading text-xl transition-all duration-100 hover:border-accent-600 hover:bg-accent-600 hover:text-white xs:text-2xl;
   }
 
   .button-secondary {
-    @apply button border-2 bg-transparent;
+    @apply button border-2;
   }
 
   .button-link {
@@ -49,11 +50,38 @@ body {
   .green-gradient-text {
     @apply bg-gradient-to-r from-black via-accent-600 to-accent-900 bg-clip-text text-transparent;
   }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
 
 .animated-gradient {
   background: radial-gradient(circle at 50% 50%, #00f26185 0%, #0575e6 100%);
   background-size: 400% 400%;
+  animation: gradientAnimation 7s ease infinite;
+}
+.on-hover-animated-gradient:hover {
+  background: radial-gradient(circle at 50% 50%, #00f26185 0%, #0575e6 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 7s ease infinite;
+}
+
+.animated-gradient-text {
+  background: radial-gradient(circle at 50% 50%, #00f26185 0%, #0575e6 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 7s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: gradientAnimation 7s ease infinite;
 }
 

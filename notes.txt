@@ -3,3 +3,9 @@ bg-black/80
 
 All body text should be:
 font-light
+
+
+Photos
+700 x 500
+webp
+

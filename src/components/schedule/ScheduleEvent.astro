@@ -18,24 +18,24 @@ const { event, index, classes = "" } = Astro.props;
   class={`relative mx-auto w-full text-left md:text-left grid max-w-xxl items-center gap-8 py-8 font-body text-black md:grid-cols-3 duration-200 ${classes}`}
 >
   <div class="">
-    <h2 class="text-primary-600 gap-1 font-heading text-4xl uppercase">
+    <h3 class="text-primary-600 gap-1 font-heading text-4xl uppercase">
       {formatShowDate(event.date)}
-    </h2>
+    </h3>
     <time class="gap-4 text-2xl font-light" datetime={event.date}>
       {formatShowTime(event.date)}
     </time>
   </div>
 
   <div class="col-span-1 md:col-span-2">
-    <h3 class="">
+    <h4 class="">
       <a
-        class="font-heading text-2xl text-black/80 sm:text-4xl md:text-2xl lg:text-4xl"
+        class="font-heading text-2xl text-black/80 transition-colors hover:text-accent-900 sm:text-4xl md:text-2xl lg:text-4xl"
         href={`/venues/${event.venue.slug.current}`}
-        aria-label={`View ${event.venue.name} page`}
+        aria-label={`View ${event.venue.name} page to learn more about the venue and to see all upcoming Benderz shows at ${event.venue.name}`}
       >
         {event.venue.name}
       </a>
-    </h3>
+    </h4>
 
     <address class="text-xl font-light not-italic lg:text-2xl">
       {event.venue.address.city}, {event.venue.address.state}
@@ -43,11 +43,13 @@ const { event, index, classes = "" } = Astro.props;
   </div>
 
   <a
-    class="mt-4 flex w-full items-center justify-end gap-2 font-light uppercase text-black/80 md:absolute md:bottom-4 md:right-4 md:col-start-3"
+    class="group mt-4 flex items-center justify-end gap-2 rounded-full px-4 py-2 font-light uppercase text-black/80 transition-colors hover:bg-white hover:text-accent-700 md:absolute md:bottom-4 md:right-4 md:col-start-3"
     href={`/${event.slug.current}`}
     aria-label={`View more details about the show on ${formatShowDate(event.date)}`}
   >
     More info
-    <FiChevronRight className="text-black/80" />
+    <FiChevronRight
+      className="text-black/80 transition-colors group-hover:text-accent-700"
+    />
   </a>
 </article>

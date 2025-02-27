@@ -83,10 +83,10 @@ export default function WhatWeDo({
             </Dialog>
           </div>
           <div className="order-1 md:order-2">
-            <p className="kicker-dark mb-3 md:mb-4">What We Do</p>
-            <h2 className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
+            <h2 className="kicker-dark mb-3 md:mb-4">What We Do</h2>
+            <p className="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
               Non-stop flow of a DJ, Unmatched vibe of a band
-            </h2>
+            </p>
             <p className="mb-5 font-body text-md md:mb-6 md:text-lg">
               Prepare to Dance the Night Away as we mix together your favorite
               pop hits, singalongs, and club classics with live band energy.

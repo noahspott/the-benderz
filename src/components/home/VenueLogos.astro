@@ -53,11 +53,11 @@ const logos = [
   <div
     class="container grid grid-cols-1 items-start justify-start gap-x-12 gap-y-8 md:grid-cols-[max-content_1fr] md:items-center md:justify-between md:gap-y-4 lg:gap-x-16"
   >
-    <h1
+    <h2
       class="font-heading text-2xl leading-[1.2] md:max-w-[16rem] md:text-4xl md:leading-[1.2] lg:max-w-xxs"
     >
-      Trusted by top venues across the Northeast
-    </h1>
+      Trusted by <span class="text-accent-700">top venues</span> across the Northeast
+    </h2>
     <div
       class="grid grid-cols-2 items-center justify-end gap-x-4 gap-y-4 pt-4 sm:grid-cols-3 md:gap-x-8 md:pt-0 lg:grid-cols-5"
     >
@@ -65,7 +65,12 @@ const logos = [
         logos.map((logo) => {
           return (
             <div class="flex items-start justify-center justify-self-center px-4 py-3 md:p-0">
-              <Image src={logo.src} alt={logo.alt} class={`max-h-32`} />
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                class={`max-h-32`}
+                widths={[100, 200, 300, 400, 500]}
+              />
             </div>
           );
         })

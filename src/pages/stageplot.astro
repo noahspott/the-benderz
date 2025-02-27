@@ -7,13 +7,12 @@
  *
  */
 // Global Components
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import { TitleHeaderSubpage } from "../components";
 
-// Local Components
-import { Gallery1 } from "../components/stageplot/Gallery1";
-import { Gallery1_1 } from "../components/stageplot/Gallery1_1";
-import { Gallery1_2 } from "../components/stageplot/Gallery1_2";
+// Images
+import stagePlot from "../assets/images/benderz-stageplot-fullband.png";
 
 // Page Data
 const headline = "Stage Plot";
@@ -25,9 +24,16 @@ const description = "Technical specs for The Benderz";
   description="Technical specs for The Benderz"
 >
   <TitleHeaderSubpage headline={headline} description={description} />
-  <!-- Add Input List -->
-  <!-- Add Quick Members Reference  -->
-  <Gallery1 />
-  <Gallery1_1 />
-  <Gallery1_2 />
+  <section id="relume" class="px-[5%] py-16 md:py-24 lg:py-28">
+    <div class="container">
+      <div class="mb-12 text-center md:mb-18 lg:mb-20">
+        <h2 class="mb-5 font-heading text-5xl md:mb-6 md:text-7xl lg:text-8xl">
+          Full Band
+        </h2>
+      </div>
+      <div class="grid auto-cols-fr grid-cols-1 gap-8">
+        <Image src={stagePlot} alt="Stage Plot" class="w-full" />
+      </div>
+    </div>
+  </section>
 </Layout>

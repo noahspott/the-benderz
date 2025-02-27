@@ -101,6 +101,9 @@ if (venueData.galleryPhotos) {
     alt: venueData.name,
   }));
 }
+
+// Copy
+const contactHeading = "Say Hello 👋";
 ---
 
 <Layout
@@ -135,5 +138,5 @@ if (venueData.galleryPhotos) {
       />
     )
   }
-  <ContactSection client:load heading="Contact Us" />
+  <ContactSection client:load heading={contactHeading} />
 </Layout>
