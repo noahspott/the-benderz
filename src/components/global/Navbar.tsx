@@ -339,6 +339,9 @@ export default function Navbar({
                                 {link.title === "Blog" && (
                                   <MdArticle className="size-12 text-accent-900/80" />
                                 )}
+                                {link.title === "Playlist" && (
+                                  <MdMusicNote className="size-12 text-accent-900/80" />
+                                )}
                               </div>
                               <div className="flex flex-col items-start justify-center">
                                 <h5 className="heading-nav">{link.title}</h5>
