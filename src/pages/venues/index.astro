@@ -12,6 +12,7 @@ import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import ContactSection from "../../components/global/ContactSection";
 import { TitleHeaderSubpage } from "../../components";
+import { FiChevronRight } from "react-icons/fi";
 
 // Types
 import type { Venue } from "../../types/types";
@@ -25,11 +26,13 @@ const venues = await getVenues();
 
 // Content
 const headline = "Venues";
-const description =
-  "We get to play some of the best venues in the world. Here are some of our favorites!";
+const description = "We get to play some of the best venues in the world! 🌎";
 ---
 
-<Layout>
+<Layout
+  title="Venues | The Benderz"
+  description="Find the Benderz at one of these great venues in the East Coast!"
+>
   <TitleHeaderSubpage headline={headline} description={description} />
   <section class="px-[5%] py-16 md:py-24 lg:py-28">
     <div class="container">
@@ -38,7 +41,8 @@ const description =
           venues.map((venue: Venue) => (
             <a
               href={`/venues/${venue.slug.current}`}
-              class="overflow-hidden rounded-lg bg-white shadow-large transition-shadow duration-300 hover:shadow-xlarge"
+              class="group relative overflow-hidden rounded-sm bg-gradient-to-br from-white to-gray-100 shadow-xsmall transition-shadow duration-300 hover:shadow-small"
+              aria-label={`View ${venue.name} venue`}
             >
               {venue.image?.asset?.url ? (
                 <img
@@ -64,6 +68,13 @@ const description =
                     {venue.address.zip}
                   </p>
                 </div>
+              </div>
+              <div
+                class="flex items-center justify-end gap-2 rounded-sm p-4 font-light uppercase text-black/80 group-hover:bg-gradient-to-r group-hover:from-transparent group-hover:to-accent-700 group-hover:to-50% group-hover:text-white"
+                aria-label={`View more details about ${venue.name} venue`}
+              >
+                View Upcoming Shows
+                <FiChevronRight className="text-black/80  group-hover:text-white" />
               </div>
             </a>
           ))

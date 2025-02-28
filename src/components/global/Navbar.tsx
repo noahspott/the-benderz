@@ -83,7 +83,7 @@ export default function Navbar({
       className="fixed z-[999] mx-auto flex min-h-16 w-full min-w-[320px] max-w-[1920px] items-center bg-white px-[5%] font-subheading text-neutral-darkest shadow-small md:min-h-18"
     >
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
-        <a href="/">
+        <a href="/" aria-label="Home">
           <img src={logoSrc} alt="The Benderz Logo" className="h-10" />
         </a>
         <div className="absolute hidden h-screen overflow-auto border-b border-border-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
@@ -106,6 +106,7 @@ export default function Navbar({
               <button
                 className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 hover:text-accent-900 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
                 onClick={useActive.openOnMobileDropdownMenu}
+                aria-label="Show more links"
               >
                 <span>More Info</span>
                 <motion.span
@@ -200,7 +201,7 @@ export default function Navbar({
                 title={primaryButton.text}
                 variant="primary"
                 size="sm"
-                className="button border-2 border-accent-600 bg-accent-600 font-button hover:bg-white hover:text-accent-600"
+                className="button border-2 border-accent-700 bg-accent-700 font-button hover:bg-white hover:text-accent-700"
               >
                 {primaryButton.text}
               </Button>
@@ -211,6 +212,7 @@ export default function Navbar({
         <button
           className="-mr-2 flex size-12 cursor-pointer flex-col items-center justify-center lg:hidden"
           onClick={useActive.toggleMobileMenu}
+          aria-label="Toggle menu"
         >
           <motion.span
             className="my-[3px] h-0.5 w-6 bg-black"
@@ -283,6 +285,7 @@ export default function Navbar({
                 <button
                   className="heading-nav relative flex w-full items-center justify-between whitespace-nowrap py-3 hover:text-accent-900 lg:w-auto lg:justify-start lg:gap-2 lg:px-4 lg:py-6"
                   onClick={useActive.openOnMobileDropdownMenu}
+                  aria-label="Show more links"
                 >
                   <span>More Info</span>
                   <motion.span
