@@ -32,6 +32,7 @@ export default defineConfig({
       projectId: "4r9ag2ef",
       dataset: "production",
       useCdn: false, // for static builds
+      studioBasePath: "/admin",
     }),
   ],
 
