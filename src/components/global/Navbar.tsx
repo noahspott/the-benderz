@@ -371,21 +371,23 @@ export default function Navbar({
               </div>
               {/* Burger Menu -- Buttons */}
               <div className="mt-6 flex flex-col gap-4 font-button">
-                <Button
-                  title="Button"
-                  variant="secondary"
-                  size="sm"
-                  className="button"
-                >
-                  <a href={secondaryButton.href}>{secondaryButton.text}</a>
-                </Button>
-                <Button
-                  title="Button"
-                  size="sm"
-                  className="button border-accent-600 bg-accent-600 font-button"
-                >
-                  <a href={primaryButton.href}>{primaryButton.text}</a>
-                </Button>
+                <a href={secondaryButton.href} className="w-full">
+                  <Button
+                    title="Button"
+                    variant="secondary"
+                    className="button w-full border-2"
+                  >
+                    {secondaryButton.text}
+                  </Button>
+                </a>
+                <a href={primaryButton.href} className="w-full">
+                  <Button
+                    title="Button"
+                    className="button w-full border-2 font-button"
+                  >
+                    {primaryButton.text}
+                  </Button>
+                </a>
               </div>
             </div>
           </motion.div>
