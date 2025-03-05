@@ -7,7 +7,7 @@
  * It also includes a list of upcoming shows at the venue.
  *
  */
-export const prerender = true;
+export const prerender = false;
 
 // Global components
 import Layout from "../../layouts/Layout.astro";
@@ -32,24 +32,9 @@ type VenueProps = {
   venueData: Venue;
 };
 
-// Get the static paths for the venues
-export async function getStaticPaths() {
-  // Get the venues
-  const venues = await getVenues();
+const { venue } = Astro.params;
 
-  return venues.map((venue: Venue) => {
-    console.log("Generating Venue Page for:", venue.slug.current);
-    return {
-      params: { venue: venue?.slug?.current },
-      props: { venueData: venue },
-    };
-  });
-}
-
-const { venueData } = Astro.props as VenueProps;
-
-const todayAt0 = new Date().toISOString();
-const venueFilter = `{venue: {name: {eq: "${venueData.name.toString()}"}}}`;
+const venueFilter = `{venue: {slug: {current: {eq: "${venue}"}}}}`;
 const sortFilter = `[{date: ASC}]`;
 
 // Get the events for the venue
@@ -93,6 +78,12 @@ if (response) {
   });
 }
 
+const venueData = response?.allEvent[0]?.venue;
+
+if (!venueData) {
+  return Astro.redirect("/404");
+}
+
 // Get the gallery images for the venue
 let galleryImages: { src: string; alt: string }[] = [];
 if (venueData.galleryPhotos) {
@@ -120,7 +111,7 @@ const contactHeading = "Say Hello 👋";
         city={venueData.address.city}
         state={venueData.address.state}
         description={venueData.description}
-        aboutImage={venueData.image?.asset.url || defaultImage}
+        aboutImage={venueData?.image?.asset?.url || defaultImage}
         venueWebsite={venueData.website}
       />
     )
