@@ -5,16 +5,8 @@ All body text should be:
 font-light
 
 
-Photos
-700 x 500
-webp
-
 TODO:
-
-- Solve these problems:
-  - Venue pages are rendered at build, so old events are being displayed as upcoming events.
-  - Event pages are rendered at build, so new events added won't have pages.
-
 - Prepare / Upload Venue Photos
-
+  - 700 x 500
+  - webp
 - Fill Calendar

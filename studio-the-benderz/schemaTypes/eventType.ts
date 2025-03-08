@@ -40,7 +40,8 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
-      description: 'The description of the event',
+      description:
+        'The description of the event. Hint: Use ChatGPT. \nPrompt: \n\nWrite a description for an event page for The Benderz website for the live performance at <venue name in city, state>.',
     }),
     defineField({
       name: 'slug',
@@ -48,16 +49,29 @@ export default defineType({
       type: 'slug',
       description: 'The slug for the event',
       options: {
-        source: (doc: any) => {
+        source: async (doc: any, {getClient}) => {
           const date = new Date(doc.date)
           const formattedDate = date.toLocaleDateString('en-US', {
             month: 'short',
             day: 'numeric',
             year: 'numeric',
           })
-          return `the-benderz-${formattedDate.replace(/,/g, '')}`
+
+          // Get the client to fetch the referenced venue
+          const client = getClient({apiVersion: '2023-05-03'})
+          // Fetch the venue document using the reference
+          const venue = await client.fetch(`*[_id == $venueId][0].name`, {venueId: doc.venue._ref})
+
+          const venueName = venue || ''
+          return `the-benderz-at-${venueName}-${formattedDate.replace(/,/g, '')}`
         },
-        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-'),
+        slugify: (input: string) =>
+          input
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, '') // Remove special characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+            .trim(), // Remove leading/trailing spaces
       },
       validation: (Rule) => Rule.required(),
     }),
