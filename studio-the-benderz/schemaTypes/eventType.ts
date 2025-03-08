@@ -63,7 +63,7 @@ export default defineType({
           const venue = await client.fetch(`*[_id == $venueId][0].name`, {venueId: doc.venue._ref})
 
           const venueName = venue || ''
-          return `the-benderz-at-${venueName}-${formattedDate.replace(/,/g, '')}`
+          return `the-benderz-${doc.showType}-${venueName}-${formattedDate.replace(/,/g, '')}`
         },
         slugify: (input: string) =>
           input
