@@ -39,36 +39,10 @@ const weddingSectionCopy = {
   body: "For over a decade, The Benderz have been creating the nightlife soundtrack for the best clubs in Atlantic City, Sea Isle City, Dewey Beach, and more. Our specialty is packaging that energy and delivering it to you on your special night.",
 };
 
-// FAQS
 const faqBody =
   "Find answers to your most common questions about booking The Benderz for your wedding.";
-const faqs = [
-  {
-    question: "What genres do you play?",
-    answer:
-      "The Benderz cover a wide range of genres, including rock, pop, R&B, and country. We pride ourselves on our versatility and can tailor our setlist to match your wedding theme.",
-  },
-  {
-    question: "How long do you play?",
-    answer:
-      "Our standard performance length is typically 4 hours, including breaks. We can customize the duration based on your event's needs. Just let us know your schedule, and we’ll accommodate!",
-  },
-  {
-    question: "Do you provide equipment?",
-    answer:
-      "Yes, we bring all necessary sound and lighting equipment for our performances. Our team ensures everything is set up and ready before your guests arrive. You can focus on enjoying your special day while we handle the music!",
-  },
-  {
-    question: "Can we request songs?",
-    answer:
-      "Absolutely! We encourage couples to provide us with a list of their favorite songs. This helps us create a personalized experience that reflects your taste and style.",
-  },
-  {
-    question: "How do we book?",
-    answer:
-      "Booking The Benderz is simple! Just reach out through our contact form, and we'll get back to you promptly. We look forward to making your wedding unforgettable!",
-  },
-];
+
+import { WEDDING_PAGE_FAQS } from "../data/faqs";
 ---
 
 <Layout
@@ -94,7 +68,7 @@ const faqs = [
   <OurPlaylistSection />
 
   <!-- FAQ -->
-  <Faqs faqs={faqs} body={faqBody} client:load>
+  <Faqs faqs={WEDDING_PAGE_FAQS} body={faqBody} client:load>
     <Image
       src={faqBackgroundImage}
       alt=""
