@@ -180,6 +180,36 @@ const QUERIES = {
       }
     }
   `,
+
+  eventBySlug: (slug: string) => `
+    query EventBySlug {
+      allEvent(where: {slug: {current: {eq: "${slug}"}}}) {
+        date
+        showType
+        description
+        venue {
+          name
+          address {
+            streetAddress
+            city
+            state
+            zip
+          }
+          image {
+            asset {
+              url
+            }
+          }
+          slug {
+            current
+          }
+        }
+        slug {
+          current
+        }
+      }
+    }
+  `,
 };
 
 // Exported functions
@@ -220,5 +250,29 @@ export async function getAllEvents() {
     return response.allEvent;
   } catch {
     return [];
+  }
+}
+
+// Get a single event by slug
+export async function getEventBySlug(slug: string) {
+  try {
+    const response = await fetchGraphQL<{ allEvent: any[] }>(
+      QUERIES.eventBySlug(slug),
+    );
+
+    if (!response.allEvent?.length) {
+      console.warn(`No event found with slug: ${slug}`);
+      return null;
+    }
+
+    return response.allEvent[0];
+  } catch (error) {
+    console.error(
+      `Failed to fetch event with slug "${slug}":`,
+      error instanceof Error ? error.message : "Unknown error",
+      "\nStack trace:",
+      error instanceof Error ? error.stack : "No stack trace available",
+    );
+    return null;
   }
 }

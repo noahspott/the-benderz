@@ -6,45 +6,63 @@
  * To display a single event
  *
  */
-export const prerender = true;
+export const prerender = false;
 
+// Global Components
 import Layout from "../../layouts/Layout.astro";
 import { TitleHeaderSubpage } from "../../components";
 import EventDetails from "../../components/event/EventDetails.astro";
 
+// Libs
 import { getDate, getTime, formatShowDate } from "../../lib/dateHelpers";
-import { getAllEvents } from "../../lib/sanity";
+import { getAllEvents, getEventBySlug } from "../../lib/sanity";
+
+// Types
 import type { Event } from "../../types/types";
 
-export async function getStaticPaths() {
-  const events = await getAllEvents();
+// Query
+const { event: eventSlug } = Astro.params;
 
-  return events.map((event: Event) => ({
-    params: {
-      event: `/${event.slug.current}`,
-    },
-    props: { event: event },
-  }));
+if (!eventSlug) {
+  return Astro.redirect("/404");
 }
 
-type EventProps = {
-  event: Event;
-};
+// Get the event data from the slug
+const thisEvent = await getEventBySlug(eventSlug);
 
-const { event } = Astro.props as EventProps;
+if (!thisEvent) {
+  return Astro.redirect("/404");
+}
+
+// export async function getStaticPaths() {
+//   const events = await getAllEvents();
+
+//   return events.map((event: Event) => ({
+//     params: {
+//       event: `/${event.slug.current}`,
+//     },
+//     props: { event: event },
+//   }));
+// }
+
+// type EventProps = {
+//   event: Event;
+// };
+
+// const { event } = Astro.props as EventProps;
 ---
 
 <Layout
-  title={`${event.venue.name} ${formatShowDate(event.date)} | The Benderz`}
+  title={`${thisEvent?.venue.name} ${formatShowDate(thisEvent?.date)} | The Benderz`}
 >
   <TitleHeaderSubpage
-    headline={formatShowDate(event.date)}
-    description={`${event.venue.name}, ${event.venue.address.city}, ${event.venue.address.state}`}
+    headline={formatShowDate(thisEvent?.date)}
+    description={`${thisEvent?.venue.name}, ${thisEvent?.venue.address.city}, ${thisEvent?.venue.address.state}`}
   />
   <!-- <PortfolioHeader1
     headline={getDate(event.date)}
     subtext={`${event.venue.name}, ${event.venue.address.city}, ${event.venue.address.state}`}
     coverImage={event.venue?.coverImage?.asset?.url}
   /> -->
-  <EventDetails event={event} />
+  <EventDetails event={thisEvent} />
 </Layout>
