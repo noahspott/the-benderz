@@ -63,7 +63,10 @@ export default function WhatWeDo({
   youtubeThumbnailUrl: string;
 }) {
   return (
-    <section id="what-we-do" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="what-we-do"
+      className="relative px-[5%] py-16 md:py-24 lg:py-28"
+    >
       <div className="container">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
           <div className="order-2 md:order-1">
@@ -77,7 +80,11 @@ export default function WhatWeDo({
                 <span className="absolute inset-0 z-10 bg-black/50" />
                 <FaCirclePlay className="absolute z-20 size-16 text-white" />
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent
+                className=""
+                closeIconClassName="shadow-large fixed text-white size-16 bg-white rounded-full text-black flex items-center justify-center top-[120%] left-[42%] sm:left-[45%] md:top-[110%] lg:left-[47%] lg:top-[105%] z-20 xl:left-[48%]"
+                closeIconPosition="inside"
+              >
                 <VideoIframe video={youtubeEmbedUrl} />
               </DialogContent>
             </Dialog>
