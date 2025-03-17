@@ -4,13 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Global Components
-import { BiEnvelope, BiMap, BiPhone } from "react-icons/bi";
 import ContactForm from "./ContactForm";
 import CompanyInfoCol from "./CompanyInfoCol";
-
-// Data
-import { EMAIL_ADDRESS, PHONE_NUMBER, LOCATION } from "../../data/consts";
-import eventType from "../../../studio-the-benderz/schemaTypes/eventType";
 
 interface ContactSectionProps {
   kicker?: string;
