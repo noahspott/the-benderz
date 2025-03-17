@@ -7,7 +7,17 @@ export const WEDDING_PAGE_FAQS = [
   {
     question: "How long do you play?",
     answer:
-      "Our standard performance length is typically 4 hours, including breaks. We can customize the duration based on your event's needs. Just let us know your schedule, and we’ll accommodate!",
+      "We can customize the duration based on your event's needs. Just let us know your schedule, and we’ll accommodate!",
+  },
+  {
+    question: "Can you play our first dance and parent dances?",
+    answer:
+      "Absolutely! We personalize your special dance songs to create the perfect version for the moment. Whether you prefer an acoustic, full band, or recorded version, we tailor it to suit your needs.",
+  },
+  {
+    question: "Can we request songs?",
+    answer:
+      "Absolutely! We encourage couples to provide us with a list of their favorite songs. This helps us create a personalized experience that reflects your taste and style.",
   },
   {
     question: "Do you provide equipment?",
@@ -15,9 +25,9 @@ export const WEDDING_PAGE_FAQS = [
       "Yes, we bring all necessary sound and lighting equipment for our performances. Our team ensures everything is set up and ready before your guests arrive. You can focus on enjoying your special day while we handle the music!",
   },
   {
-    question: "Can we request songs?",
+    question: "Can you provide a microphone for our officiant?",
     answer:
-      "Absolutely! We encourage couples to provide us with a list of their favorite songs. This helps us create a personalized experience that reflects your taste and style.",
+      "Yes! We can provide a microphone for your officiant. Just let us know in advance, and we can add it to your package.",
   },
   {
     question: "How do we book?",

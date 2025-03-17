@@ -97,7 +97,7 @@ export default function ContactForm({
       </div>
       <div className="grid w-full items-center">
         <Label htmlFor="location" className="mb-2">
-          Where is your {eventType.toLowerCase()}? (city, state)
+          Where is your {eventType.toLowerCase()}? (Venue, City, State)
         </Label>
         <Input type="text" id="location" name="location" required />
       </div>
