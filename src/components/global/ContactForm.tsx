@@ -38,19 +38,18 @@ export default function ContactForm({
 
   return (
     <form
-      data-netlify={true}
-      netlify-honeypot="bot-field"
+      data-netlify="true"
       name="contact"
       method="post"
       onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >
+      <input type="hidden" name="form-name" value="contact" />
       <p className="hidden">
         <label>
           Don't fill this out if you're human: <input name="bot-field" />
         </label>
       </p>
-      <input type="hidden" name="form-name" value="contact" />
       <div className="grid grid-cols-2 gap-6">
         <div className="grid w-full items-center">
           <Label htmlFor="firstName" className="mb-2">
