@@ -15,17 +15,18 @@ export default function ContactForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
-    console.log(e.target);
     setIsSending(true);
 
     const formData = new FormData(e.target as HTMLFormElement);
+
+    const body = new URLSearchParams(formData as any).toString();
+    console.log("body", body);
 
     try {
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: body,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -38,6 +39,7 @@ export default function ContactForm({
   return (
     <form
       data-netlify={true}
+      netlify-honeypot="bot-field"
       name="contact"
       method="post"
       onSubmit={handleSubmit}
