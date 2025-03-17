@@ -47,7 +47,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: 'The slug for the event',
+      description: 'The slug for the event. (e.g. thebenderz.com/schedule/slug)',
       options: {
         source: async (doc: any, {getClient}) => {
           const date = new Date(doc.date)
@@ -63,7 +63,7 @@ export default defineType({
           const venue = await client.fetch(`*[_id == $venueId][0].name`, {venueId: doc.venue._ref})
 
           const venueName = venue || ''
-          return `the-benderz-${doc.showType}-${venueName}-${formattedDate.replace(/,/g, '')}`
+          return `${doc.showType}-${venueName}-${formattedDate.replace(/,/g, '')}`
         },
         slugify: (input: string) =>
           input

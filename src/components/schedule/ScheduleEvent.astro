@@ -16,7 +16,7 @@ const { event, index, classes = "" } = Astro.props;
 
 <a
   class={`group relative mx-auto w-full text-left md:text-left grid max-w-xxl items-center gap-8 py-8 font-body text-black md:grid-cols-3 duration-200 ${classes}`}
-  href={`/${event.slug.current}`}
+  href={`/schedule/${event.slug.current}`}
   aria-label={`View more details about the show on ${formatShowDate(event.date)}`}
 >
   <div class="">

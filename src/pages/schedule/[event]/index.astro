@@ -9,16 +9,16 @@
 export const prerender = false;
 
 // Global Components
-import Layout from "../../layouts/Layout.astro";
-import { TitleHeaderSubpage } from "../../components";
-import EventDetails from "../../components/event/EventDetails.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { TitleHeaderSubpage } from "../../../components";
+import EventDetails from "../../../components/event/EventDetails.astro";
 
 // Libs
-import { getDate, getTime, formatShowDate } from "../../lib/dateHelpers";
-import { getAllEvents, getEventBySlug } from "../../lib/sanity";
+import { getDate, getTime, formatShowDate } from "../../../lib/dateHelpers";
+import { getAllEvents, getEventBySlug } from "../../../lib/sanity";
 
 // Types
-import type { Event } from "../../types/types";
+import type { Event } from "../../../types/types";
 
 // Query
 const { event: eventSlug } = Astro.params;
