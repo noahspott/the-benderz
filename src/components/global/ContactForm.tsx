@@ -16,28 +16,28 @@ export default function ContactForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
-
     setIsSending(true);
 
     const formData = new FormData(e.target as HTMLFormElement);
-    console.log(formData);
 
     try {
-      await fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(formData as any).toString(),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(
+          Array.from(formData.entries()).concat([
+            ["form-name", "contact"],
+          ]) as string[][],
+        ).toString(),
       });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      console.log("finally");
-      console.log(typeof setIsSubmitted, "typeof setIsSubmitted: ");
-      setIsSending(false);
+
+      if (!response.ok) throw new Error("Network response was not ok");
       setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle error state here
+    } finally {
+      setIsSending(false);
     }
   };
 
