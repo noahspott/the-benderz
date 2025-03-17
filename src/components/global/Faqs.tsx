@@ -47,7 +47,7 @@ export default function Faqs({
         <Accordion type="multiple" className="font-body">
           {faqs.map((faq, index) => {
             return (
-              <AccordionItem value={`item-${index}`} className="">
+              <AccordionItem value={`item-${index}`} className="" key={index}>
                 <AccordionTrigger className="md:py-5 md:text-md">
                   {faq.question}
                 </AccordionTrigger>

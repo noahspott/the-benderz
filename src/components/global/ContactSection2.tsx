@@ -60,10 +60,10 @@ export default function ContactSection2({
                 ease: "easeOut",
               }}
             >
-              {/* <ContactForm
+              <ContactForm
                 eventType={eventType}
                 setIsSubmitted={setIsSubmitted}
-              /> */}
+              />
             </motion.div>
           )}
         </AnimatePresence>
