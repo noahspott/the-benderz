@@ -5,9 +5,13 @@ import { motion } from "framer-motion";
 
 interface ContactFormProps {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
+  eventType: string;
 }
 
-export default function ContactForm({ setIsSubmitted }: ContactFormProps) {
+export default function ContactForm({
+  setIsSubmitted,
+  eventType,
+}: ContactFormProps) {
   const [isSending, setIsSending] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,12 +43,8 @@ export default function ContactForm({ setIsSubmitted }: ContactFormProps) {
 
   return (
     <form
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      name="contact"
-      method="post"
-      onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
+      onSubmit={handleSubmit}
     >
       <p className="hidden">
         <label>
@@ -52,17 +52,45 @@ export default function ContactForm({ setIsSubmitted }: ContactFormProps) {
         </label>
       </p>
       <input type="hidden" name="form-name" value="contact" />
-      <div className="grid w-full items-center">
-        <Label htmlFor="name" className="mb-2">
-          Name
-        </Label>
-        <Input type="text" id="name" required />
+      <div className="grid grid-cols-2 gap-6">
+        <div className="grid w-full items-center">
+          <Label htmlFor="firstName" className="mb-2">
+            First Name
+          </Label>
+          <Input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div className="grid w-full items-center">
+          <Label htmlFor="lastName" className="mb-2">
+            Last Name
+          </Label>
+          <Input type="text" id="lastName" name="lastName" />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid w-full items-center">
+          <Label htmlFor="email" className="mb-2">
+            Email
+          </Label>
+          <Input type="email" id="email" name="email" required />
+        </div>
+        <div className="grid w-full items-center">
+          <Label htmlFor="phone" className="mb-2">
+            Phone Number
+          </Label>
+          <Input type="text" id="phone" name="phone" required />
+        </div>
       </div>
       <div className="grid w-full items-center">
-        <Label htmlFor="email" className="mb-2">
-          Email
+        <Label htmlFor="date" className="mb-2">
+          When is your {eventType.toLowerCase()}?
         </Label>
-        <Input type="email" id="email" required />
+        <Input type="date" id="date" name="date" required />
+      </div>
+      <div className="grid w-full items-center">
+        <Label htmlFor="location" className="mb-2">
+          Where is your {eventType.toLowerCase()}? (city, state)
+        </Label>
+        <Input type="text" id="location" name="location" required />
       </div>
       <div className="grid w-full items-center">
         <Label htmlFor="message" className="mb-2">
@@ -70,18 +98,19 @@ export default function ContactForm({ setIsSubmitted }: ContactFormProps) {
         </Label>
         <Textarea
           id="message"
-          placeholder="Your message here..."
+          name="message"
+          placeholder={`Tell us about your ${eventType.toLowerCase()}...`}
           className="min-h-[11.25rem] overflow-auto"
           required
         />
       </div>
-      <div>
+      <div className="text-center">
         <Button
-          type="submit"
-          className="button border-2 border-accent-700 bg-accent-700 hover:border-accent-700 hover:bg-white hover:text-accent-700"
+          title="Submit"
+          className={`button ${isSending && "animate-pulse"}`}
           disabled={isSending}
         >
-          {isSending ? "Sending..." : "Send"}
+          {isSending ? "Sending..." : "Submit"}
         </Button>
       </div>
     </form>

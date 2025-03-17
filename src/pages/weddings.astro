@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
 
 // Local components
 import { HeroSubpage, AboutVideoSection, Faqs } from "../components";
-import { Contact2 } from "../components/weddings/Contact2";
+import { ContactSection2 } from "../components/";
 import WeddingServicesSection from "../components/weddings/WeddingServicesSection.astro";
 import OurPlaylistSection from "../components/weddings/OurPlaylistSection.astro";
 
@@ -82,5 +82,5 @@ import { WEDDING_PAGE_FAQS } from "../data/faqs";
   </Faqs>
 
   <!-- Contact -->
-  <Contact2 client:load />
+  <ContactSection2 eventType="Wedding" client:load />
 </Layout>

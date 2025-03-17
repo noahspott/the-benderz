@@ -12,3 +12,5 @@ export { default as ShapeDivider } from "./global/ShapeDivider.astro";
 export { default as TestimonialSimple } from "./global/TestimonialSimple.astro";
 export { default as UpcomingShows } from "./global/UpcomingShows.astro";
 export { default as WhatWePlay } from "./global/WhatWePlay.astro";
+export { default as ContactSection2 } from "./global/ContactSection2.tsx";
+export { default as CompanyInfoCol } from "./global/CompanyInfoCol.tsx";

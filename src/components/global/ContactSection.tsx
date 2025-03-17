@@ -6,20 +6,24 @@ import { motion, AnimatePresence } from "framer-motion";
 // Global Components
 import { BiEnvelope, BiMap, BiPhone } from "react-icons/bi";
 import ContactForm from "./ContactForm";
+import CompanyInfoCol from "./CompanyInfoCol";
 
 // Data
 import { EMAIL_ADDRESS, PHONE_NUMBER, LOCATION } from "../../data/consts";
+import eventType from "../../../studio-the-benderz/schemaTypes/eventType";
 
 interface ContactSectionProps {
   kicker?: string;
   heading: string;
   body?: string;
+  eventType?: string;
 }
 
 export default function ContactSection({
   kicker = "Contact",
   heading,
   body,
+  eventType = "Party",
 }: ContactSectionProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
@@ -36,20 +40,7 @@ export default function ContactSection({
               </p>
               <p className="md:text-md">{body}</p>
             </div>
-            <div className="grid grid-cols-1 gap-4 py-2">
-              <div className="flex items-center gap-4">
-                <BiEnvelope className="size-6 flex-none" />
-                <p>{EMAIL_ADDRESS}</p>
-              </div>
-              <div className="flex items-center gap-4">
-                <BiPhone className="size-6 flex-none" />
-                <p>{PHONE_NUMBER}</p>
-              </div>
-              <div className="flex items-center gap-4">
-                <BiMap className="size-6 flex-none" />
-                <p>{LOCATION}</p>
-              </div>
-            </div>
+            <CompanyInfoCol />
           </div>
           <AnimatePresence mode="wait">
             {isSubmitted ? (
@@ -84,7 +75,10 @@ export default function ContactSection({
                   ease: "easeOut",
                 }}
               >
-                <ContactForm setIsSubmitted={setIsSubmitted} />
+                <ContactForm
+                  eventType={eventType}
+                  setIsSubmitted={setIsSubmitted}
+                />
               </motion.div>
             )}
           </AnimatePresence>

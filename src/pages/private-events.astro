@@ -12,10 +12,10 @@ import Layout from "../layouts/Layout.astro";
 import {
   HeroSubpage,
   AboutVideoSection,
-  ContactSection,
+  // ContactSection,
   Faqs,
-  TestimonialSimple,
   WhatWePlay,
+  ContactSection2,
 } from "../components";
 
 // Local Components
@@ -75,9 +75,5 @@ import { PRIVATE_EVENT_PAGE_FAQS } from "../data/faqs";
       sizes="100vw"
     />
   </Faqs>
-  <ContactSection
-    client:load
-    heading="Get in Touch"
-    body="Book The Benderz for your next event. We'll make sure your party is unforgettable."
-  />
+  <ContactSection2 client:load />
 </Layout>
