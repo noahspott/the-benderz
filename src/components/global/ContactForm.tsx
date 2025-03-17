@@ -16,28 +16,23 @@ export default function ContactForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("submitted");
+    console.log(e.target);
     setIsSending(true);
 
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      const response = await fetch("/", {
+      await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(
-          Array.from(formData.entries()).concat([
-            ["form-name", "contact"],
-          ]) as string[][],
-        ).toString(),
+        body: new URLSearchParams(formData as any).toString(),
       });
-
-      if (!response.ok) throw new Error("Network response was not ok");
-      setIsSubmitted(true);
     } catch (error) {
       console.error("Error:", error);
-      // Handle error state here
     } finally {
       setIsSending(false);
+      setIsSubmitted(true);
     }
   };
 
@@ -46,8 +41,8 @@ export default function ContactForm({
       data-netlify={true}
       name="contact"
       method="post"
-      className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
       onSubmit={handleSubmit}
+      className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >
       <p className="hidden">
         <label>
@@ -109,7 +104,7 @@ export default function ContactForm({
       </div>
       <div className="text-center">
         <Button
-          title="Submit"
+          type="submit"
           className={`button ${isSending && "animate-pulse"}`}
           disabled={isSending}
         >
