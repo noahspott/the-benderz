@@ -13,34 +13,34 @@ export default function ContactForm({
 }: ContactFormProps) {
   const [isSending, setIsSending] = useState<boolean>(false);
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   console.log("submitted");
-  //   console.log(e.target);
-  //   setIsSending(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("submitted");
+    console.log(e.target);
+    setIsSending(true);
 
-  //   const formData = new FormData(e.target as HTMLFormElement);
+    const formData = new FormData(e.target as HTMLFormElement);
 
-  //   try {
-  //     await fetch("/", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //       body: new URLSearchParams(formData as any).toString(),
-  //     });
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   } finally {
-  //     setIsSending(false);
-  //     setIsSubmitted(true);
-  //   }
-  // };
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsSending(false);
+      setIsSubmitted(true);
+    }
+  };
 
   return (
     <form
       data-netlify={true}
       name="contact"
       method="post"
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >
       <p className="hidden">
