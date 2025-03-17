@@ -43,6 +43,9 @@ export default function ContactForm({
 
   return (
     <form
+      data-netlify={true}
+      name="contact"
+      method="post"
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
       onSubmit={handleSubmit}
     >
