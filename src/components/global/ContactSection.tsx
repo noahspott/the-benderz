@@ -55,8 +55,6 @@ export default function ContactSection({
                 }}
                 className="flex size-full items-center justify-center"
               >
-                {/* Center this */}
-
                 <p className="text-center">
                   <span className="text-4xl">🎉</span>
                   <br />
@@ -75,10 +73,10 @@ export default function ContactSection({
                   ease: "easeOut",
                 }}
               >
-                <ContactForm
+                {/* <ContactForm
                   eventType={eventType}
                   setIsSubmitted={setIsSubmitted}
-                />
+                /> */}
               </motion.div>
             )}
           </AnimatePresence>
