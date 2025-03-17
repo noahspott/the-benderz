@@ -8,6 +8,9 @@
  * This is the about section of template venue page.
  */
 
+import defaultImage from "../../assets/images/layered-peaks-bg.svg";
+import { Image } from "astro:assets";
+
 import { Button } from "@relume_io/relume-ui";
 
 type AboutSectionProps = {
@@ -48,7 +51,13 @@ const { city, state, description, aboutImage, venueWebsite } =
         }
       </div>
       <div>
-        <img src={aboutImage} class="w-full object-cover" alt="" />
+        {
+          aboutImage ? (
+            <img src={aboutImage} class="w-full object-cover" alt="" />
+          ) : (
+            <Image src={defaultImage} class="w-full object-cover" alt="" />
+          )
+        }
       </div>
     </div>
   </div>
