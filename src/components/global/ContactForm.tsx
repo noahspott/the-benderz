@@ -19,15 +19,22 @@ export default function ContactForm({
 
     const formData = new FormData(e.target as HTMLFormElement);
 
-    const body = new URLSearchParams(formData as any).toString();
-    console.log("body", body);
-
     try {
-      await fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(formData as any).toString(),
       });
+
+      // Add logging to see what's happening
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
     } catch (error) {
       console.error("Error:", error);
     } finally {
