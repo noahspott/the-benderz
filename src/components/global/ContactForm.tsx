@@ -24,17 +24,19 @@ export default function ContactForm({
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json",
         },
-        body: new URLSearchParams(formData as any).toString(),
+        body: new URLSearchParams({
+          "form-name": "contact",
+          ...Object.fromEntries(formData),
+        }).toString(),
       });
 
-      // Add logging to see what's happening
-      console.log("Response status:", response.status);
-      console.log("Response headers:", response.headers);
-
-      if (!response.ok) {
-        throw new Error(`Form submission failed: ${response.status}`);
-      }
+      console.log("Form submission response:", {
+        status: response.status,
+        headers: Object.fromEntries(response.headers.entries()),
+        body: await response.text(),
+      });
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -45,9 +47,11 @@ export default function ContactForm({
 
   return (
     <form
-      data-netlify="true"
       name="contact"
       method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/thank-you"
       onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >
