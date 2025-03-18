@@ -20,7 +20,7 @@ export default function ContactForm({
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      await fetch("/", {
+      fetch("/", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -51,7 +51,9 @@ export default function ContactForm({
         </label>
       </p>
       <input type="hidden" name="form-name" value="contact" />
-      <div className="grid grid-cols-2 gap-6">
+      <label htmlFor="firstName">Name:</label>
+      <input className="border border-black p-2" type="text" name="firstName" />
+      {/* <div className="grid grid-cols-2 gap-6">
         <div className="grid w-full items-center">
           <Label htmlFor="firstName" className="mb-2">
             First Name
@@ -102,16 +104,16 @@ export default function ContactForm({
           className="min-h-[11.25rem] overflow-auto"
           required
         />
-      </div>
-      <div className="text-center">
-        <Button
-          type="submit"
-          className={`button ${isSending && "animate-pulse"}`}
-          disabled={isSending}
-        >
-          {isSending ? "Sending..." : "Submit"}
-        </Button>
-      </div>
+      </div> */}
+      <Button
+        type="submit"
+        className={`button ${isSending && "animate-pulse"} text-center`}
+        disabled={isSending}
+      >
+        {isSending ? "Sending..." : "Submit"}
+      </Button>
+      {/* <div className="text-center">
+      </div> */}
     </form>
   );
 }
