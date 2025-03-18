@@ -20,7 +20,7 @@ export default function ContactForm({
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
