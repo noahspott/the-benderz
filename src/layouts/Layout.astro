@@ -67,12 +67,58 @@ const secondaryLinks: Link[] = [
 
 const logoSrc = "/images/the-benderz.svg";
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: "The Benderz",
+  url: "https://www.thebenderz.com",
+  image: "https://www.thebenderz.com/images/the-benderz-2.svg",
+  genre: "Cover Band",
+  member: [
+    {
+      "@type": "Person",
+      name: "Angelique Buckley",
+      role: "Lead Singer",
+    },
+    {
+      "@type": "Person",
+      name: "Joe Veltri",
+      role: "Keyboardist",
+    },
+    {
+      "@type": "Person",
+      name: "John Zadeh",
+      role: "Drummer",
+    },
+    {
+      "@type": "Person",
+      name: "Jayce Bradley",
+      role: "Guitarist",
+    },
+  ],
+  description:
+    "The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, weddings, and private events up and down the East Coast.",
+  location: "Philadelphia, PA",
+  sameAs: [
+    "https://www.facebook.com/thebenderz",
+    "https://www.instagram.com/thebenderzband",
+    "https://www.youtube.com/@thebenderz",
+  ],
+};
+
 const { title = "", description = "" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Organization Schema -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationSchema)}
+    />
+
     <!-- Favicon -->
     <link
       rel="icon"
@@ -91,7 +137,7 @@ const { title = "", description = "" } = Astro.props;
     <link rel="manifest" href="/favicon/site.webmanifest" />
 
     <!-- Sitemap -->
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
 
     <!-- Meta -->
     <meta charset="UTF-8" />

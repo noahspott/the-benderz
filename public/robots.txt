@@ -1,0 +1,17 @@
+# Global rules
+User-agent: *
+Allow: /
+Allow: /venues/
+Allow: /schedule/
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.thebenderz.com/sitemap.xml
+
+# Optional: Rate limiting for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10 
