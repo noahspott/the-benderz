@@ -47,11 +47,10 @@ export default function ContactForm({
 
   return (
     <form
-      name="contact"
-      method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      action="/thank-you"
+      name="contact"
+      method="POST"
       onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >

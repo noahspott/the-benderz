@@ -37,44 +37,44 @@ export default function ContactSection({
             </div>
             <CompanyInfoCol />
           </div>
-          <AnimatePresence mode="wait">
-            {isSubmitted ? (
-              <motion.div
-                key="submitted"
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                transition={{
-                  duration: 0.4,
-                  ease: "easeOut",
-                }}
-                className="flex size-full items-center justify-center"
-              >
-                <p className="text-center">
-                  <span className="text-4xl">🎉</span>
-                  <br />
-                  Your message has been sent! <br />
-                  We'll get back to you as soon as we can.
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="form"
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                transition={{
-                  duration: 0.4,
-                  ease: "easeOut",
-                }}
-              >
-                <ContactForm
-                  eventType={eventType}
-                  setIsSubmitted={setIsSubmitted}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* <AnimatePresence mode="wait"> */}
+          {isSubmitted ? (
+            <motion.div
+              key="submitted"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+              }}
+              className="flex size-full items-center justify-center"
+            >
+              <p className="text-center">
+                <span className="text-4xl">🎉</span>
+                <br />
+                Your message has been sent! <br />
+                We'll get back to you as soon as we can.
+              </p>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="form"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+              }}
+            >
+              <ContactForm
+                eventType={eventType}
+                setIsSubmitted={setIsSubmitted}
+              />
+            </motion.div>
+          )}
+          {/* </AnimatePresence> */}
         </div>
       </div>
     </section>
