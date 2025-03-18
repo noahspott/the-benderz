@@ -27,16 +27,15 @@ if (!eventSlug) {
 // Get the event data from the slug
 const thisEvent = await getEventBySlug(eventSlug);
 
+if (!thisEvent) {
+  return Astro.redirect("/404");
+}
 const specialEventName =
   thisEvent.showType === "Private" ? "Private Event" : "Wedding";
 
 const titleHeaderSubpageDescription = !thisEvent.venue
   ? `${specialEventName} - ${thisEvent.city}, ${thisEvent.state}`
   : `${thisEvent?.venue?.name}, ${thisEvent?.venue?.address?.city}, ${thisEvent?.venue?.address?.state}`;
-
-if (!thisEvent) {
-  return Astro.redirect("/404");
-}
 ---
 
 <Layout
