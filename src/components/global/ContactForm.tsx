@@ -51,8 +51,6 @@ export default function ContactForm({
         </label>
       </p>
       <input type="hidden" name="form-name" value="contact" />
-      <label htmlFor="firstName">Name:</label>
-      <input className="border border-black p-2" type="text" name="firstName" />
       <div className="grid grid-cols-2 gap-6">
         <div className="grid w-full items-center">
           <Label htmlFor="firstName" className="mb-2">
