@@ -4,3 +4,9 @@
 
 [forms]
   contact = "Contact Form"
+
+[[redirects]]
+  from = "/schedule/*"
+  to = "/schedule"
+  status = 301
+  force = true
