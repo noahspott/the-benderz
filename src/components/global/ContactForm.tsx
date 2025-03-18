@@ -83,7 +83,13 @@ export default function ContactForm({
         <Label htmlFor="date" className="mb-2">
           When is your {eventType.toLowerCase()}?
         </Label>
-        <Input type="date" id="date" name="date" required />
+        <input
+          type="date"
+          id="date"
+          name="date"
+          className="border border-black p-2"
+          required
+        />
       </div>
       <div className="grid w-full items-center">
         <Label htmlFor="location" className="mb-2">
