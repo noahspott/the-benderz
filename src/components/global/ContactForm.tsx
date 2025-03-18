@@ -20,22 +20,12 @@ export default function ContactForm({
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      const response = await fetch("/", {
+      await fetch("/", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          Accept: "application/json",
         },
-        body: new URLSearchParams({
-          "form-name": "contact",
-          ...Object.fromEntries(formData),
-        }).toString(),
-      });
-
-      console.log("Form submission response:", {
-        status: response.status,
-        headers: Object.fromEntries(response.headers.entries()),
-        body: await response.text(),
+        body: new URLSearchParams(formData as any).toString(),
       });
     } catch (error) {
       console.error("Error:", error);
