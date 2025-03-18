@@ -17,9 +17,6 @@ import EventDetails from "../../../components/event/EventDetails.astro";
 import { getDate, getTime, formatShowDate } from "../../../lib/dateHelpers";
 import { getAllEvents, getEventBySlug } from "../../../lib/sanity";
 
-// Types
-import type { Event } from "../../../types/types";
-
 // Query
 const { event: eventSlug } = Astro.params;
 
@@ -30,17 +27,24 @@ if (!eventSlug) {
 // Get the event data from the slug
 const thisEvent = await getEventBySlug(eventSlug);
 
+const specialEventName =
+  thisEvent.showType === "Private" ? "Private Event" : "Wedding";
+
+const titleHeaderSubpageDescription = !thisEvent.venue
+  ? `${specialEventName} - ${thisEvent.city}, ${thisEvent.state}`
+  : `${thisEvent?.venue?.name}, ${thisEvent?.venue?.address?.city}, ${thisEvent?.venue?.address?.state}`;
+
 if (!thisEvent) {
   return Astro.redirect("/404");
 }
 ---
 
 <Layout
-  title={`${thisEvent?.venue.name} ${formatShowDate(thisEvent?.date)} | The Benderz`}
+  title={`${thisEvent.venue ? thisEvent?.venue?.name : specialEventName} ${formatShowDate(thisEvent?.date)} | The Benderz`}
 >
   <TitleHeaderSubpage
     headline={formatShowDate(thisEvent?.date)}
-    description={`${thisEvent?.venue.name}, ${thisEvent?.venue.address.city}, ${thisEvent?.venue.address.state}`}
+    description={titleHeaderSubpageDescription}
   />
   <!-- <PortfolioHeader1
     headline={getDate(event.date)}

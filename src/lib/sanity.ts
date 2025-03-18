@@ -77,6 +77,8 @@ const QUERIES = {
       allEvent(where: {date: {lt: "${date}"}}, sort: [{date: ASC}]) {
         date
         showType
+        city
+        state
         venue {
           name
           address{
@@ -106,6 +108,8 @@ const QUERIES = {
       allEvent(where: {date: {gte: "${date}"}}, sort: [{date: ASC}]) {
         date
         showType
+        city
+        state
         venue {
           name
           slug {
@@ -157,6 +161,8 @@ const QUERIES = {
       allEvent {
         showType
         description
+        city
+        state
         date
         venue {
           name
@@ -188,6 +194,8 @@ const QUERIES = {
         date
         showType
         description
+        city
+        state
         venue {
           name
           address {

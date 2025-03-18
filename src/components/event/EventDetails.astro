@@ -23,6 +23,8 @@ interface Props {
 }
 
 const { event } = Astro.props;
+
+console.log("event", event);
 ---
 
 <article class="relative px-[5%] py-12 md:py-18 lg:py-20">
@@ -118,13 +120,13 @@ const { event } = Astro.props;
             </h3>
             <div class="mt-4">
               <h4 class="text-xl font-medium text-gray-900">
-                {event.venue.name}
+                {event?.venue?.name}
               </h4>
               <address class="mt-2 text-lg not-italic leading-relaxed text-gray-600">
-                <div>{event.venue.address.streetAddress}</div>
+                <div>{event?.venue?.address?.streetAddress}</div>
                 <div>
-                  {event.venue.address.city}, {event.venue.address.state}{" "}
-                  {event.venue.address.zip}
+                  {event?.venue?.address?.city}, {event?.venue?.address?.state}{" "}
+                  {event?.venue?.address?.zip}
                 </div>
               </address>
             </div>
@@ -150,13 +152,13 @@ const { event } = Astro.props;
     },
     location: {
       "@type": "Place",
-      name: event.venue.name,
+      name: event?.venue?.name,
       address: {
         "@type": "PostalAddress",
-        streetAddress: event.venue.address.streetAddress,
-        addressLocality: event.venue.address.city,
-        addressRegion: event.venue.address.state,
-        postalCode: event.venue.address.zip,
+        streetAddress: event.venue?.address.streetAddress,
+        addressLocality: event.venue?.address.city,
+        addressRegion: event.venue?.address.state,
+        postalCode: event.venue?.address.zip,
         addressCountry: "US",
       },
     },

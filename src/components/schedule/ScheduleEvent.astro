@@ -37,9 +37,9 @@ const { event, index, classes = "" } = Astro.props;
 
     <address class="text-xl font-light not-italic lg:text-2xl">
       {
-        event?.venue?.address?.city &&
-          event?.venue?.address?.state &&
-          `${event?.venue?.address?.city}, ${event?.venue?.address?.state}`
+        event.venue
+          ? `${event?.venue?.address?.city}, ${event?.venue?.address?.state}`
+          : `${event.city}, ${event.state}`
       }
     </address>
   </div>

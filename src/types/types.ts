@@ -37,10 +37,12 @@ export type Event = {
   date: string;
   description: string;
   showType: string;
-  venue: Venue;
+  venue?: Venue;
   slug: {
     current: string;
   };
+  city?: string;
+  state?: string;
 };
 
 export type Faq = {

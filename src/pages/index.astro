@@ -39,6 +39,8 @@ const query = `
     allEvent(${whereStatement}, ${sortStatement}, ${limitStatement}) {
       date
       showType
+      city
+      state
       venue {
         name
         address {
