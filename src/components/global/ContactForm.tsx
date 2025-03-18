@@ -41,8 +41,8 @@ export default function ContactForm({
       netlify-honeypot
       name="contact"
       method="POST"
-      action="/"
-      // onSubmit={handleSubmit}
+      // action="/"
+      onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >
       <p className="hidden">
