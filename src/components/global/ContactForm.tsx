@@ -53,7 +53,7 @@ export default function ContactForm({
       <input type="hidden" name="form-name" value="contact" />
       <label htmlFor="firstName">Name:</label>
       <input className="border border-black p-2" type="text" name="firstName" />
-      {/* <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-6">
         <div className="grid w-full items-center">
           <Label htmlFor="firstName" className="mb-2">
             First Name
@@ -104,7 +104,7 @@ export default function ContactForm({
           className="min-h-[11.25rem] overflow-auto"
           required
         />
-      </div> */}
+      </div>
       <Button
         type="submit"
         className={`button ${isSending && "animate-pulse"} text-center`}
@@ -112,8 +112,6 @@ export default function ContactForm({
       >
         {isSending ? "Sending..." : "Submit"}
       </Button>
-      {/* <div className="text-center">
-      </div> */}
     </form>
   );
 }
