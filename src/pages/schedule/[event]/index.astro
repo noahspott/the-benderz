@@ -33,23 +33,6 @@ const thisEvent = await getEventBySlug(eventSlug);
 if (!thisEvent) {
   return Astro.redirect("/404");
 }
-
-// export async function getStaticPaths() {
-//   const events = await getAllEvents();
-
-//   return events.map((event: Event) => ({
-//     params: {
-//       event: `/${event.slug.current}`,
-//     },
-//     props: { event: event },
-//   }));
-// }
-
-// type EventProps = {
-//   event: Event;
-// };
-
-// const { event } = Astro.props as EventProps;
 ---
 
 <Layout

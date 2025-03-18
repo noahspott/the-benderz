@@ -105,6 +105,7 @@ const QUERIES = {
     query FutureEvents {
       allEvent(where: {date: {gte: "${date}"}}, sort: [{date: ASC}]) {
         date
+        showType
         venue {
           name
           slug {
