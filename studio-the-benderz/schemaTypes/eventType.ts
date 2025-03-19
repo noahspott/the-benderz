@@ -104,6 +104,7 @@ export default defineType({
         ],
       },
       validation: (Rule) => Rule.required(),
+      hidden: ({parent}) => parent?.showType !== 'Private' && parent?.showType !== 'Wedding',
     }),
     defineField({
       name: 'description',
