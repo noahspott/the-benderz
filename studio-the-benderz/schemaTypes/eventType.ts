@@ -42,7 +42,13 @@ export default defineType({
       type: 'string',
       description: 'The city of the event',
       hidden: ({parent}) => parent?.showType !== 'Private' && parent?.showType !== 'Wedding',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value, {parent}) =>
+          ((parent as any)?.showType === 'Private' || (parent as any)?.showType === 'Wedding') &&
+          !value
+            ? 'This field is required for Private/Wedding events'
+            : true,
+        ),
     }),
     defineField({
       name: 'state',
@@ -103,7 +109,13 @@ export default defineType({
           {title: 'WY', value: 'WY'},
         ],
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value, {parent}) =>
+          ((parent as any)?.showType === 'Private' || (parent as any)?.showType === 'Wedding') &&
+          !value
+            ? 'This field is required for Private/Wedding events'
+            : true,
+        ),
       hidden: ({parent}) => parent?.showType !== 'Private' && parent?.showType !== 'Wedding',
     }),
     defineField({
