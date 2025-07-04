@@ -37,3 +37,11 @@ export function getDayOfWeek(date: string, format: "short" | "long") {
   const dateObj = new Date(date);
   return dateObj.toLocaleDateString("en-US", { weekday: format });
 }
+
+// Get yesterday
+export function getYesterday() {
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  return yesterday;
+}

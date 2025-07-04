@@ -1,4 +1,5 @@
 import { GRAPHQL_URL } from "../data/consts";
+import { getYesterday } from "./dateHelpers";
 
 /**
  * Generic function to execute any GraphQL query
@@ -235,8 +236,7 @@ export async function getOldEvents() {
 
 export async function getFutureEvents() {
   try {
-    const today = new Date();
-    const query = QUERIES.futureEvents(today.toISOString());
+    const query = QUERIES.futureEvents(getYesterday().toISOString());
     const response = await fetchGraphQL<{ allEvent: any[] }>(query);
     return response.allEvent;
   } catch {
