@@ -27,6 +27,7 @@ import defaultImage from "../../../assets/images/layered-peaks-bg.svg";
 // Sanity
 import { getVenues, executeQuery } from "../../../lib/sanity";
 import type { Venue, Event } from "../../../types/types";
+import { getYesterday } from "../../../lib/dateHelpers";
 
 type VenueProps = {
   venueData: Venue;
@@ -103,9 +104,9 @@ const eventsResponse = await executeQuery<{ allEvent: Event[] }>(`
 
 let events: Event[] = eventsResponse?.allEvent || [];
 
-// Filter future events
+// Filter future event
 events = events.filter((event: Event) => {
-  return new Date(event.date) > new Date();
+  return new Date(event.date) > getYesterday();
 });
 
 // Get the gallery images for the venue

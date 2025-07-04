@@ -26,10 +26,10 @@ import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
 // Lib
 import { executeQuery } from "../lib/sanity";
+import { getYesterday } from "../lib/dateHelpers";
 
 // Query
-const today = new Date();
-const startDate = today.toISOString();
+const startDate = getYesterday().toISOString();
 const numberOfGigs = 5;
 const whereStatement = `where: {date: {gte: "${startDate}"}}`;
 const sortStatement = `sort: [{date: ASC}]`;
