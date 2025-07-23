@@ -49,7 +49,7 @@ export default function AboutVideoSection({
               <DialogTrigger className="relative flex w-full items-center justify-center">
                 <img
                   src={youtubeThumbnailUrl}
-                  alt="Relume placeholder image"
+                  alt=""
                   className="size-full object-cover"
                 />
                 <span className="absolute inset-0 z-10 bg-black/50" />
