@@ -9,18 +9,14 @@
  *
  */
 
-//  tools
-import { motion } from "framer-motion";
-
-// types
-import type { Link } from "../../types/types";
-
-// global components
+// Components
 import { Button } from "@relume_io/relume-ui";
 import ParallaxBackgroundImage from "../global/ParallaxBackgroundImage.astro";
 import ShapeDivider from "../global/ShapeDivider.astro";
 
-// props
+// Types
+import type { Link } from "../../types/types";
+
 type Props = {
   imageMetaData: ImageMetadata;
   heading: string;
@@ -76,6 +72,7 @@ const { imageMetaData, heading, subheading, button } = Astro.props;
     imageMetaData={imageMetaData}
     overlayClassName="bg-gray-900/70"
     objectPosition="55% center"
+    loading="eager"
   />
   <ShapeDivider color="#ffffff" variant="triangle" top={false} />
 </section>
