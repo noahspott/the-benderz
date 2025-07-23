@@ -38,10 +38,8 @@ export default function ContactForm({
   return (
     <form
       data-netlify="true"
-      netlify-honeypot
       name="contact"
       method="POST"
-      // action="/"
       onSubmit={handleSubmit}
       className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
     >

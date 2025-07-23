@@ -6,7 +6,7 @@
  * @note This component is used to display the "What We Do" section of the home page.
  */
 
-// Global Components
+// Components
 import {
   Button,
   Dialog,
@@ -24,8 +24,6 @@ import {
 
 // Data
 import { slugs } from "../../data/consts";
-
-const icon = <MdPlayCircleOutline className="size-6 text-black/70" />;
 
 // Copy
 const features = [

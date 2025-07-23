@@ -1,6 +1,6 @@
 ---
+// Images
 import ParallaxBackgroundImage from "../global/ParallaxBackgroundImage.astro";
-
 import defaultImage from "../../assets/images/layered-peaks-bg.svg";
 
 // Types
@@ -13,8 +13,6 @@ type Props = {
 };
 
 const { headline = "", subtext = "", coverImage } = Astro.props;
-
-console.log("coverImage", coverImage);
 ---
 
 <section id="header" class="relative px-[5%] pt-12">
@@ -30,31 +28,13 @@ console.log("coverImage", coverImage);
       </h2>
     </div>
   </div>
-
-  <!-- Check if coverImage is null and use defaultImage -->
-  <!-- it should only ever be one of these: -->
   {
     !coverImage && (
       <ParallaxBackgroundImage
         imageMetaData={defaultImage}
         overlayClassName="bg-black/50"
+        loading="eager"
       />
     )
   }
-  <!-- {
-    typeof coverImage === "string" && (
-      <ParallaxBackgroundImage
-        imgSrc={coverImage}
-        overlayClassName="bg-black/60"
-      />
-    )
-  }
-  {
-    typeof coverImage === "object" && (
-      <ParallaxBackgroundImage
-        imageMetaData={coverImage}
-        overlayClassName="bg-black/60"
-      />
-    )
-  } -->
 </section>
