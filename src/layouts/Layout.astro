@@ -1,8 +1,9 @@
 ---
 // MAIN LAYOUT
 
-// Global components
+// Components
 import { Navbar, Footer } from "../components";
+import PageTransition from "../components/decorative/PageTransition";
 
 // Styles
 import "../styles/global.css";
@@ -13,13 +14,12 @@ import type { Link } from "../types/types";
 
 // Data
 import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
+import { organizationSchema } from "../data/organizationSchema";
 import { slugs } from "../data/consts";
 
 const primaryLinks: Link[] = [
   { href: slugs.weddings, text: "Weddings" },
   { href: slugs.privateEvents, text: "Private Events" },
-  // { href: slugs.playlist, text: "Playlist" },
-  // { href: slugs.testimonials, text: "Testimonials" },
 ];
 
 const primaryButton: Link = {
@@ -57,54 +57,9 @@ const secondaryLinks: Link[] = [
     description: "Check out our playlist!",
     iconSrc: "",
   },
-  // {
-  //   href: slugs.blog,
-  //   title: "Blog",
-  //   description: "Check out our blog!",
-  //   iconSrc: "",
-  // },
 ];
 
 const logoSrc = "/images/the-benderz.svg";
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  name: "The Benderz",
-  url: "https://www.thebenderz.com",
-  image: "https://www.thebenderz.com/images/the-benderz-2.svg",
-  genre: "Cover Band",
-  member: [
-    {
-      "@type": "Person",
-      name: "Angelique Buckley",
-      role: "Lead Singer",
-    },
-    {
-      "@type": "Person",
-      name: "Joe Veltri",
-      role: "Keyboardist",
-    },
-    {
-      "@type": "Person",
-      name: "John Zadeh",
-      role: "Drummer",
-    },
-    {
-      "@type": "Person",
-      name: "Jayce Bradley",
-      role: "Guitarist",
-    },
-  ],
-  description:
-    "The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, weddings, and private events up and down the East Coast.",
-  location: "Philadelphia, PA",
-  sameAs: [
-    "https://www.facebook.com/thebenderz",
-    "https://www.instagram.com/thebenderzband",
-    "https://www.youtube.com/@thebenderz",
-  ],
-};
 
 const {
   title = "The Benderz | Your Party Starts Here",
@@ -204,7 +159,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         moreInfo: [
           { text: "About Us", href: slugs.about },
           { text: "Playlist", href: slugs.playlist },
-          // { text: "Testimonials", href: slugs.testimonials },
           { text: "Photos", href: slugs.photos },
           { text: "Contact Us", href: slugs.contact },
         ],
