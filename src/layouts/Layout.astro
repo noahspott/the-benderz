@@ -134,43 +134,45 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
   </head>
   <body>
-    <Navbar
-      primaryButton={primaryButton}
-      secondaryButton={secondaryButton}
-      primaryLinks={primaryLinks}
-      secondaryLinks={secondaryLinks}
-      logoSrc={logoSrc}
-      client:load
-    />
+    <PageTransition client:only>
+      <Navbar
+        primaryButton={primaryButton}
+        secondaryButton={secondaryButton}
+        primaryLinks={primaryLinks}
+        secondaryLinks={secondaryLinks}
+        logoSrc={logoSrc}
+        client:load
+      />
 
-    <slot />
+      <slot />
 
-    <Footer
-      logoSrc={logoSrc}
-      bigLogoSrc={`/images/the-benderz-2.svg`}
-      companyName={NAME}
-      newsletterText="Subscribe to our newsletter"
-      links={{
-        whatWeDo: [
-          { text: "Weddings", href: slugs.weddings },
-          { text: "Private Events", href: slugs.privateEvents },
-          { text: "Upcoming Shows", href: slugs.schedule },
-        ],
-        moreInfo: [
-          { text: "About Us", href: slugs.about },
-          { text: "Playlist", href: slugs.playlist },
-          { text: "Photos", href: slugs.photos },
-          { text: "Contact Us", href: slugs.contact },
-        ],
-        followUs: [
-          { text: "Facebook", href: FACEBOOK_URL },
-          { text: "Instagram", href: INSTAGRAM_URL },
-          { text: "Youtube", href: YOUTUBE_URL },
-        ],
-      }}
-      footerText="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast. "
-      policies={[]}
-      footerImageSrc="src/assets/images/footer-bg.svg"
-    />
+      <Footer
+        logoSrc={logoSrc}
+        bigLogoSrc={`/images/the-benderz-2.svg`}
+        companyName={NAME}
+        newsletterText="Subscribe to our newsletter"
+        links={{
+          whatWeDo: [
+            { text: "Weddings", href: slugs.weddings },
+            { text: "Private Events", href: slugs.privateEvents },
+            { text: "Upcoming Shows", href: slugs.schedule },
+          ],
+          moreInfo: [
+            { text: "About Us", href: slugs.about },
+            { text: "Playlist", href: slugs.playlist },
+            { text: "Photos", href: slugs.photos },
+            { text: "Contact Us", href: slugs.contact },
+          ],
+          followUs: [
+            { text: "Facebook", href: FACEBOOK_URL },
+            { text: "Instagram", href: INSTAGRAM_URL },
+            { text: "Youtube", href: YOUTUBE_URL },
+          ],
+        }}
+        footerText="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast. "
+        policies={[]}
+        footerImageSrc="src/assets/images/footer-bg.svg"
+      />
+    </PageTransition>
   </body>
 </html>
