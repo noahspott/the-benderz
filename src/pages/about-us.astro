@@ -1,25 +1,19 @@
 ---
-// Images
-import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent-100.svg";
-
 // Components
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import {
-  TitleHeaderSubpage,
-  ContactSection,
-  Faqs,
-  TestimonialSimple,
-} from "../components";
+import { TitleHeaderSubpage, ContactSection, Faqs } from "../components";
 import MeetTheBenderz from "../components/about-us/MeetTheBenderz.astro";
 import MeetOurTeam from "../components/about-us/MeetOurTeam.astro";
+
+// Images
+import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent-100.svg";
 
 // Content
 const headline = "About Us";
 const description =
   "The Benderz captivate audiences with unforgettable performances, bringing together music lovers through an eclectic mix of genres. 🕺";
 const contactHeading = "Say Hello 👋";
-
 const aboutUsFaqBody =
   "Discover answers to your most pressing questions about booking The Benderz for your event.";
 
@@ -30,7 +24,6 @@ import { ABOUT_PAGE_FAQS } from "../data/faqs";
   <TitleHeaderSubpage headline={headline} description={description} />
   <MeetTheBenderz />
   <MeetOurTeam />
-  <!-- <TestimonialSimple /> -->
   <Faqs faqs={ABOUT_PAGE_FAQS} body={aboutUsFaqBody} client:load>
     <Image
       src={faqBackgroundImage}
