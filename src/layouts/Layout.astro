@@ -124,6 +124,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       set:html={JSON.stringify(organizationSchema)}
     />
 
+    <!-- Font Preloader -->
+    <link
+      rel="preload"
+      href="/fonts/bebas-neue-v14-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
     <!-- Open Graph -->
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content={canonicalUrl} />
