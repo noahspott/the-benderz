@@ -6,6 +6,8 @@ export const EMAIL_ADDRESS = "booking@thebenderz.com";
 export const PHONE_NUMBER = "+1 (800) 773-0337";
 export const LOCATION = "Philadelphia, PA";
 
+export const WEBSITE_URL = "https://thebenderz.com";
+
 export const socialLinks = {
   facebook: FACEBOOK_URL,
   instagram: INSTAGRAM_URL,

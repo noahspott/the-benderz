@@ -1,8 +1,15 @@
 ---
 // MAIN LAYOUT
 
-// Global components
+// Components
 import { Navbar, Footer } from "../components";
+import PageTransition from "../components/decorative/PageTransition";
+import {
+  FontPreloader,
+  OrganizationSchema,
+  OpenGraph,
+  Favicon,
+} from "../components/layout";
 
 // Styles
 import "../styles/global.css";
@@ -18,8 +25,6 @@ import { slugs } from "../data/consts";
 const primaryLinks: Link[] = [
   { href: slugs.weddings, text: "Weddings" },
   { href: slugs.privateEvents, text: "Private Events" },
-  // { href: slugs.playlist, text: "Playlist" },
-  // { href: slugs.testimonials, text: "Testimonials" },
 ];
 
 const primaryButton: Link = {
@@ -57,114 +62,23 @@ const secondaryLinks: Link[] = [
     description: "Check out our playlist!",
     iconSrc: "",
   },
-  // {
-  //   href: slugs.blog,
-  //   title: "Blog",
-  //   description: "Check out our blog!",
-  //   iconSrc: "",
-  // },
 ];
 
 const logoSrc = "/images/the-benderz.svg";
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  name: "The Benderz",
-  url: "https://www.thebenderz.com",
-  image: "https://www.thebenderz.com/images/the-benderz-2.svg",
-  genre: "Cover Band",
-  member: [
-    {
-      "@type": "Person",
-      name: "Angelique Buckley",
-      role: "Lead Singer",
-    },
-    {
-      "@type": "Person",
-      name: "Joe Veltri",
-      role: "Keyboardist",
-    },
-    {
-      "@type": "Person",
-      name: "John Zadeh",
-      role: "Drummer",
-    },
-    {
-      "@type": "Person",
-      name: "Jayce Bradley",
-      role: "Guitarist",
-    },
-  ],
-  description:
-    "The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, weddings, and private events up and down the East Coast.",
-  location: "Philadelphia, PA",
-  sameAs: [
-    "https://www.facebook.com/thebenderz",
-    "https://www.instagram.com/thebenderzband",
-    "https://www.youtube.com/@thebenderz",
-  ],
-};
 
 const {
   title = "The Benderz | Your Party Starts Here",
   description = "The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast.",
 } = Astro.props;
-
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Organization Schema -->
-    <script
-      is:inline
-      type="application/ld+json"
-      set:html={JSON.stringify(organizationSchema)}
-    />
-
-    <!-- Font Preloader -->
-    <link
-      rel="preload"
-      href="/fonts/bebas-neue-v14-latin-regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-
-    <!-- Open Graph -->
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/opengraph.png" />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="thebenderz.com" />
-    <meta property="twitter:url" content={canonicalUrl} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/images/opengraph.png" />
-
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="/favicon/favicon-96x96.png"
-      sizes="96x96"
-    />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
-    />
-    <meta name="apple-mobile-web-app-title" content="Benderz" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <Favicon />
+    <FontPreloader />
+    <OrganizationSchema />
+    <OpenGraph title={title} description={description} />
 
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap.xml" />
@@ -179,44 +93,45 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
   </head>
   <body>
-    <Navbar
-      primaryButton={primaryButton}
-      secondaryButton={secondaryButton}
-      primaryLinks={primaryLinks}
-      secondaryLinks={secondaryLinks}
-      logoSrc={logoSrc}
-      client:load
-    />
+    <PageTransition client:only>
+      <Navbar
+        primaryButton={primaryButton}
+        secondaryButton={secondaryButton}
+        primaryLinks={primaryLinks}
+        secondaryLinks={secondaryLinks}
+        logoSrc={logoSrc}
+        client:load
+      />
 
-    <slot />
+      <slot />
 
-    <Footer
-      logoSrc={logoSrc}
-      bigLogoSrc={`/images/the-benderz-2.svg`}
-      companyName={NAME}
-      newsletterText="Subscribe to our newsletter"
-      links={{
-        whatWeDo: [
-          { text: "Weddings", href: slugs.weddings },
-          { text: "Private Events", href: slugs.privateEvents },
-          { text: "Upcoming Shows", href: slugs.schedule },
-        ],
-        moreInfo: [
-          { text: "About Us", href: slugs.about },
-          { text: "Playlist", href: slugs.playlist },
-          // { text: "Testimonials", href: slugs.testimonials },
-          { text: "Photos", href: slugs.photos },
-          { text: "Contact Us", href: slugs.contact },
-        ],
-        followUs: [
-          { text: "Facebook", href: FACEBOOK_URL },
-          { text: "Instagram", href: INSTAGRAM_URL },
-          { text: "Youtube", href: YOUTUBE_URL },
-        ],
-      }}
-      footerText="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast. "
-      policies={[]}
-      footerImageSrc="src/assets/images/footer-bg.svg"
-    />
+      <Footer
+        logoSrc={logoSrc}
+        bigLogoSrc={`/images/the-benderz-2.svg`}
+        companyName={NAME}
+        newsletterText="Subscribe to our newsletter"
+        links={{
+          whatWeDo: [
+            { text: "Weddings", href: slugs.weddings },
+            { text: "Private Events", href: slugs.privateEvents },
+            { text: "Upcoming Shows", href: slugs.schedule },
+          ],
+          moreInfo: [
+            { text: "About Us", href: slugs.about },
+            { text: "Playlist", href: slugs.playlist },
+            { text: "Photos", href: slugs.photos },
+            { text: "Contact Us", href: slugs.contact },
+          ],
+          followUs: [
+            { text: "Facebook", href: FACEBOOK_URL },
+            { text: "Instagram", href: INSTAGRAM_URL },
+            { text: "Youtube", href: YOUTUBE_URL },
+          ],
+        }}
+        footerText="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast. "
+        policies={[]}
+        footerImageSrc="src/assets/images/footer-bg.svg"
+      />
+    </PageTransition>
   </body>
 </html>

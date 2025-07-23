@@ -1,0 +1,9 @@
+---
+import { organizationSchema } from "../../data/organizationSchema";
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(organizationSchema)}
+/>
