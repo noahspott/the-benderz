@@ -6,27 +6,20 @@
  * This is the home page of the website.
  */
 
-// Global Components
-import Layout from "../layouts/Layout.astro";
-import ContactSection from "../components/global/ContactSection";
-import { UpcomingShows } from "../components";
-
-// Local Components
-import Hero from "../components/home/Hero.astro";
-import WhatWeDo from "../components/home/WhatWeDo";
-import TestimonialBlockParallax from "../components/home/TestimonialBlockParallax.astro";
-import VenueLogos from "../components/home/VenueLogos.astro";
-
-// Images
-import testimonialBackgroundImage from "../assets/images/hero-1.jpg";
-import testimonialAvatarImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
-
-// Data
-import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
-
 // Lib
 import { executeQuery } from "../lib/sanity";
 import { getYesterday } from "../lib/dateHelpers";
+
+// Components
+import Layout from "../layouts/Layout.astro";
+import { UpcomingShows } from "../components";
+import Hero from "../components/home/Hero.astro";
+import WhatWeDo from "../components/home/WhatWeDo";
+import VenueLogos from "../components/home/VenueLogos.astro";
+import ContactSection from "../components/global/ContactSection";
+
+// Images
+import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
 // Query
 const startDate = getYesterday().toISOString();
@@ -60,7 +53,6 @@ const query = `
 const response = (await executeQuery(query)) as any;
 const events = response?.allEvent ?? [];
 
-// Content
 // Hero Copy
 const heading = "The Benderz";
 const subheading = ["Not just a cover band.", "A party you'll never forget."];
@@ -72,14 +64,6 @@ const button = {
 // Youtube Data
 const youtubeEmbedUrl = "https://www.youtube.com/embed/tasi6UpOaO8";
 const youtubeThumbnailUrl = "https://i.ytimg.com/vi/tasi6UpOaO8/hqdefault.jpg";
-
-// Testimonial Data
-const quote =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.";
-const author = "John Doe";
-const title = "CEO, Company Name";
-const avatarImage = testimonialAvatarImage;
-const backgroundImage = testimonialBackgroundImage;
 ---
 
 <Layout
@@ -97,13 +81,6 @@ const backgroundImage = testimonialBackgroundImage;
     youtubeEmbedUrl={youtubeEmbedUrl}
     youtubeThumbnailUrl={youtubeThumbnailUrl}
   />
-  <!-- <TestimonialBlockParallax
-    quote={quote}
-    author={author}
-    title={title}
-    avatarImage={avatarImage}
-    backgroundImage={backgroundImage}
-  /> -->
   <UpcomingShows events={events} />
   <VenueLogos />
   <ContactSection
