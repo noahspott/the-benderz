@@ -18,6 +18,9 @@ import WhatWeDo from "../components/home/WhatWeDo";
 import VenueLogos from "../components/home/VenueLogos.astro";
 import ContactSection from "../components/global/ContactSection";
 
+// Data
+import { seo } from "@/data/seo";
+
 // Images
 import heroImage from "../assets/images/angelique-buckley-rockstar-pose.jpg";
 
@@ -66,10 +69,7 @@ const youtubeEmbedUrl = "https://www.youtube.com/embed/tasi6UpOaO8";
 const youtubeThumbnailUrl = "https://i.ytimg.com/vi/tasi6UpOaO8/hqdefault.jpg";
 ---
 
-<Layout
-  title="The Benderz | Your Party Starts Here"
-  description="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast."
->
+<Layout seo={seo.home}>
   <Hero
     imageMetaData={heroImage}
     heading={heading}

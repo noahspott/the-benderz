@@ -1,5 +1,4 @@
 ---
-export const prerender = true;
 /**
  * Playlist Page
  * src/pages/playlist.astro
@@ -7,23 +6,34 @@ export const prerender = true;
  * This is a page to display the Benderz playlist.
  */
 
-// Global Components
-import Layout from "../layouts/Layout.astro";
-import { TitleHeaderSubpage, ContactSection } from "../components";
+export const prerender = true;
 
-// Local Components
-import PlaylistSection from "../components/playlist/PlaylistSection.astro";
+// Components
+import Layout from "@/layouts/Layout.astro";
+import { TitleHeaderSubpage, ContactSection } from "@/components";
+import PlaylistSection from "@/components/playlist/PlaylistSection.astro";
 
-const headline = "Playlist";
-const description =
-  "The perfect mix of energy, fun, and groove—straight from our stage to your ears. 🎤";
+// Data
+import { seo } from "@/data/seo";
+
+// Content
+const content = {
+  header: {
+    heading: "Playlist",
+    body: "The perfect mix of energy, fun, and groove—straight from our stage to your ears. 🎤",
+  },
+  contactSection: {
+    heading: "Like what you hear?",
+    body: "Book The Benderz for your next event. We'll make sure your party is unforgettable.",
+  },
+};
 ---
 
-<Layout
-  title="Playlist | The Benderz"
-  description="The perfect mix of energy, fun, and groove—straight from our stage to your ears. 🎧"
->
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.playlist}>
+  <TitleHeaderSubpage
+    headline={content.header.heading}
+    description={content.header.body}
+  />
   <PlaylistSection />
   <ContactSection
     client:load

@@ -6,25 +6,33 @@ import { TitleHeaderSubpage, ContactSection, Faqs } from "../components";
 import MeetTheBenderz from "../components/about-us/MeetTheBenderz.astro";
 import MeetOurTeam from "../components/about-us/MeetOurTeam.astro";
 
+// Data
+import { seo } from "@/data/seo";
+
 // Images
 import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent-100.svg";
 
 // Content
-const headline = "About Us";
-const description =
-  "The Benderz captivate audiences with unforgettable performances, bringing together music lovers through an eclectic mix of genres. 🕺";
-const contactHeading = "Say Hello 👋";
-const aboutUsFaqBody =
-  "Discover answers to your most pressing questions about booking The Benderz for your event.";
+const content = {
+  headline: "About Us",
+  description:
+    "The Benderz captivate audiences with unforgettable performances, bringing together music lovers through an eclectic mix of genres. 🕺",
+  contactHeading: "Say Hello 👋",
+  faqBody:
+    "Discover answers to your most pressing questions about booking The Benderz for your event.",
+};
 
 import { ABOUT_PAGE_FAQS } from "../data/faqs";
 ---
 
-<Layout title="About Us | The Benderz" description={description}>
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.about}>
+  <TitleHeaderSubpage
+    headline={content.headline}
+    description={content.description}
+  />
   <MeetTheBenderz />
   <MeetOurTeam />
-  <Faqs faqs={ABOUT_PAGE_FAQS} body={aboutUsFaqBody} client:load>
+  <Faqs faqs={ABOUT_PAGE_FAQS} body={content.faqBody} client:load>
     <Image
       src={faqBackgroundImage}
       alt=""
@@ -34,5 +42,5 @@ import { ABOUT_PAGE_FAQS } from "../data/faqs";
       }}
     />
   </Faqs>
-  <ContactSection client:load heading={contactHeading} />
+  <ContactSection client:load heading={content.contactHeading} />
 </Layout>

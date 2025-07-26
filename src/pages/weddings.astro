@@ -6,69 +6,59 @@
  * A page to sell the band for weddings.
  */
 
-// Global components
+// Components
 import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 // Local components
-import { HeroSubpage, AboutVideoSection, Faqs } from "../components";
-import { ContactSection2 } from "../components/";
-import WeddingServicesSection from "../components/weddings/WeddingServicesSection.astro";
-import OurPlaylistSection from "../components/weddings/OurPlaylistSection.astro";
-
-// Types
-import type { Link } from "../types/types";
+import { ContactSection2 } from "@/components/";
+import { HeroSubpage, AboutVideoSection, Faqs } from "@/components";
+import OurPlaylistSection from "@/components/weddings/OurPlaylistSection.astro";
+import WeddingServicesSection from "@/components/weddings/WeddingServicesSection.astro";
 
 // Images
-import backgroundImage from "../assets/images/hero-2.jpg";
-import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent-100.svg";
+import backgroundImage from "@/assets/images/hero-2.jpg";
+import faqBackgroundImage from "@/assets/images/patterns/polygon-scatter-accent-100.svg";
 
-// Copy
-const kicker = "Wedding Band • Philadelphia";
-const headline = '"Our friends still tell us - we had the Best Wedding Band!"';
-const body =
-  "We're not just another wedding band. Our show is a high-energy performance that will keep your guests dancing all night long.";
-const buttons: Link[] = [
-  { title: "Book Now", href: "/contact" },
-  { title: "View Schedule", href: "/schedule" },
-];
-
-const weddingSectionCopy = {
-  kicker: "The Wedding Party",
-  headline: "We bring the shore party vibe to every wedding.",
-  body: "For over a decade, The Benderz have been creating the nightlife soundtrack for the best clubs in Atlantic City, Sea Isle City, Dewey Beach, and more. Our specialty is packaging that energy and delivering it to you on your special night.",
-};
-
-const faqBody =
-  "Find answers to your most common questions about booking The Benderz for your wedding.";
-
+// Data
+import { seo } from "@/data/seo";
 import { WEDDING_PAGE_FAQS } from "../data/faqs";
+
+// Content
+const content = {
+  hero: {
+    kicker: "Wedding Band • Philadelphia",
+    headline: '"Our friends still tell us - we had the Best Wedding Band!"',
+    body: "We're not just another wedding band. Our show is a high-energy performance that will keep your guests dancing all night long.",
+    buttons: [
+      { title: "Book Now", href: "/contact" },
+      { title: "View Schedule", href: "/schedule" },
+    ],
+  },
+  about: {
+    kicker: "The Wedding Party",
+    headline: "We bring the shore party vibe to every wedding.",
+    body: "For over a decade, The Benderz have been creating the nightlife soundtrack for the best clubs in Atlantic City, Sea Isle City, Dewey Beach, and more. Our specialty is packaging that energy and delivering it to you on your special night.",
+  },
+  faqs: {
+    body: "Find answers to your most common questions about booking The Benderz for your wedding.",
+    faqs: WEDDING_PAGE_FAQS,
+  },
+};
 ---
 
-<Layout
-  title="High Energy Wedding Band Philadelphia | The Benderz"
-  description={body}
->
-  <!-- Hero -->
+<Layout seo={seo.weddings}>
   <HeroSubpage
-    headline={headline}
-    body={body}
-    kicker={kicker}
-    buttons={buttons}
+    headline={content.hero.headline}
+    body={content.hero.body}
+    kicker={content.hero.kicker}
+    buttons={content.hero.buttons}
     imageMetaData={backgroundImage}
   />
-
-  <!-- Video Section -->
-  <AboutVideoSection {...weddingSectionCopy} client:load />
-
-  <!-- Our Wedding Services -->
+  <AboutVideoSection {...content.about} client:load />
   <WeddingServicesSection />
-
-  <!-- The Benderz Playlist -->
   <OurPlaylistSection />
-
-  <!-- FAQ -->
-  <Faqs faqs={WEDDING_PAGE_FAQS} body={faqBody} client:load>
+  <Faqs faqs={content.faqs.faqs} body={content.faqs.body} client:load>
     <Image
       src={faqBackgroundImage}
       alt=""
@@ -80,7 +70,5 @@ import { WEDDING_PAGE_FAQS } from "../data/faqs";
       sizes="100vw"
     />
   </Faqs>
-
-  <!-- Contact -->
   <ContactSection2 eventType="Wedding" client:load />
 </Layout>
