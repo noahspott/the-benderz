@@ -7,21 +7,35 @@
  */
 
 // Components
-import Layout from "../layouts/Layout.astro";
-import { TitleHeaderSubpage, ContactSection } from "../components";
-import Gallery from "../components/photos/Gallery.astro";
+import Layout from "@/layouts/Layout.astro";
+import Gallery from "@/components/photos/Gallery.astro";
+import { TitleHeaderSubpage, ContactSection } from "@/components";
 
-// Header
-const headline = "Photos";
-const description = "Photos of the sickest band on the planet. 😉";
+// Data
+import { seo } from "@/data/seo";
 
-// Contact Section
-const contactHeading = "Like what you see?";
-const contactBody = "Reach out to book The Benderz for your next event!";
+// Content
+const content = {
+  header: {
+    heading: "Photos",
+    body: "Photos of the sickest band on the planet. 😉",
+  },
+  contactSection: {
+    heading: "Like what you see?",
+    body: "Reach out to book The Benderz for your next event!",
+  },
+};
 ---
 
-<Layout>
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.photos}>
+  <TitleHeaderSubpage
+    headline={content.header.heading}
+    description={content.header.body}
+  />
   <Gallery />
-  <ContactSection client:load heading={contactHeading} body={contactBody} />
+  <ContactSection
+    client:load
+    heading={content.contactSection.heading}
+    body={content.contactSection.body}
+  />
 </Layout>

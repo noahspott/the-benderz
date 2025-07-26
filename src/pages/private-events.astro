@@ -6,64 +6,66 @@
  * A page to sell the band for private events.
  */
 
-// Global Components
-import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
+// Components
 import {
-  HeroSubpage,
-  AboutVideoSection,
-  // ContactSection,
   Faqs,
   WhatWePlay,
+  HeroSubpage,
   ContactSection2,
-} from "../components";
-
-// Local Components
-import EventTypes from "../components/private-events/EventTypes.astro";
+  AboutVideoSection,
+} from "@/components";
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import EventTypes from "@/components/private-events/EventTypes.astro";
 
 // Types
-import type { Link } from "../types/types";
+import type { Link } from "@/types/types";
 
 // Images
 import backgroundImage from "../assets/images/hero-1.jpg";
 import faqBackgroundImage from "../assets/images/patterns/polygon-scatter-accent-100.svg";
 
-// Copy
-const kicker = "Corporate & Private Events";
-const headline =
-  "High Energy Live Music for Your Corporate Event or Private Party";
-const body =
-  "Make your private party or corporate event unforgettable with The Benderz, the party band that keeps your guests singing and dancing all night long.";
-const buttons: Link[] = [
-  { title: "Book Now", href: "/contact" },
-  { title: "View Schedule", href: "/schedule" },
-];
-
-const weddingSectionCopy = {
-  kicker: "Your Party, But Better",
-  headline: "We bring the shore party vibe to every event we play",
-  body: "For over a decade, The Benderz have been creating the nightlife soundtrack for the best clubs in Atlantic City, Sea Isle City, Dewey Beach, and more. Our specialty is packaging that energy and delivering it to you for your event.",
-};
-
-const privateEventsFaqBody =
-  "Discover answers to your most pressing questions about booking The Benderz for your event.";
-
+// Data
+import { seo } from "@/data/seo";
 import { PRIVATE_EVENT_PAGE_FAQS } from "../data/faqs";
+
+// Copy
+const content = {
+  heroSubpage: {
+    kicker: "Corporate & Private Events",
+    headline:
+      "High Energy Live Music for Your Corporate Event or Private Party",
+    body: "Make your private party or corporate event unforgettable with The Benderz, the party band that keeps your guests singing and dancing all night long.",
+    buttons: [
+      { title: "Book Now", href: "/contact" },
+      { title: "View Schedule", href: "/schedule" },
+    ],
+  },
+  weddingSectionCopy: {
+    kicker: "Your Party, But Better",
+    headline: "We bring the shore party vibe to every event we play",
+    body: "For over a decade, The Benderz have been creating the nightlife soundtrack for the best clubs in Atlantic City, Sea Isle City, Dewey Beach, and more. Our specialty is packaging that energy and delivering it to you for your event.",
+  },
+  faqs: {
+    body: "Discover answers to your most pressing questions about booking The Benderz for your event.",
+    faqs: PRIVATE_EVENT_PAGE_FAQS,
+  },
+};
 ---
 
-<Layout>
+<Layout seo={seo.privateEvents}>
   <HeroSubpage
-    headline={headline}
-    body={body}
-    kicker={kicker}
-    buttons={buttons}
+    headline={content.heroSubpage.headline}
+    body={content.heroSubpage.body}
+    kicker={content.heroSubpage.kicker}
+    buttons={content.heroSubpage.buttons}
     imageMetaData={backgroundImage}
   />
-  <AboutVideoSection {...weddingSectionCopy} client:load />
+  <AboutVideoSection {...content.weddingSectionCopy} client:load />
   <EventTypes />
   <WhatWePlay />
   <!-- <TestimonialSimple /> -->
-  <Faqs faqs={PRIVATE_EVENT_PAGE_FAQS} body={privateEventsFaqBody} client:load>
+  <Faqs faqs={content.faqs.faqs} body={content.faqs.body} client:load>
     <Image
       src={faqBackgroundImage}
       alt=""

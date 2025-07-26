@@ -6,24 +6,32 @@
  * This page is used to display testimonials from clients.
  */
 
-// Global Components
-import Layout from "../layouts/Layout.astro";
-import { TitleHeaderSubpage, ContactSection } from "../components";
+// Components
+import Layout from "@/layouts/Layout.astro";
+import { TitleHeaderSubpage, ContactSection } from "@/components";
+import { Testimonial18 } from "@/components/testimonials/Testimonial18";
 
-// Local Components
-import { Testimonial18 } from "../components/testimonials/Testimonial18";
+// Data
+import { seo } from "@/data/seo";
 
-// Page Data
-const headline = "Testimonials";
-const description = "Hear what people are saying about The Benderz";
-const contactHeading = "Let's Turn Your Event Into a Party";
+// Content
+const content = {
+  header: {
+    heading: "Testimonials",
+    body: "Hear what people are saying about The Benderz",
+  },
+  contactSection: {
+    heading: "Let's Turn Your Event Into a Party",
+    body: "",
+  },
+};
 ---
 
-<Layout
-  title="Testimonials | The Benderz"
-  description="Hear what people are saying about The Benderz"
->
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.testimonials}>
+  <TitleHeaderSubpage
+    headline={content.header.heading}
+    description={content.header.body}
+  />
   <Testimonial18 />
-  <ContactSection client:load heading={contactHeading} />
+  <ContactSection client:load heading={content.contactSection.heading} />
 </Layout>

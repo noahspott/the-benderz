@@ -7,37 +7,40 @@
  * It includes a list of upcoming shows at the venue.
  */
 
-// Global Components
-import Layout from "../layouts/Layout.astro";
-import { TitleHeaderSubpage, ContactSection } from "../components";
-
-// Local Components
-import ScheduleEvent from "../components/schedule/ScheduleEvent.astro";
-
 // Lib
-import { getFutureEvents } from "../lib/sanity";
+import { getFutureEvents } from "@/lib/sanity";
+
+// Components
+import Layout from "@/layouts/Layout.astro";
+import { TitleHeaderSubpage, ContactSection } from "@/components";
+import ScheduleEvent from "@/components/schedule/ScheduleEvent.astro";
+
+// Data
+import { seo } from "@/data/seo";
 
 // Types
-import type { Event } from "../types/types";
+import type { Event } from "@/types/types";
 
-// Get the future events
+// Content
+const content = {
+  header: {
+    heading: "Schedule",
+    body: "The Benderz deliver unforgettable performances, uniting music lovers through energy and passion for every occasion.",
+  },
+  contactSection: {
+    heading: "Say Hello 👋",
+    body: "We'd love to hear from you! Please use the form below to get in touch with us.",
+  },
+};
+
 const events = await getFutureEvents();
-
-// Page Data
-const headline = "Schedule";
-const description =
-  "The Benderz deliver unforgettable performances, uniting music lovers through energy and passion for every occasion.";
-const contactHeading = "Say Hello 👋";
-const contactBody =
-  "We'd love to hear from you! Please use the form below to get in touch with us.";
 ---
 
-<Layout
-  title="Schedule | The Benderz"
-  description="The Benderz deliver unforgettable performances, uniting music lovers through energy and passion for every occasion."
->
-  <TitleHeaderSubpage headline={headline} description={description} />
-
+<Layout seo={seo.schedule}>
+  <TitleHeaderSubpage
+    headline={content.header.heading}
+    description={content.header.body}
+  />
   <div class="px-[5%] py-16 md:py-24 lg:py-28">
     <div class="container">
       {
@@ -50,7 +53,6 @@ const contactBody =
               date.getMonth() !== new Date(events[index - 1].date).getMonth()
             ) {
               return (
-                // Month Header
                 <div class="py-12 sm:py-16">
                   <h2 class="inline-block font-heading text-6xl sm:text-8xl">
                     {date.toLocaleString("default", {
@@ -67,19 +69,20 @@ const contactBody =
           return (
             <>
               {getMonthHeader(event, index)}
-
               <ScheduleEvent
                 event={event}
                 index={index}
                 classes="p-8 shadow-xsmall hover:shadow-small rounded-sm bg-gradient-to-br from-white to-gray-100"
               />
-
-              {/* <div class="mt-8 h-px bg-gradient-to-r from-accent-700/15 to-transparent" /> */}
             </>
           );
         })
       }
     </div>
   </div>
-  <ContactSection client:load heading={contactHeading} />
+  <ContactSection
+    client:load
+    heading={content.contactSection.heading}
+    body={content.contactSection.body}
+  />
 </Layout>

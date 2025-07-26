@@ -5,23 +5,37 @@
  *
  */
 
-// Global Components
-import Layout from "../layouts/Layout.astro";
-import { TitleHeaderSubpage, ContactSection } from "../components";
+// Components
+import Layout from "@/layouts/Layout.astro";
+import { TitleHeaderSubpage, ContactSection } from "@/components";
+
+// Data
+import { seo } from "@/data/seo";
 
 const headline = "Contact";
 const description =
   "Want The Benderz to bring the party to your event or wedding?";
+
+const content = {
+  header: {
+    heading: "Contact",
+    body: "Want The Benderz to bring the party to your event or wedding?",
+  },
+  contactSection: {
+    heading: "Let's Party!",
+    body: "We're ready to make your event unforgettable. Reach out to us today to discuss your event and how we can help you create a memorable experience.",
+  },
+};
 ---
 
-<Layout
-  title="Contact Us | The Benderz"
-  description="Want The Benderz to bring the party to your event or wedding?"
->
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.contact}>
+  <TitleHeaderSubpage
+    headline={content.header.heading}
+    description={content.header.body}
+  />
   <ContactSection
     client:load
-    heading={"Let's Party!"}
-    body="We're ready to make your event unforgettable. Reach out to us today to discuss your event and how we can help you create a memorable experience."
+    heading={content.contactSection.heading}
+    body={content.contactSection.body}
   />
 </Layout>

@@ -9,25 +9,26 @@
  */
 export const prerender = false;
 
-// Global components
-import Layout from "../../../layouts/Layout.astro";
+// Lib
+import { executeQuery } from "@/lib/sanity";
+import { getYesterday } from "@/lib/dateHelpers";
+import type { Venue, Event } from "@/types/types";
+
+// Components
 import {
   UpcomingShows,
   TitleHeaderSubpage,
   ContactSection,
-} from "../../../components";
-
-// Local components
-import { Gallery7 } from "../../../components/venue/Gallery7";
-import AboutSection from "../../../components/venue/AboutSection.astro";
+} from "@/components";
+import Layout from "@/layouts/Layout.astro";
+import { Gallery7 } from "@/components/venue/Gallery7";
+import AboutSection from "@/components/venue/AboutSection.astro";
 
 // Images
-import defaultImage from "../../../assets/images/layered-peaks-bg.svg";
+import defaultImage from "@/assets/images/layered-peaks-bg.svg";
 
-// Sanity
-import { getVenues, executeQuery } from "../../../lib/sanity";
-import type { Venue, Event } from "../../../types/types";
-import { getYesterday } from "../../../lib/dateHelpers";
+// Types
+import type { SeoMeta } from "@/data/seo";
 
 type VenueProps = {
   venueData: Venue;
@@ -35,7 +36,6 @@ type VenueProps = {
 
 const { venue } = Astro.params;
 
-// Add validation for the venue slug
 if (!venue || typeof venue !== "string") {
   return Astro.redirect("/404");
 }
@@ -43,7 +43,6 @@ if (!venue || typeof venue !== "string") {
 const venueFilter = `{venue: {slug: {current: {eq: "${venue}"}}}}`;
 const sortFilter = `[{date: ASC}]`;
 
-// First, get the venue data
 const venueResponse = await executeQuery<{ allVenue: Venue[] }>(`
   query {
     allVenue(where: {slug: {current: {eq: "${venue}"}}}) {
@@ -71,13 +70,11 @@ const venueResponse = await executeQuery<{ allVenue: Venue[] }>(`
   }
 `);
 
-// Check if venue exists
 const venueData = venueResponse?.allVenue[0];
 if (!venueData) {
   return Astro.redirect("/404");
 }
 
-// Then, get the events for this venue
 const eventsResponse = await executeQuery<{ allEvent: Event[] }>(`
   query {
     allEvent(
@@ -104,12 +101,10 @@ const eventsResponse = await executeQuery<{ allEvent: Event[] }>(`
 
 let events: Event[] = eventsResponse?.allEvent || [];
 
-// Filter future event
 events = events.filter((event: Event) => {
   return new Date(event.date) > getYesterday();
 });
 
-// Get the gallery images for the venue
 let galleryImages: { src: string; alt: string }[] = [];
 if (venueData.galleryPhotos) {
   galleryImages = venueData.galleryPhotos.map((photo) => ({
@@ -118,16 +113,17 @@ if (venueData.galleryPhotos) {
   }));
 }
 
-const venueImage = venueData?.image?.asset?.url;
+const venueImage = venueData?.image?.asset?.url || defaultImage;
 
-// Copy
+const seo: SeoMeta = {
+  title: `${venueData.name} | The Benderz`,
+  description: `Come see when the Benderz are playing next at ${venueData.name} in ${venueData.address.city}, ${venueData.address.state}`,
+};
+
 const contactHeading = "Say Hello 👋";
 ---
 
-<Layout
-  title={`${venueData.name} | The Benderz`}
-  description={`The Benderz at ${venueData.name}`}
->
+<Layout seo={seo}>
   <TitleHeaderSubpage
     headline={venueData.name}
     description={`${venueData.address.city}, ${venueData.address.state}`}

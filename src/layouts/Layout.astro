@@ -9,6 +9,7 @@ import {
   OrganizationSchema,
   OpenGraph,
   Favicon,
+  Seo,
 } from "../components/layout";
 
 // Styles
@@ -17,6 +18,7 @@ import "../styles/fonts.css";
 
 // Types
 import type { Link } from "../types/types";
+import type { SeoMeta } from "../data/seo";
 
 // Data
 import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
@@ -66,31 +68,24 @@ const secondaryLinks: Link[] = [
 
 const logoSrc = "/images/the-benderz.svg";
 
-const {
-  title = "The Benderz | Your Party Starts Here",
-  description = "The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast.",
-} = Astro.props;
+const { seo } = Astro.props as { seo: SeoMeta };
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <Favicon />
+    <Seo {...seo} />
     <FontPreloader />
     <OrganizationSchema />
-    <OpenGraph title={title} description={description} />
 
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap.xml" />
 
-    <!-- Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-
-    <title>{title}</title>
-    <meta name="description" content={description} />
   </head>
   <body>
     <PageTransition client:only>

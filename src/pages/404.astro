@@ -5,21 +5,20 @@
  *
  */
 
-// Global Components
+// Components
 import Layout from "../layouts/Layout.astro";
 import { HeroSubpage, ContactSection } from "../components";
 
 // Images
 import backgroundImage from "../assets/images/hero-1.jpg";
 
+// Data
+import { seo } from "@/data/seo";
+
 export const prerender = true;
 ---
 
-<Layout
-  title="404 - Page Not Found"
-  description="The page you are looking for does not exist."
-  class="bg-white"
->
+<Layout seo={seo.notFound} class="bg-white">
   <HeroSubpage
     kicker="404"
     headline="Page not found"

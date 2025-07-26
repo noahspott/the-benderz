@@ -9,33 +9,38 @@
 
 export const prerender = false;
 
-// Global Components
+// Components
 import { Image } from "astro:assets";
-import Layout from "../../layouts/Layout.astro";
-import ContactSection from "../../components/global/ContactSection";
-import { TitleHeaderSubpage } from "../../components";
+import Layout from "@/layouts/Layout.astro";
 import { FiChevronRight } from "react-icons/fi";
-
-// Types
-import type { Venue } from "../../types/types";
+import { TitleHeaderSubpage } from "@/components";
+import ContactSection from "@/components/global/ContactSection";
 
 // Images
-import defaultImage from "../../assets/images/layered-peaks-bg.svg";
+import defaultImage from "@/assets/images/layered-peaks-bg.svg";
+
+// Data
+import { seo } from "@/data/seo";
+
+// Types
+import type { Venue } from "@/types/types";
 
 // Get all venues
-import { getVenues } from "../../lib/sanity";
+import { getVenues } from "@/lib/sanity";
 const venues = await getVenues();
 
 // Content
-const headline = "Venues";
-const description = "We get to play some of the best venues in the world! 🌎";
+const content = {
+  heading: "Venues",
+  description: "We get to play some of the best venues in the world! 🌎",
+};
 ---
 
-<Layout
-  title="Venues | The Benderz"
-  description="Find the Benderz at one of these great venues in the East Coast!"
->
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.venues}>
+  <TitleHeaderSubpage
+    headline={content.heading}
+    description={content.description}
+  />
   <section class="px-[5%] py-16 md:py-24 lg:py-28">
     <div class="container">
       <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

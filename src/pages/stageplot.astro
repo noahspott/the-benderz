@@ -6,24 +6,31 @@
  * This is a page to display the stage plot for The Benderz.
  *
  */
-// Global Components
+// Components
 import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import { TitleHeaderSubpage } from "../components";
+import Layout from "@/layouts/Layout.astro";
+import { TitleHeaderSubpage } from "@/components";
 
 // Images
-import stagePlot from "../assets/images/benderz-stageplot-fullband.png";
+import stagePlot from "@/assets/images/benderz-stageplot-fullband.png";
 
-// Page Data
-const headline = "Stage Plot";
-const description = "Technical specs for The Benderz";
+// Data
+import { seo } from "@/data/seo";
+
+// Content
+const content = {
+  header: {
+    heading: "Stage Plot",
+    body: "Technical specs for The Benderz",
+  },
+};
 ---
 
-<Layout
-  title="Stage Plot | The Benderz"
-  description="Technical specs for The Benderz"
->
-  <TitleHeaderSubpage headline={headline} description={description} />
+<Layout seo={seo.stageplot}>
+  <TitleHeaderSubpage
+    headline={content.header.heading}
+    description={content.header.body}
+  />
   <section id="relume" class="px-[5%] py-16 md:py-24 lg:py-28">
     <div class="container">
       <div class="mb-12 text-center md:mb-18 lg:mb-20">
