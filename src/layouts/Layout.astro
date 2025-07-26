@@ -1,28 +1,25 @@
 ---
-// MAIN LAYOUT
-
 // Components
-import { Navbar, Footer } from "../components";
-import PageTransition from "../components/decorative/PageTransition";
+import { Navbar, Footer } from "@/components";
+import PageTransition from "@/components/decorative/PageTransition";
 import {
   FontPreloader,
   OrganizationSchema,
-  OpenGraph,
   Favicon,
   Seo,
-} from "../components/layout";
+} from "@/components/layout";
 
 // Styles
-import "../styles/global.css";
-import "../styles/fonts.css";
+import "@/styles/global.css";
+import "@/styles/fonts.css";
 
 // Types
-import type { Link } from "../types/types";
-import type { SeoMeta } from "../data/seo";
+import type { Link } from "@/types/types";
+import type { SeoMeta } from "@/data/seo";
 
 // Data
-import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "../data/consts";
-import { slugs } from "../data/consts";
+import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "@/data/consts";
+import { slugs } from "@/data/consts";
 
 const primaryLinks: Link[] = [
   { href: slugs.weddings, text: "Weddings" },
@@ -78,10 +75,7 @@ const { seo } = Astro.props as { seo: SeoMeta };
     <Seo {...seo} />
     <FontPreloader />
     <OrganizationSchema />
-
-    <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap.xml" />
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
