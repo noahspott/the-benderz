@@ -6,14 +6,12 @@
  *
  */
 
-"use client";
-
 // Components
 import { Button, useMediaQuery } from "@relume_io/relume-ui";
 
 // Tools
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 // Icons
 import { RxChevronDown } from "react-icons/rx";
@@ -99,6 +97,7 @@ export default function Navbar({
                 key={link.href}
                 href={link.href}
                 className="heading-nav relative block w-auto py-3 hover:text-accent-900 lg:inline-block lg:px-4 lg:py-6"
+                aria-label={link.ariaLabel}
               >
                 {link.text}
               </a>
@@ -153,6 +152,7 @@ export default function Navbar({
                             key={link.href}
                             href={link.href}
                             className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-start gap-x-3 py-2 hover:text-accent-900"
+                            aria-label={link.ariaLabel}
                           >
                             <div className="flex size-6 flex-col items-center justify-center">
                               {link.title === "About Us" && (
@@ -188,10 +188,7 @@ export default function Navbar({
           </div>
           {/* Desktop -- Buttons */}
           <div className="flex items-center gap-4">
-            <a
-              href={secondaryButton.href}
-              // className="hidden [@media(min-width:1100px)]:flex"
-            >
+            <a href={secondaryButton.href}>
               <Button
                 title={secondaryButton.text}
                 variant="secondary"
@@ -282,6 +279,7 @@ export default function Navbar({
                   key={link.href}
                   href={link.href}
                   className="heading-nav py-3 hover:text-accent-900"
+                  aria-label={link.ariaLabel}
                 >
                   {link.text}
                 </a>
@@ -333,6 +331,7 @@ export default function Navbar({
                               key={link.href}
                               href={link.href}
                               className="grid w-full auto-cols-fr grid-cols-[max-content_1fr] items-center gap-x-3 py-2 hover:text-accent-900"
+                              aria-label={link.ariaLabel}
                             >
                               <div className="flex size-6 flex-col items-center justify-center">
                                 {link.title === "About Us" && (

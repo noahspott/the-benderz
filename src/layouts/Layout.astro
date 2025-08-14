@@ -22,18 +22,28 @@ import { NAME, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from "@/data/consts";
 import { slugs } from "@/data/consts";
 
 const primaryLinks: Link[] = [
-  { href: slugs.weddings, text: "Weddings" },
-  { href: slugs.privateEvents, text: "Private Events" },
+  {
+    href: slugs.weddings,
+    text: "Weddings",
+    ariaLabel: "Learn more about The Benderz wedding experience",
+  },
+  {
+    href: slugs.privateEvents,
+    text: "Private Events",
+    ariaLabel: "Learn more about The Benderz private event experience",
+  },
 ];
 
 const primaryButton: Link = {
   href: slugs.contact,
   text: "Contact Us",
+  ariaLabel: "Let's book your party!",
 };
 
 const secondaryButton: Link = {
   href: slugs.schedule,
   text: "Schedule",
+  ariaLabel: "View The Benderz schedule",
 };
 
 const secondaryLinks: Link[] = [
@@ -42,24 +52,28 @@ const secondaryLinks: Link[] = [
     title: "About Us",
     description: "Discover The Benderz.",
     iconSrc: "",
+    ariaLabel: "Learn more about The Benderz",
   },
   {
     href: slugs.photos,
     title: "Photos",
     description: "Visit our photo gallery.",
     iconSrc: "",
+    ariaLabel: "Visit The Benderz photo gallery",
   },
   {
     href: slugs.venues,
     title: "Venues",
     description: "Explore the locations where we perform.",
     iconSrc: "",
+    ariaLabel: "View the venues we play and love",
   },
   {
     href: slugs.playlist,
     title: "Playlist",
     description: "Check out our playlist!",
     iconSrc: "",
+    ariaLabel: "Check out our playlist",
   },
 ];
 
@@ -71,9 +85,9 @@ const { seo } = Astro.props as { seo: SeoMeta };
 <!doctype html>
 <html lang="en">
   <head>
+    <FontPreloader />
     <Favicon />
     <Seo {...seo} />
-    <FontPreloader />
     <OrganizationSchema />
     <link rel="sitemap" href="/sitemap.xml" />
     <meta charset="UTF-8" />
@@ -101,20 +115,61 @@ const { seo } = Astro.props as { seo: SeoMeta };
         newsletterText="Subscribe to our newsletter"
         links={{
           whatWeDo: [
-            { text: "Weddings", href: slugs.weddings },
-            { text: "Private Events", href: slugs.privateEvents },
-            { text: "Upcoming Shows", href: slugs.schedule },
+            {
+              text: "Weddings",
+              href: slugs.weddings,
+              ariaLabel: "Learn more about The Benderz wedding experience",
+            },
+            {
+              text: "Private Events",
+              href: slugs.privateEvents,
+              ariaLabel:
+                "Learn more about The Benderz private event experience",
+            },
+            {
+              text: "Upcoming Shows",
+              href: slugs.schedule,
+              ariaLabel: "View our schedule",
+            },
           ],
           moreInfo: [
-            { text: "About Us", href: slugs.about },
-            { text: "Playlist", href: slugs.playlist },
-            { text: "Photos", href: slugs.photos },
-            { text: "Contact Us", href: slugs.contact },
+            {
+              text: "About Us",
+              href: slugs.about,
+              ariaLabel: "Learn more about The Benderz",
+            },
+            {
+              text: "Playlist",
+              href: slugs.playlist,
+              ariaLabel: "Check out our playlist",
+            },
+            {
+              text: "Photos",
+              href: slugs.photos,
+              ariaLabel: "Check out our photos!",
+            },
+            {
+              text: "Contact Us",
+              href: slugs.contact,
+              ariaLabel: "Book The Benderz!",
+            },
           ],
           followUs: [
-            { text: "Facebook", href: FACEBOOK_URL },
-            { text: "Instagram", href: INSTAGRAM_URL },
-            { text: "Youtube", href: YOUTUBE_URL },
+            {
+              text: "Facebook",
+              href: FACEBOOK_URL,
+              ariaLabel: "Follow The Benderz on Facebook",
+            },
+            {
+              text: "Instagram",
+              href: INSTAGRAM_URL,
+              ariaLabel: "Follow The Benderz on Instagram",
+            },
+            {
+              text: "Youtube",
+              href: YOUTUBE_URL,
+              ariaLabel: "Follow The Benderz on YouTube",
+            },
           ],
         }}
         footerText="The Benderz are a high-energy party band from Philly, bringing nonstop music and electric vibes to clubs, casinos, and private events up and down the East Coast. "
