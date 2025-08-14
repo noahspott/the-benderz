@@ -121,13 +121,16 @@ export default function WhatWeDo({
                   {links[0].text}
                 </Button>
               </a>
-              <a href={links[1].href} className="button-link my-auto">
+              <a
+                href={links[1].href}
+                className="button-link my-auto"
+                aria-label={links[1].ariaLabel}
+              >
                 <Button
                   variant="link"
                   size="link"
                   iconRight={<RxChevronRight />}
                   className=""
-                  aria-label={links[1].ariaLabel}
                 >
                   {links[1].text}
                 </Button>
