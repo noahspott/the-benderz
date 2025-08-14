@@ -48,7 +48,7 @@ const links = [
     href: slugs.contact,
   },
   {
-    text: "Learn More",
+    text: "About Us",
     href: slugs.about,
     ariaLabel: "Learn more about The Benderz on our About page",
   },
