@@ -50,6 +50,7 @@ const links = [
   {
     text: "Learn More",
     href: slugs.about,
+    ariaLabel: "Learn more about The Benderz on our About page",
   },
 ];
 
@@ -69,7 +70,10 @@ export default function WhatWeDo({
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
           <div className="order-2 md:order-1">
             <Dialog>
-              <DialogTrigger className="relative flex w-full items-center justify-center">
+              <DialogTrigger
+                aria-label="Play video"
+                className="relative flex w-full items-center justify-center"
+              >
                 <img
                   src={youtubeThumbnailUrl}
                   alt=""
@@ -123,6 +127,7 @@ export default function WhatWeDo({
                   size="link"
                   iconRight={<RxChevronRight />}
                   className=""
+                  aria-label={links[1].ariaLabel}
                 >
                   {links[1].text}
                 </Button>
