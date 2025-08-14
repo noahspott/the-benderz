@@ -19,15 +19,17 @@ import {
   BiLogoYoutube,
 } from "react-icons/bi";
 
+import type { Link } from "@/types/types";
+
 interface FooterProps {
   logoSrc?: string;
   bigLogoSrc?: string;
   companyName: string;
   newsletterText: string;
   links: {
-    whatWeDo: { text: string; href: string }[];
-    moreInfo: { text: string; href: string }[];
-    followUs: { text: string; href: string }[];
+    whatWeDo: Link[];
+    moreInfo: Link[];
+    followUs: Link[];
   };
   footerText: string;
   policies: { text: string; href: string }[];
@@ -75,6 +77,7 @@ const {
                   <a
                     href={link.href}
                     class="flex items-center gap-3 font-body hover:text-accent-900"
+                    aria-label={link.ariaLabel}
                   >
                     <span>{link.text}</span>
                   </a>
@@ -92,6 +95,7 @@ const {
                   <a
                     href={link.href}
                     class="flex items-center gap-3 font-body hover:text-accent-900"
+                    aria-label={link.ariaLabel}
                   >
                     <span>{link.text}</span>
                   </a>
@@ -106,7 +110,11 @@ const {
             {
               links.followUs.map((link, index) => (
                 <li class="py-2 hover:text-accent-900">
-                  <a href={link.href} class="flex items-center gap-3 font-body">
+                  <a
+                    href={link.href}
+                    class="flex items-center gap-3 font-body"
+                    aria-label={link.ariaLabel}
+                  >
                     {link.text === "Facebook" ? (
                       <BiLogoFacebookCircle className="size-6" />
                     ) : link.text === "Instagram" ? (

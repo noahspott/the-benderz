@@ -4,6 +4,7 @@ export interface Link {
   title?: string;
   description?: string;
   iconSrc?: string;
+  ariaLabel?: string;
 }
 
 export type Address = {
