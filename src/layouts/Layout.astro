@@ -85,14 +85,14 @@ const { seo } = Astro.props as { seo: SeoMeta };
 <!doctype html>
 <html lang="en">
   <head>
-    <FontPreloader />
-    <Favicon />
-    <Seo {...seo} />
-    <OrganizationSchema />
-    <link rel="sitemap" href="/sitemap.xml" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Favicon />
+    <FontPreloader />
+    <Seo {...seo} />
+    <OrganizationSchema />
+    <link rel="sitemap" href="/sitemap.xml" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
