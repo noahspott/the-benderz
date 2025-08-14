@@ -46,7 +46,10 @@ export default function AboutVideoSection({
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
           <div className="order-2 md:order-1">
             <Dialog>
-              <DialogTrigger className="relative flex w-full items-center justify-center">
+              <DialogTrigger
+                aria-label="Play video"
+                className="relative flex w-full items-center justify-center"
+              >
                 <img
                   src={youtubeThumbnailUrl}
                   alt=""
