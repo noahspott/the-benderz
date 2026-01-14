@@ -12,7 +12,7 @@ export default defineType({
       type: 'string',
       description: 'The type of show',
       options: {
-        list: ['Full Band', 'Solo', 'Duo', 'Private', 'Wedding'],
+        list: ['Full Band', 'Solo', 'Duo', 'Trio', 'Private', 'Wedding'],
         layout: 'radio',
         direction: 'horizontal',
       },
@@ -197,4 +197,16 @@ export default defineType({
   },
 
   icon: CalendarIcon,
+  orderings: [
+    {
+      title: 'Date (Newest)',
+      name: 'dateDesc',
+      by: [{field: 'date', direction: 'desc'}],
+    },
+    {
+      title: 'Date (Oldest)',
+      name: 'dateAsc',
+      by: [{field: 'date', direction: 'asc'}],
+    },
+  ],
 })
